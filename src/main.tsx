@@ -5,12 +5,22 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store.ts";
+import { ThemeProvider } from "./components/ThemeProvider.tsx";
+import { Toaster } from "./components/ui/sonner.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <App />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <App />
+          <Toaster />
+        </ThemeProvider>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>

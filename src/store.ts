@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit"; //this is for storing data in redux/toolkit
 // these will store data in webstorage
 import userReducer from "./redux/user.slice";
-// import catagoryReducer from "./redux/catagorySlice";
+import catagoryReducer from "./redux/catagory.slice";
 // import systemReducer from "./systemSlice";
 // import paymentReducer from "./redux/paymentSlice";
 // import displayTableReducer from "./redux/displaySlice";
@@ -11,7 +11,7 @@ import userReducer from "./redux/user.slice";
 export const store = configureStore({
   reducer: {
     userInfo: userReducer,
-    // catagoryInfo: catagoryReducer,
+    catagoryInfo: catagoryReducer,
     // system: systemReducer,
     // payments: paymentReducer,
     // displayTableData: displayTableReducer,

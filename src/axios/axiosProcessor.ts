@@ -1,11 +1,12 @@
-import { IAxiosProcessParams, ILoginform } from "@/types";
+import { IAxiosProcessParams, TAxiosProcessor } from "@/types";
 import axios from "axios";
+import { getNewAccessJWT, logoutUser } from "./userAxios";
 
 export const rootApi = !import.meta.env.PROD
   ? "http://localhost:8000"
   : import.meta.env.ROOTSERVER;
 export const adminApi = rootApi + "/api/v1/admin";
-// const clientApi = import.meta.env.CLIENT_API;
+
 export const getAccessJWt = () => {
   return sessionStorage.getItem("accessJWT");
 };
@@ -18,7 +19,7 @@ export const axiosProcessor = async ({
   obj,
   isPrivate,
   refreshToken,
-}: IAxiosProcessParams) => {
+}: IAxiosProcessParams): TAxiosProcessor => {
   const token = refreshToken ? getRefreshJWT() : getAccessJWt();
   const headers = {
     Authorization: isPrivate ? token : null,
@@ -31,28 +32,38 @@ export const axiosProcessor = async ({
       headers,
     });
     return data;
-  } catch (error) {
-    //   if (
-    //     error?.response?.status === 403 &&
-    //     error?.response?.data?.message ===
-    //       "Your token has expired. Please login Again"
-    //   ) {
-    //     // 1. get new access Jwt
-    //     const { status, accessJWT } = await getNewAccessJWT();
-    //     if (status === "success") {
-    //       sessionStorage.setItem("accessJWT", accessJWT);
-    //       return axiosProcessor({ method, url, obj, isPrivate, refreshToken });
-    //     }
-    //   }
-    //   if (error?.response?.data?.message === "jwt expired") {
-    //     console.log("refresh token expired");
-    //     logoutUser();
-    //   }
-    //   return {
-    //     status: "error",
-    //     message: error.response ? error?.response?.data?.message : error.message,
-    //     error,
-    //   };
-    // }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    if (
+      error?.response?.status === 403 &&
+      error?.response?.data?.message ===
+        "Your token has expired. Please login Again"
+    ) {
+      // 1. get new access Jwt
+      const { status, accessJWT } = await getNewAccessJWT();
+      if (status === "success" && accessJWT) {
+        sessionStorage.setItem("accessJWT", accessJWT);
+        return axiosProcessor({ method, url, obj, isPrivate, refreshToken });
+      }
+    }
+    if (error?.response?.data?.message === "jwt expired") {
+      console.log(error);
+      logoutUser("");
+    }
+    return {
+      status: "error",
+      message: error.response ? error?.response?.data?.message : error.message,
+    };
   }
+};
+const productApi = rootApi + "/api/v1/product";
+
+export const deleteImageFromServer = (img: { fileName: string }) => {
+  const obj = {
+    method: "post",
+    url: productApi + "/deleteFileFromServer",
+    obj: img,
+    isPrivate: true,
+  };
+  return axiosProcessor(obj);
 };

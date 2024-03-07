@@ -1,4 +1,4 @@
-import { getAdmin, loginUser } from "@/axios/userAxios";
+import { getAdmin, getNewAccessJWT, loginUser } from "@/axios/userAxios";
 import { setUser } from "@/redux/user.slice";
 import { AppDispatch } from "@/store";
 import { ILoginform } from "@/types";
@@ -7,9 +7,9 @@ export const loginUserAction =
   (userData: ILoginform) => async (dispatch: AppDispatch) => {
     const pendingResp = loginUser(userData);
 
-    const { status, message, token } = await pendingResp;
+    const { status, token } = await pendingResp;
 
-    if (status === "success") {
+    if (status === "success" && token?.accessJWT) {
       sessionStorage.setItem("accessJWT", token.accessJWT); ///active for 5mins
       localStorage.setItem("refreshJWT", token.refreshJWT); //active for 30days
       dispatch(getAdminProfileAction());
@@ -20,7 +20,7 @@ export const getAdminProfileAction = () => async (dispatch: AppDispatch) => {
   //call the api to get user info
   const { status, user } = await getAdmin();
   //mount the state with the user data
-  if (status === "success") {
+  if (status === "success" && user?._id) {
     dispatch(setUser(user));
   }
 };

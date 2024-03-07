@@ -1,7 +1,7 @@
 import React, { FormEvent, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
-import { useDispatch, useSelector } from "react-redux";
+
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { autoLogin, loginUserAction } from "@/Action/userAction";
 import { ILoginform } from "@/types";
@@ -35,7 +35,7 @@ const SignInForm = () => {
       required: true,
       placeholder: "************",
       type: "password",
-      minLength: "8",
+      minLength: 8,
       value: form.password,
       id: "password",
     },
@@ -72,7 +72,7 @@ const SignInForm = () => {
         <span className="flex flex-col gap-3">
           {inputs.map((item, index) => {
             return (
-              <>
+              <React.Fragment key={index}>
                 <label
                   htmlFor={item.label}
                   className="text-sm font-medium leading-none"
@@ -82,10 +82,10 @@ const SignInForm = () => {
                 <input
                   key={index}
                   {...item}
-                  className="p-3 rounded-sm bg-slate-200/70 "
+                  className="p-3 rounded-sm bg-slate-200/70 text-black placeholder:text-gray-600 "
                   onChange={handleOnChange}
                 />
-              </>
+              </React.Fragment>
             );
           })}
         </span>
