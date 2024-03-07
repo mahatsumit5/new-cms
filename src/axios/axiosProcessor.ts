@@ -5,7 +5,10 @@ import { getNewAccessJWT, logoutUser } from "./userAxios";
 export const rootApi = !import.meta.env.PROD
   ? "http://localhost:8000"
   : import.meta.env.ROOTSERVER;
+// export const rootApi = import.meta.env.VITE_ROOTSERVER;
+console.log(rootApi);
 export const adminApi = rootApi + "/api/v1/admin";
+console.log(adminApi);
 
 export const getAccessJWt = () => {
   return sessionStorage.getItem("accessJWT");
