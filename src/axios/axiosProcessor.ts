@@ -6,9 +6,8 @@ export const rootApi = !import.meta.env.PROD
   ? "http://localhost:8000"
   : "http://cms-server-env.eba-chhpa4gj.us-east-1.elasticbeanstalk.com";
 // export const rootApi = import.meta.env.VITE_ROOTSERVER;
-console.log(rootApi);
+
 export const adminApi = rootApi + "/api/v1/admin";
-console.log(adminApi);
 
 export const getAccessJWt = () => {
   return sessionStorage.getItem("accessJWT");

@@ -130,3 +130,20 @@ export interface IProduct {
   updatedAt: Date;
   __v: number;
 }
+
+export interface IDeletePaymentParams {
+  _id: string;
+}
+
+export interface ICreateUpdatePaymentParams {
+  title: string;
+  description: string;
+}
+
+export interface IPayment {
+  _id: string;
+  status: "active" | "Inactive";
+  title: string;
+  description: string;
+  __v: number;
+}

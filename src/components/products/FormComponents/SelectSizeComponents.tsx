@@ -50,7 +50,7 @@ const SelectSizeComponent = ({ form }: { form: TypeForm }) => {
                   variant="outline"
                   role="combobox"
                   className={cn(
-                    "w-full justify-between",
+                    "w-full justify-between dark:bg-slate-950/50",
                     !field.value && "text-muted-foreground"
                   )}
                 >

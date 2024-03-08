@@ -142,7 +142,7 @@ const NewProductForm = () => {
             control={form.control}
             name="status"
             render={({ field }) => (
-              <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm bg-white/50 md:col-span-3 ">
+              <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm bg-white/50 md:col-span-3 dark:bg-slate-950/45">
                 <div className="space-y-0.5">
                   <FormLabel>Status</FormLabel>
                 </div>
@@ -168,7 +168,7 @@ const NewProductForm = () => {
                     <Input
                       {...item}
                       {...field}
-                      className="bg-white/50 placeholder:text-black"
+                      className="bg-white/50 placeholder:text-black dark:bg-slate-950/50 dark:placeholder:text-slate-600 dar"
                     />
                     {/* <Textarea placeholder="Type your message here." /> */}
                   </FormControl>
@@ -191,7 +191,7 @@ const NewProductForm = () => {
                     <Input
                       type="number"
                       {...field}
-                      className="bg-white/65 placeholder:text-grey"
+                      className="bg-white/65 placeholder:text-grey dark:bg-slate-950/50"
                       min={1}
                       max={999}
                       defaultValue={1}
@@ -222,7 +222,7 @@ const NewProductForm = () => {
                       <Button
                         variant={"outline"}
                         className={cn(
-                          "w-full pl-3 text-left font-normal",
+                          "w-full pl-3 text-left font-normal dark:bg-slate-950/50",
                           !field.value && "text-muted-foreground"
                         )}
                       >
@@ -262,7 +262,7 @@ const NewProductForm = () => {
                       <Button
                         variant={"outline"}
                         className={cn(
-                          "w-full pl-3 text-left font-normal",
+                          "w-full pl-3 text-left font-normal dark:bg-slate-950/50",
                           !field.value && "text-muted-foreground"
                         )}
                       >
@@ -302,7 +302,7 @@ const NewProductForm = () => {
                     setImg(e.target.files);
                   }
                 }}
-                className="bg-white"
+                className="bg-slate-100 dark:bg-slate-950/50"
               />
             </FormControl>
             <FormDescription>Select Images for you products</FormDescription>
@@ -319,7 +319,7 @@ const NewProductForm = () => {
                 <FormControl>
                   <Textarea
                     placeholder="Give a breif description about your product"
-                    className="resize-none bg-white/75 dark:bg-black"
+                    className="resize-none bg-white/75 dark:bg-slate-950/50"
                     {...field}
                     rows={8}
                   />
