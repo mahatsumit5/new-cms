@@ -1,6 +1,5 @@
 import { ICreateUpdatePaymentParams, IDeletePaymentParams } from "@/types";
 
-import { setPayments } from "../redux/paymentSlice";
 import { AppDispatch } from "@/store";
 import {
   deletePayment,
@@ -9,6 +8,7 @@ import {
   updatePayment,
 } from "@/axios/paymentAxios";
 import { toast } from "sonner";
+import { setPayments } from "@/redux/payment.slice";
 
 export const postPaymentOptions =
   (obj: ICreateUpdatePaymentParams) => async (dispatch: AppDispatch) => {
@@ -21,11 +21,9 @@ export const postPaymentOptions =
   };
 export const getPaymentsAction = () => async (dispatch: AppDispatch) => {
   const { status, result } = await getPayments();
-  if (status === "success") {
+  if (status === "success" && result?.length) {
     dispatch(setPayments(result));
-
-    return true;
-  } else return false;
+  }
 };
 export const deletePaymentAction =
   (_id: IDeletePaymentParams) => async (dispatch: AppDispatch) => {

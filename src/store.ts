@@ -3,7 +3,7 @@ import { configureStore } from "@reduxjs/toolkit"; //this is for storing data in
 import userReducer from "./redux/user.slice";
 import catagoryReducer from "./redux/catagory.slice";
 // import systemReducer from "./systemSlice";
-// import paymentReducer from "./redux/paymentSlice";
+import paymentReducer from "./redux/payment.slice";
 // import displayTableReducer from "./redux/displaySlice";
 import productReducer from "./redux/product.slice";
 // import orderReducer from "./redux/orderSlice";
@@ -13,7 +13,7 @@ export const store = configureStore({
     userInfo: userReducer,
     catagoryInfo: catagoryReducer,
     // system: systemReducer,
-    // payments: paymentReducer,
+    payments: paymentReducer,
     // displayTableData: displayTableReducer,
     productsData: productReducer,
     // orderData: orderReducer,
