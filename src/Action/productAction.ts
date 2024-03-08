@@ -1,48 +1,62 @@
-import { postProduct } from "@/axios/productAxios";
+import { deleteImageFromServer } from "@/axios/axiosProcessor";
+import {
+  deleteProduct,
+  getProducts,
+  postProduct,
+  updateProduct,
+} from "@/axios/productAxios";
+import { setProducts } from "@/redux/product.slice";
+import { AppDispatch } from "@/store";
+import { IProduct } from "@/types";
 
 import { toast } from "sonner";
 
-export const postProductAction = (obj: FormData) => async () => {
-  const pendingResp = postProduct(obj);
-  const { status, message, imageToDelete } = await pendingResp;
-  toast(message);
-  // dispatch(getproductAction());
-  if (status === "success" && imageToDelete?.length) {
-    if (imageToDelete?.length) {
-      // imagesToDelete.forEach((element: string) => {
-      //   deleteImageFromServer({ fileName: element });
-      // });
+export const postProductAction =
+  (obj: FormData) => async (dispatch: AppDispatch) => {
+    const pendingResp = postProduct(obj);
+    const { status, message, imagesToDelete } = await pendingResp;
+    toast(message);
+    status === "success" && dispatch(getproductAction());
+
+    if (status === "success" && imagesToDelete?.length) {
+      if (imagesToDelete?.length && typeof imagesToDelete !== "string") {
+        imagesToDelete.forEach((element: string) => {
+          deleteImageFromServer({ fileName: element });
+        });
+      }
+      return true;
     }
     return true;
+  };
+export const getproductAction = () => async (dispatch: AppDispatch) => {
+  const { status, result } = await getProducts();
+
+  if (status === "success") {
+    dispatch(setProducts(result as IProduct[]));
   }
 };
-// export const getproductAction = () => async (dispatch: AppDispatch) => {
-//   const { status, message, result } = await getProducts();
-//   if (status === "success") {
-//     // dispatch(setProducts(result));
-//     return true;
-//   } else return false;
-// };
-// export const deleteProductAction = (_id) => async (dispatch) => {
-//   const pendingResp = deleteProduct(_id);
-//   toast.promise(pendingResp, { pending: "Please wait" });
+export const deleteProductAction =
+  (_id: string) => async (dispatch: AppDispatch) => {
+    const pendingResp = deleteProduct(_id);
+    const { status, message } = await pendingResp;
+    toast(message);
+    if (status === "success") {
+      dispatch(getproductAction());
+    }
+  };
+export const updateProductAction =
+  (obj: FormData) => async (dispatch: AppDispatch) => {
+    const pendingResp = updateProduct(obj);
 
-//   const { status, message } = await pendingResp;
-//   dispatch(getproductAction());
-// };
-// export const updateProductAction = (obj) => async (dispatch) => {
-//   const pendingResp = updateProduct(obj);
-//   toast.promise(pendingResp, { pending: "Please wait" });
+    const { status, message, imagesToDelete } = await pendingResp;
+    toast(message);
+    status === "success" && dispatch(getproductAction());
 
-//   const { status, message, imagesToDelete } = await pendingResp;
-//   dispatch(getproductAction());
-//   if (status === "success") {
-//     if (imagesToDelete?.length) {
-//       imagesToDelete.forEach((element) => {
-//         deleteImageFromServer({ fileName: element });
-//       });
-//     }
-//     return true;
-//   }
-//   return false;
-// };
+    if (status === "success" && typeof imagesToDelete !== "string") {
+      if (imagesToDelete?.length) {
+        imagesToDelete.forEach((element: string) => {
+          deleteImageFromServer({ fileName: element });
+        });
+      }
+    }
+  };

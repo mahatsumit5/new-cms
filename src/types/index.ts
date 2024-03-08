@@ -78,6 +78,7 @@ export type TypeForm = UseFormReturn<
     description: string;
     status: boolean;
     size: string[];
+    color: string[];
   },
   undefined
 >;
@@ -88,7 +89,7 @@ export type TAxiosProcessor = Promise<{
   user?: IUser;
   token?: { accessJWT: string; refreshJWT: string };
   accessJWT?: string;
-  imageToDelete?: string;
+  imagesToDelete?: string | string[];
 }>;
 export type TAxiosProcessorError = {
   code: string;
@@ -106,4 +107,26 @@ export interface ICatDialogProps {
   buttonName: string;
   children: React.ReactNode;
   item?: ICategory;
+}
+
+export interface IProduct {
+  _id: string;
+  status: "active" | "Inactive";
+  title: string;
+  slug: string;
+  price: number;
+  qty: number;
+  sku: string;
+  salesPrice: number;
+  salesStartDate: Date | null;
+  salesEndDate: Date | null;
+  color: string[];
+  size: string[];
+  category: string;
+  description: string;
+  thumbnail: string;
+  images: string[];
+  createdAt: Date;
+  updatedAt: Date;
+  __v: number;
 }

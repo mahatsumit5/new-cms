@@ -30,6 +30,7 @@ import SelectSizeComponent from "./FormComponents/SelectSizeComponents";
 
 import { useAppDispatch } from "@/hooks";
 import { postProductAction } from "@/Action/productAction";
+import SelectColorComponenet from "./FormComponents/SelectColorComponent";
 
 const formSchema = z.object({
   title: z
@@ -81,6 +82,11 @@ const formSchema = z.object({
       required_error: "Size is required",
     })
   ),
+  color: z.array(
+    z.string({
+      required_error: "Color is required",
+    })
+  ),
 });
 const NewProductForm = () => {
   const dispatch = useAppDispatch();
@@ -117,9 +123,12 @@ const NewProductForm = () => {
     values.size.forEach((size) => {
       formDt.append("size", size);
     });
-    console.log(values);
+    values.color.forEach((color) => {
+      formDt.append("color", color);
+    });
     const isPosted = await dispatch(postProductAction(formDt));
-    console.log(isPosted);
+    isPosted && form.reset();
+    console.log(values);
   }
   return (
     <div className=" w-full md:w-10/12 mx-auto p-5 bg-white/50 dark:bg-slate-950/25 rounded-lg">
@@ -299,7 +308,7 @@ const NewProductForm = () => {
             <FormDescription>Select Images for you products</FormDescription>
           </FormItem>
           {/* color */}
-          <SelectSizeComponent form={form} />
+          <SelectColorComponenet form={form} />
           {/* description */}
           <FormField
             control={form.control}

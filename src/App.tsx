@@ -11,6 +11,7 @@ import {
   getParentCategoryAction,
 } from "./Action/catelogueAction";
 import CataloguePage from "./pages/catalogue/Catalogue";
+import { getproductAction } from "./Action/productAction";
 function App() {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((store) => store.userInfo);
@@ -18,6 +19,7 @@ function App() {
   useEffect(() => {
     dispatch(getCataloguesAction());
     dispatch(getParentCategoryAction());
+    dispatch(getproductAction());
   }, [dispatch, user]);
   return (
     <div className="  mx-auto  ">

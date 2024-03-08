@@ -11,37 +11,28 @@ export const postProduct = (productObj: FormData) => {
   };
   return axiosProcessor(obj);
 };
-// export const getProducts = (_id) => {
-//   const obj = {
-//     method: "get",
-//     url: _id ? productApi + "/" + _id : productApi,
-//     isPrivate: true,
-//   };
-//   return axiosProcessor(obj);
-// };
-// export const deleteProduct = (_id) => {
-//   const obj = {
-//     method: "delete",
-//     url: productApi + "/" + _id,
-//     isPrivate: true,
-//   };
-//   return axiosProcessor(obj);
-// };
-// export const updateProduct = (data) => {
-//   const obj = {
-//     method: "put",
-//     url: productApi,
-//     obj: data,
-//     isPrivate: true,
-//   };
-//   return axiosProcessor(obj);
-// };
-// export const deleteImageFromServer = (img) => {
-//   const obj = {
-//     method: "post",
-//     url: productApi + "/deleteFileFromServer",
-//     obj: img,
-//     isPrivate: true,
-//   };
-//   return axiosProcessor(obj);
-// };
+export const getProducts = (_id?: string) => {
+  const obj = {
+    method: "get",
+    url: _id ? productApi + "/" + _id : productApi,
+    isPrivate: true,
+  };
+  return axiosProcessor(obj);
+};
+export const deleteProduct = (_id: string) => {
+  const obj = {
+    method: "delete",
+    url: productApi + "/" + _id,
+    isPrivate: true,
+  };
+  return axiosProcessor(obj);
+};
+export const updateProduct = (data: FormData) => {
+  const obj = {
+    method: "put",
+    url: productApi,
+    obj: data,
+    isPrivate: true,
+  };
+  return axiosProcessor(obj);
+};
