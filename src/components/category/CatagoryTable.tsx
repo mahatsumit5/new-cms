@@ -9,12 +9,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "../ui/button";
-import { useAppSelector } from "@/hooks";
 import { CatagoryDialog } from "./AddCategoryDialog";
 import EditCatagoryForm from "./EditCategoryForm";
+import { ICategory } from "@/types";
 
-export function CategoryTable() {
-  const { catalogue } = useAppSelector((store) => store.catagoryInfo);
+export function CategoryTable({ catalogue }: { catalogue: ICategory[] }) {
   return (
     <Table>
       <TableCaption>A list of your categories</TableCaption>

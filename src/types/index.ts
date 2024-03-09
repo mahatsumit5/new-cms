@@ -147,3 +147,11 @@ export interface IPayment {
   description: string;
   __v: number;
 }
+export interface ITabsProps {
+  type: "product" | "paymentMethod" | "catagory" | "payment";
+  tab1: string;
+  tab2: string;
+  data: ICategory[] | IProduct[] | IPayment[]; // TODO: Define the type of data in this array.
+  // form: ReactElement<null, string>;
+  children: React.ReactNode;
+}

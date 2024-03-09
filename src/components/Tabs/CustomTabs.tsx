@@ -1,32 +1,23 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-// import { ProductDataTable } from "../products/CustomTable";
-// import { columns } from "../products/columns";
-import NewProductForm from "../products/NewProductForm";
+import { ICategory, ITabsProps } from "@/types";
+import { CategoryTable } from "../category/CatagoryTable";
 
-export function CustomTabs() {
+export function CustomTabs({ type, tab1, children, tab2, data }: ITabsProps) {
   return (
-    <Tabs defaultValue="products" className="w-full">
+    <Tabs defaultValue={tab1} className="w-full">
       <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="products">Products</TabsTrigger>
-        <TabsTrigger value="add-product">Add new Products</TabsTrigger>
+        <TabsTrigger value={tab1}>{tab1}</TabsTrigger>
+        <TabsTrigger value={tab2}>{tab2}</TabsTrigger>
       </TabsList>
-      <TabsContent value="products">
-        {/* <ProductDataTable
-          columns={columns}
-          data={[
-            {
-              id: "728ed52f",
-              amount: 100,
-              status: "pending",
-              email: "m@example.com",
-            },
-          ]}
-        /> */}
+      <TabsContent value={tab1}>
+        {type === "catagory" && (
+          <CategoryTable catalogue={data as ICategory[]} />
+        )}
+
+        {type === "product" && <>Todo show products data table</>}
       </TabsContent>
-      <TabsContent value="add-product">
-        <NewProductForm />
-      </TabsContent>
+      <TabsContent value={tab2}>{children}</TabsContent>
     </Tabs>
   );
 }

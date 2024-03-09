@@ -22,6 +22,7 @@ export const postPaymentOptions =
 export const getPaymentsAction = () => async (dispatch: AppDispatch) => {
   const { status, result } = await getPayments();
   if (status === "success" && result?.length) {
+    console.log(result);
     dispatch(setPayments(result));
   }
 };
