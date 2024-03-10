@@ -146,6 +146,8 @@ export interface IPayment {
   title: string;
   description: string;
   __v: number;
+  createdAt: Date;
+  updatedAt: Date;
 }
 export interface ITabsProps {
   type: "product" | "paymentMethod" | "catagory" | "payment";
@@ -153,5 +155,11 @@ export interface ITabsProps {
   tab2: string;
   data: ICategory[] | IProduct[] | IPayment[]; // TODO: Define the type of data in this array.
   // form: ReactElement<null, string>;
+  children: React.ReactNode;
+}
+export interface IDialog {
+  title: string;
+  buttonName: string;
+  isOpen: boolean;
   children: React.ReactNode;
 }

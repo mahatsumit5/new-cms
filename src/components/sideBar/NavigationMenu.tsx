@@ -10,53 +10,53 @@ const NavigationMenu = () => {
   const buttons = [
     {
       name: "Dashboard",
-      icon: <BsFillBox2Fill size={25} />,
+      icon: <BsFillBox2Fill size={15} />,
       link: "/dashboard",
     },
     {
       name: "Products",
-      icon: <BsFillBox2Fill size={25} />,
+      icon: <BsFillBox2Fill size={15} />,
       link: "/products",
     },
     {
       name: "Customers",
-      icon: <FaUsers size={25} />,
+      icon: <FaUsers size={15} />,
       link: "/customers",
     },
     {
       name: "Sales",
-      icon: <FaMoneyBillAlt size={25} />,
+      icon: <FaMoneyBillAlt size={15} />,
       link: "/sales",
     },
 
     {
       name: "Catalogue",
-      icon: <BiSolidCategoryAlt size={25} />,
+      icon: <BiSolidCategoryAlt size={15} />,
       link: "/catalogue",
     },
     {
       name: "Payment",
-      icon: <LiaCreditCardSolid size={25} />,
+      icon: <LiaCreditCardSolid size={15} />,
       link: "/payment",
     },
     {
       name: "Orders",
-      icon: <LiaTruckSolid size={25} />,
+      icon: <LiaTruckSolid size={15} />,
       link: "/orders",
     },
     {
       name: "Admin",
-      icon: <FaUserSecret size={25} />,
+      icon: <FaUserSecret size={15} />,
       link: "/admin",
     },
     {
       name: "Profile",
-      icon: <BsPersonFill size={25} />,
+      icon: <BsPersonFill size={15} />,
       link: "/profile",
     },
   ];
   return (
-    <ul className="flex flex-col  flex-1 gap-3 h-full justify-between">
+    <ul className="flex flex-col  flex-1 gap-6 h-full justify-between ">
       {buttons.map((item) => (
         <Link to={`${item.link}`} key={item.link}>
           <li

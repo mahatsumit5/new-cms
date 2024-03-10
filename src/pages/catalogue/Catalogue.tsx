@@ -7,7 +7,7 @@ const CataloguePage = () => {
   const { catalogue } = useAppSelector((store) => store.catagoryInfo);
 
   return (
-    <div className="min-h-screen h-auto">
+    <div className="md:min-h-screen">
       <CustomTabs
         type="catagory"
         children={<AddCategoryForm />}

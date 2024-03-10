@@ -7,7 +7,7 @@ import paymentReducer from "./redux/payment.slice";
 // import displayTableReducer from "./redux/displaySlice";
 import productReducer from "./redux/product.slice";
 // import orderReducer from "./redux/orderSlice";
-
+import dialogReducer from "./redux/dialog.slice";
 export const store = configureStore({
   reducer: {
     userInfo: userReducer,
@@ -17,6 +17,7 @@ export const store = configureStore({
     // displayTableData: displayTableReducer,
     productsData: productReducer,
     // orderData: orderReducer,
+    dialog: dialogReducer,
   },
 });
 // Infer the `RootState` and `AppDispatch` types from the store itself
