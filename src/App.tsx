@@ -14,6 +14,8 @@ import CataloguePage from "./pages/catalogue/Catalogue";
 import { getproductAction } from "./Action/productAction";
 import Payment from "./pages/payment/Payment";
 import { getPaymentsAction } from "./Action/paymentAction";
+import { getOrderAction } from "./Action/orderAction";
+import Orders from "./pages/orders/Orders";
 function App() {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((store) => store.userInfo);
@@ -23,6 +25,7 @@ function App() {
     dispatch(getParentCategoryAction());
     dispatch(getproductAction());
     dispatch(getPaymentsAction());
+    dispatch(getOrderAction());
   }, [dispatch, user]);
   return (
     <div className="  mx-auto  ">
@@ -59,6 +62,14 @@ function App() {
           element={
             <PrivateRoute>
               <Payment />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/orders"
+          element={
+            <PrivateRoute>
+              <Orders />
             </PrivateRoute>
           }
         />

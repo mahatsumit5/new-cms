@@ -6,7 +6,7 @@ import catagoryReducer from "./redux/catagory.slice";
 import paymentReducer from "./redux/payment.slice";
 // import displayTableReducer from "./redux/displaySlice";
 import productReducer from "./redux/product.slice";
-// import orderReducer from "./redux/orderSlice";
+import orderReducer from "./redux/order.slice";
 import dialogReducer from "./redux/dialog.slice";
 export const store = configureStore({
   reducer: {
@@ -16,7 +16,7 @@ export const store = configureStore({
     payments: paymentReducer,
     // displayTableData: displayTableReducer,
     productsData: productReducer,
-    // orderData: orderReducer,
+    orderData: orderReducer,
     dialog: dialogReducer,
   },
 });

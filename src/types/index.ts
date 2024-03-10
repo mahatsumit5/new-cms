@@ -163,3 +163,47 @@ export interface IDialog {
   isOpen: boolean;
   children: React.ReactNode;
 }
+
+interface OrderItem {
+  _id: string;
+  title: string;
+  orderQty: number;
+  size: string;
+  color: string;
+  price: number;
+  thumbnail: string;
+}
+
+interface TotalDetails {
+  amount_discount: number;
+  amount_shipping: number;
+  amount_tax: number;
+  amount_subtotal: number;
+  amount_total: number;
+}
+
+interface Address {
+  city: string;
+  country: string;
+  line1: string;
+  line2: string | null;
+  postal_code: string;
+  state: string;
+}
+
+export interface IOrder {
+  user: {
+    address: string;
+  };
+  _id: string;
+  uniqueId: string;
+  stripeId: string;
+  orderItems: OrderItem[];
+  status: string;
+  total_details: TotalDetails;
+  buyer: string;
+  address: Address;
+  createdAt: Date;
+  updatedAt: Date;
+  __v: number;
+}

@@ -13,7 +13,7 @@ export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
           <Footer />
         </main>
       </div>
-      <CustomDialog />
+      {/* <CustomDialog /> */}
     </>
   );
   // ) : (
