@@ -5,6 +5,7 @@ import {
   postProduct,
   updateProduct,
 } from "@/axios/productAxios";
+import { closeDialog } from "@/redux/dialog.slice";
 import { setProducts } from "@/redux/product.slice";
 import { AppDispatch } from "@/store";
 import { IProduct } from "@/types";
@@ -39,9 +40,11 @@ export const deleteProductAction =
   (_id: string) => async (dispatch: AppDispatch) => {
     const pendingResp = deleteProduct(_id);
     const { status, message } = await pendingResp;
+
     toast(message);
     if (status === "success") {
       dispatch(getproductAction());
+      dispatch(closeDialog());
     }
   };
 export const updateProductAction =
@@ -50,7 +53,10 @@ export const updateProductAction =
 
     const { status, message, imagesToDelete } = await pendingResp;
     toast(message);
-    status === "success" && dispatch(getproductAction());
+    if (status === "success") {
+      dispatch(getproductAction());
+      dispatch(closeDialog());
+    }
 
     if (status === "success" && typeof imagesToDelete !== "string") {
       if (imagesToDelete?.length) {

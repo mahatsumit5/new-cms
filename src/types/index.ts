@@ -122,7 +122,7 @@ export interface IProduct {
   salesEndDate: Date | null;
   color: string[];
   size: string[];
-  category: string;
+  category: ICategory;
   description: string;
   thumbnail: string;
   images: string[];

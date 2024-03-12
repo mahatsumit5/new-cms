@@ -41,7 +41,7 @@ export default function SelectColorComponenet({ form }: { form: TypeForm }) {
       control={form.control}
       name="color"
       render={({ field }) => (
-        <FormItem className="flex flex-col">
+        <FormItem className="flex flex-col col-span-1 w-full">
           <FormLabel>Select Color</FormLabel>
 
           <FormControl>
@@ -55,7 +55,7 @@ export default function SelectColorComponenet({ form }: { form: TypeForm }) {
             />
           </FormControl>
           <span
-            className="px-2 bg-black text-white rounded-md w-3/5 text-center py-1 dark:bg-slate-800/70"
+            className="px-2 border bg-white/50 shadow-2xl rounded-md w-[100px] text-center py-1 dark:bg-slate-800/70"
             onClick={handleAdd}
           >
             Add

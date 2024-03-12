@@ -12,9 +12,14 @@ import { DialogClose } from "@radix-ui/react-dialog";
 export function CustomDialog() {
   const { children, isOpen, title } = useAppSelector((store) => store.dialog);
   const dispatch = useAppDispatch();
+  console.log(title);
   return (
     <Dialog open={isOpen}>
-      <DialogContent className="sm:max-w-[425px] h-auto bg-slate-200 dark:bg-slate-600">
+      <DialogContent
+        className={`max-h-[80vh] ${
+          title === "Edit Product" ? "max-w-6xl" : "max-w-lg"
+        } bg-slate-200 dark:bg-slate-600 overflow-y-auto`}
+      >
         <DialogClose>
           <Button
             className="rounded-full absolute top-2 right-2 z-10 p-4"
@@ -28,7 +33,7 @@ export function CustomDialog() {
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
         </DialogHeader>
-        <div className="grid gap-4 py-4">{children}</div>
+        <div className="grid ">{children}</div>
       </DialogContent>
     </Dialog>
   );

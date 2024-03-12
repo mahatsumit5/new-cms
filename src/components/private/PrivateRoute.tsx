@@ -1,11 +1,10 @@
 import SideBar from "../sideBar/SideBar";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import { CustomDialog } from "../dialog/CustomDialog";
 export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <div className="h-screen flex xl:w-7xl">
+      <div className="h-screen flex xl:w-7xl overflow-x-hidden">
         <SideBar />
         <main className="flex flex-col w-full md:ml-[68px]">
           <Header />
@@ -13,7 +12,6 @@ export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
           <Footer />
         </main>
       </div>
-      {/* <CustomDialog /> */}
     </>
   );
   // ) : (

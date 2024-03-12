@@ -1,8 +1,9 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import { ICategory, IPayment, ITabsProps } from "@/types";
+import { ICategory, IPayment, IProduct, ITabsProps } from "@/types";
 import { CategoryTable } from "../category/CatagoryTable";
 import { PaymentTable } from "../payment/PaymentTable";
+import { ProductDataTable } from "../products/ProductData";
 
 export function CustomTabs({ type, tab1, children, tab2, data }: ITabsProps) {
   return (
@@ -16,10 +17,15 @@ export function CustomTabs({ type, tab1, children, tab2, data }: ITabsProps) {
           <CategoryTable catalogue={data as ICategory[]} />
         )}
 
-        {type === "product" && <>Todo show products data table</>}
+        {type === "product" && <ProductDataTable data={data as IProduct[]} />}
         {type === "payment" && <PaymentTable data={data as IPayment[]} />}
       </TabsContent>
-      <TabsContent value={tab2}>{children}</TabsContent>
+      <TabsContent value={tab2}>
+        {" "}
+        <div className=" w-full  mx-auto p-5 bg-white/50 dark:bg-slate-950/25 rounded-lg">
+          {children}
+        </div>
+      </TabsContent>
     </Tabs>
   );
 }

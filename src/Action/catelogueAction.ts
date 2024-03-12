@@ -14,12 +14,12 @@ export const postCatalogueAction =
   (obj: FormData) => async (dispatch: AppDispatch) => {
     const pendingResp = postCategory(obj);
 
-    const { status, message, imageToDelete } = await pendingResp;
+    const { status, message, imagesToDelete } = await pendingResp;
     toast(message);
 
-    if (status === "success" && imageToDelete) {
+    if (status === "success" && imagesToDelete) {
       dispatch(getCataloguesAction());
-      deleteImageFromServer({ fileName: imageToDelete });
+      deleteImageFromServer({ fileName: imagesToDelete as string });
     }
   };
 export const getCataloguesAction = () => async (dispatch: AppDispatch) => {
@@ -42,10 +42,10 @@ export const getParentCategoryAction = () => async (dispatch: AppDispatch) => {
 // };
 export const updateCatagoryAction =
   (stat: FormData) => async (dispatch: AppDispatch) => {
-    const { status, imageToDelete, message } = await updateCatagory(stat);
+    const { status, imagesToDelete, message } = await updateCatagory(stat);
     toast(message);
     status === "success" && dispatch(getCataloguesAction());
-    if (status === "success" && imageToDelete) {
-      deleteImageFromServer({ fileName: imageToDelete });
+    if (status === "success" && imagesToDelete) {
+      deleteImageFromServer({ fileName: imagesToDelete as string });
     }
   };

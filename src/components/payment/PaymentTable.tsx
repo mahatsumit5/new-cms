@@ -99,7 +99,7 @@ export function PaymentTable({ data }: { data: IPayment[] }) {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border">
+      <div className="rounded-md border max-w-screen-md">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
