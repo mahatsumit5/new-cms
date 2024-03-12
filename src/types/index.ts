@@ -164,7 +164,7 @@ export interface IDialog {
   children: React.ReactNode;
 }
 
-interface OrderItem {
+export interface OrderItem {
   _id: string;
   title: string;
   orderQty: number;
@@ -174,7 +174,7 @@ interface OrderItem {
   thumbnail: string;
 }
 
-interface TotalDetails {
+export interface TotalDetails {
   amount_discount: number;
   amount_shipping: number;
   amount_tax: number;
@@ -182,7 +182,7 @@ interface TotalDetails {
   amount_total: number;
 }
 
-interface Address {
+export interface Address {
   city: string;
   country: string;
   line1: string;

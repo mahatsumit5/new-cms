@@ -1,15 +1,10 @@
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { IOrder } from "@/types";
-import { ColumnDef } from "@tanstack/react-table";
+
+import { Address, IOrder, TotalDetails } from "@/types";
+import { ColumnDef, Row } from "@tanstack/react-table";
 import { Button } from "../ui/button";
-import { CaretSortIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
+import { CaretSortIcon } from "@radix-ui/react-icons";
+import { formatPriceToAud } from "@/lib/utils";
 export const columns: ColumnDef<IOrder>[] = [
   {
     id: "select",
@@ -39,7 +34,7 @@ export const columns: ColumnDef<IOrder>[] = [
     cell: ({ row }) => {
       const status: "active" | "inactive" = row.getValue("status");
       return (
-        <div className="capitalize">
+        <div className="capitalize w-auto">
           <span
             className={`p-2 text-sm  rounded-full text-white shadow-xl ${
               status === "active" ? " bg-green-600 " : "bg-red-700"
@@ -51,32 +46,88 @@ export const columns: ColumnDef<IOrder>[] = [
       );
     },
   },
-  // {
-  //   accessorKey: "title",
-  //   header: ({ column }) => {
-  //     return (
-  //       <Button
-  //         variant="ghost"
-  //         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-  //       >
-  //         Title
-  //         <CaretSortIcon className="ml-2 h-4 w-4" />
-  //       </Button>
-  //     );
-  //   },
-  //   cell: ({ row }) => <div className="lowercase">{row.getValue("title")}</div>,
-  // },
-  // {
-  //   accessorKey: "description",
-  //   header: () => <div className="text-left">Description</div>,
-  //   cell: ({ row }) => {
-  //     return (
-  //       <div className="text-left font-medium">
-  //         {row.getValue("description")}
-  //       </div>
-  //     );
-  //   },
-  // },
+  {
+    accessorKey: "address",
+    header: () => {
+      return <div>Address</div>;
+    },
+    cell: ({ row }: { row: Row<IOrder> }) => {
+      const address = row.getValue("address") as Address;
+      return (
+        <div className="uppercase text-sm w-auto">
+          {address.line1}-{address.country}
+        </div>
+      );
+    },
+  },
+
+  {
+    accessorKey: "total_details",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className=""
+        >
+          Shipping Cost
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const total_details: TotalDetails = row.getValue("total_details");
+      return (
+        <div className="text-left font-medium">
+          {formatPriceToAud(total_details.amount_shipping)}
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "total_details",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          SubTotal
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const total_details: TotalDetails = row.getValue("total_details");
+      return (
+        <div className="text-left font-medium">
+          {formatPriceToAud(total_details.amount_subtotal)}
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "total_details",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Total Price
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const total_details: TotalDetails = row.getValue("total_details");
+      return (
+        <div className="text-left font-medium">
+          {formatPriceToAud(total_details.amount_total)}
+        </div>
+      );
+    },
+  },
 
   // {
   //   accessorKey: "_id",
