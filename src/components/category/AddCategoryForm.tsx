@@ -64,7 +64,7 @@ const AddCategoryForm = () => {
     dispatch(postCatalogueAction(formDt));
   }
   return (
-    <div className="mx-auto w-full md:w-1/2 md:p-9 p-5 shadow-lg rounded-xl md:mt-20">
+    <div className="mx-auto w-full   p-5 shadow-lg rounded-xl md:mt-20">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

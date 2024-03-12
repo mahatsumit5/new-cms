@@ -136,8 +136,10 @@ export interface IDeletePaymentParams {
 }
 
 export interface ICreateUpdatePaymentParams {
+  _id?: string;
   title: string;
   description: string;
+  status: "active" | "inactive";
 }
 
 export interface IPayment {
@@ -161,7 +163,7 @@ export interface IDialog {
   title: string;
   buttonName: string;
   isOpen: boolean;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export interface OrderItem {
@@ -190,6 +192,19 @@ export interface Address {
   postal_code: string;
   state: string;
 }
+export interface Buyer {
+  _id: string;
+  clerkId: string;
+  email: string;
+  userName: string | null;
+  firstName: string;
+  lastName: string;
+  photo: string;
+  favouriteItem: []; // You can replace 'any' with the actual type if it's known
+  createdAt: Date; // Consider using Date type if you intend to parse this string into a Date object
+  updatedAt: Date; // Consider using Date type if you intend to parse this string into a Date object
+  __v: number;
+}
 
 export interface IOrder {
   user: {
@@ -199,11 +214,24 @@ export interface IOrder {
   uniqueId: string;
   stripeId: string;
   orderItems: OrderItem[];
-  status: string;
+  status:
+    | "pending"
+    | "processing"
+    | "out-for-delivery"
+    | "delivered"
+    | "completed";
   total_details: TotalDetails;
-  buyer: string;
+  buyer: Buyer;
   address: Address;
   createdAt: Date;
   updatedAt: Date;
   __v: number;
 }
+
+export type EditPaymentProps = {
+  status?: "inactive" | "active";
+  _id?: string;
+  title?: string;
+  description?: string;
+};
+// This is used for when we are editing

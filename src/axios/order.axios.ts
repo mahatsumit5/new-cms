@@ -12,9 +12,17 @@ export const getOrders = (_id?: string) => {
 
 export const updateOrder = (dataToUpd: object) => {
   const obj = {
-    method: "put",
+    method: "patch",
     url: orderApi,
     obj: dataToUpd,
+    isPrivate: true,
+  };
+  return axiosProcessor(obj);
+};
+export const deleteOrder = (_id: string) => {
+  const obj = {
+    method: "delete",
+    url: orderApi + "/" + _id,
     isPrivate: true,
   };
   return axiosProcessor(obj);

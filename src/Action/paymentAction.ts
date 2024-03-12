@@ -9,6 +9,7 @@ import {
 } from "@/axios/paymentAxios";
 import { toast } from "sonner";
 import { setPayments } from "@/redux/payment.slice";
+import { closeDialog } from "@/redux/dialog.slice";
 
 export const postPaymentOptions =
   (obj: ICreateUpdatePaymentParams) => async (dispatch: AppDispatch) => {
@@ -22,7 +23,6 @@ export const postPaymentOptions =
 export const getPaymentsAction = () => async (dispatch: AppDispatch) => {
   const { status, result } = await getPayments();
   if (status === "success" && result?.length) {
-    console.log(result);
     dispatch(setPayments(result));
   }
 };
@@ -32,6 +32,7 @@ export const deletePaymentAction =
     toast(message);
     if (status === "success") {
       dispatch(getPaymentsAction());
+      dispatch(closeDialog());
     }
   };
 export const updatePaymentAction =
@@ -40,6 +41,7 @@ export const updatePaymentAction =
     const { status, message } = await updatePayment(obj);
     toast(message);
     if (status === "success") {
+      dispatch(closeDialog());
       dispatch(getPaymentsAction());
     }
   };

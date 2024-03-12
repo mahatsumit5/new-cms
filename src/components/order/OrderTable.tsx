@@ -29,9 +29,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { IOrder } from "@/types";
-import { columns } from "./columns";
-
+import { getColumns } from "./columns";
+import { useAppDispatch } from "@/hooks";
 export function OrderTable({ data }: { data: IOrder[] }) {
+  const dispatch = useAppDispatch();
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -42,7 +43,7 @@ export function OrderTable({ data }: { data: IOrder[] }) {
 
   const table = useReactTable({
     data,
-    columns,
+    columns: getColumns(dispatch) || [],
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -62,14 +63,14 @@ export function OrderTable({ data }: { data: IOrder[] }) {
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
-        {/* <Input
+        <Input
           placeholder="Filter emails..."
-          value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+          value={(table.getColumn("buyer")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("title")?.setFilterValue(event.target.value)
+            table.getColumn("buyer")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
-        /> */}
+        />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
@@ -136,12 +137,7 @@ export function OrderTable({ data }: { data: IOrder[] }) {
               ))
             ) : (
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
-                  No results.
-                </TableCell>
+                <TableCell className="h-24 text-center">No results.</TableCell>
               </TableRow>
             )}
           </TableBody>

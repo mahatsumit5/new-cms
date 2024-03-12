@@ -1,7 +1,9 @@
-import { getOrders, updateOrder } from "@/axios/order.axios";
+import { deleteOrder, getOrders, updateOrder } from "@/axios/order.axios";
+import { closeDialog } from "@/redux/dialog.slice";
 import { setOrders } from "@/redux/order.slice";
 import { AppDispatch } from "@/store";
 import { IOrder } from "@/types";
+import { toast } from "sonner";
 
 export const getOrderAction = () => async (dispatch: AppDispatch) => {
   const { status, result } = await getOrders();
@@ -12,8 +14,19 @@ export const getOrderAction = () => async (dispatch: AppDispatch) => {
 
 export const updateOrderAction =
   (obj: object) => async (dispatch: AppDispatch) => {
-    const { status } = await updateOrder(obj);
+    const { status, message } = await updateOrder(obj);
+    toast(message);
     if (status === "success") {
       dispatch(getOrderAction());
+      dispatch(closeDialog());
+    }
+  };
+export const deleteorderAction =
+  (_id: string) => async (dispatch: AppDispatch) => {
+    const { status, message } = await deleteOrder(_id);
+    toast(message);
+    if (status === "success") {
+      dispatch(getOrderAction());
+      dispatch(closeDialog());
     }
   };

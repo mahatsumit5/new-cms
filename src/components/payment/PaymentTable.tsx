@@ -29,7 +29,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { IPayment } from "@/types";
-import { columns } from "./columns";
+import { getpaymentColumns } from "./columns";
+import { useAppDispatch } from "@/hooks";
 
 export function PaymentTable({ data }: { data: IPayment[] }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -40,9 +41,10 @@ export function PaymentTable({ data }: { data: IPayment[] }) {
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
+  const dispatch = useAppDispatch();
   const table = useReactTable({
     data,
-    columns,
+    columns: getpaymentColumns(dispatch) || [],
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -137,7 +139,7 @@ export function PaymentTable({ data }: { data: IPayment[] }) {
             ) : (
               <TableRow>
                 <TableCell
-                  colSpan={columns.length}
+                  colSpan={getpaymentColumns(dispatch).length}
                   className="h-24 text-center"
                 >
                   No results.

@@ -16,6 +16,7 @@ import Payment from "./pages/payment/Payment";
 import { getPaymentsAction } from "./Action/paymentAction";
 import { getOrderAction } from "./Action/orderAction";
 import Orders from "./pages/orders/Orders";
+import { CustomDialog } from "./components/dialog/CustomDialog";
 function App() {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((store) => store.userInfo);
@@ -74,6 +75,8 @@ function App() {
           }
         />
       </Routes>
+
+      <CustomDialog />
     </div>
   );
 }

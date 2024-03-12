@@ -4,7 +4,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 const initialState: IDialog = {
   buttonName: "",
   children: null,
-  isOpen: true,
+  isOpen: false,
   title: "",
 };
 
