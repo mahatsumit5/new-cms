@@ -47,6 +47,7 @@ const Header = () => {
           />
           <ThemeToggle />{" "}
           <ProfileDropDown
+            _id={user._id}
             children={
               <Avatar>
                 <AvatarImage src={"https://github.com/shadcn.png"} />

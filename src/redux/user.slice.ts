@@ -28,10 +28,13 @@ const userSlice = createSlice({
     setUser: (state, { payload }: PayloadAction<IUser>) => {
       state.user = payload;
     },
+    logOut: (state) => {
+      state.user = initialState.user;
+    },
   },
 });
 
 const { reducer, actions } = userSlice;
-export const { setUser } = actions;
+export const { setUser, logOut } = actions;
 export default reducer;
 // export the action creator for other components to use it in dispatch() function of redux store

@@ -1,3 +1,4 @@
+import { logoutUser } from "@/axios/userAxios";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,9 +13,26 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Link } from "react-router-dom";
+import { useAppDispatch } from "@/hooks";
+import { logOut } from "@/redux/user.slice";
+import { Link, useNavigate } from "react-router-dom";
 
-export function ProfileDropDown({ children }: { children: React.ReactNode }) {
+export function ProfileDropDown({
+  children,
+  _id,
+}: {
+  children: React.ReactNode;
+  _id: string;
+}) {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  function handleLogOut() {
+    logoutUser(_id);
+    localStorage.removeItem("refreshJWT");
+    sessionStorage.removeItem("accessJWT");
+    dispatch(logOut());
+    navigate("/");
+  }
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
@@ -74,7 +92,7 @@ export function ProfileDropDown({ children }: { children: React.ReactNode }) {
         </DropdownMenuItem>
         <DropdownMenuItem disabled>API</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={handleLogOut}>
           Log out
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>

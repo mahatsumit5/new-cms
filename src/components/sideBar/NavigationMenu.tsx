@@ -1,5 +1,4 @@
 // icons
-import { FaUsers } from "react-icons/fa";
 import { BiSolidCategoryAlt } from "react-icons/bi";
 import { BsFillBox2Fill, BsPersonFill } from "react-icons/bs";
 import { FaMoneyBillAlt, FaUserSecret } from "react-icons/fa";
