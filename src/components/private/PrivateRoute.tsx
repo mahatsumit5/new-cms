@@ -1,22 +1,23 @@
 import SideBar from "../sideBar/SideBar";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import { CustomBreadCrumb } from "../breadCrumbs/BreadCumbSeperator";
+import { Navigate, useLocation } from "react-router-dom";
+import { useAppSelector } from "@/hooks";
 export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <>
-      <div className="h-screen flex xl:w-7xl overflow-x-hidden">
-        <SideBar />
-        <main className="flex flex-col w-full md:ml-[68px]">
-          <Header />
-          <div className="  h-auto p-4">{children}</div>
-          <Footer />
-        </main>
-      </div>
-    </>
+  const { user } = useAppSelector((store) => store.userInfo);
+  const location = useLocation();
+  return user?._id ? (
+    <div className="h-screen flex xl:w-7xl overflow-x-hidden">
+      <SideBar />
+      <main className="flex flex-col w-full md:ml-[68px]  gap-5">
+        <Header />
+        <CustomBreadCrumb />
+        <div className="  h-auto  p-5 ">{children}</div>
+        <Footer />
+      </main>
+    </div>
+  ) : (
+    <Navigate to="/" state={{ from: { location } }} />
   );
-  // ) : (
-  //   //passing props state with from as a property and location as a value which is later used in signform.js to access this value
-  //   // in order to navigate user to the page when the open in the new tab
-  //   <Navigate to="/" state={{ from: { location } }} />
-  // );
 };

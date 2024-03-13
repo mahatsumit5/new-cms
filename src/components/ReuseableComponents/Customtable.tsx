@@ -28,11 +28,22 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { IPayment } from "@/types";
-import { getpaymentColumns } from "./columns";
+import { Key, Tableprops, columnDef } from "@/types";
 import { useAppDispatch } from "@/hooks";
+import { getCategoryColumns } from "../category/columns";
+import { getProductColumn } from "../products/columns";
+import { getOrderColumns } from "../order/columns";
+import { getpaymentColumns } from "../payment/columns";
 
-export function PaymentTable({ data }: { data: IPayment[] }) {
+export function CustomTable({ data, type }: Tableprops) {
+  console.log(type);
+  const dispatch = useAppDispatch();
+  const columns: Record<Key, columnDef> = {
+    catagory: getCategoryColumns(dispatch),
+    product: getProductColumn(dispatch),
+    order: getOrderColumns(dispatch),
+    payment: getpaymentColumns(dispatch),
+  };
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -41,10 +52,9 @@ export function PaymentTable({ data }: { data: IPayment[] }) {
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
-  const dispatch = useAppDispatch();
   const table = useReactTable({
-    data,
-    columns: getpaymentColumns(dispatch) || [],
+    data: data as [],
+    columns: columns[type] as [],
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -60,18 +70,25 @@ export function PaymentTable({ data }: { data: IPayment[] }) {
       rowSelection,
     },
   });
+  const dataForFilter = {
+    order: table.getColumn("buyer"),
+    catagory: table.getColumn("title"),
+    product: table.getColumn("slug"),
+    payment: table.getColumn("title"),
+  };
 
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+          placeholder={`Search ${type}`}
+          value={(dataForFilter[type]?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("title")?.setFilterValue(event.target.value)
+            dataForFilter[type]?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
+
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
@@ -99,7 +116,7 @@ export function PaymentTable({ data }: { data: IPayment[] }) {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border max-w-screen-md">
+      <div className="rounded-md border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -138,12 +155,7 @@ export function PaymentTable({ data }: { data: IPayment[] }) {
               ))
             ) : (
               <TableRow>
-                <TableCell
-                  colSpan={getpaymentColumns(dispatch).length}
-                  className="h-24 text-center"
-                >
-                  No results.
-                </TableCell>
+                <TableCell className="h-24 text-center">No results.</TableCell>
               </TableRow>
             )}
           </TableBody>

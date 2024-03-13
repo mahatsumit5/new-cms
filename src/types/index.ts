@@ -1,5 +1,7 @@
+import { ColumnDef } from "@tanstack/react-table";
 import { Dispatch, SetStateAction } from "react";
 import { UseFormReturn } from "react-hook-form";
+export type Key = "catagory" | "product" | "order" | "payment";
 
 export interface IUser {
   _id: string;
@@ -152,7 +154,7 @@ export interface IPayment {
   updatedAt: Date;
 }
 export interface ITabsProps {
-  type: "product" | "paymentMethod" | "catagory" | "payment";
+  type: Key;
   tab1: string;
   tab2: string;
   data: ICategory[] | IProduct[] | IPayment[]; // TODO: Define the type of data in this array.
@@ -235,3 +237,27 @@ export type EditPaymentProps = {
   description?: string;
 };
 // This is used for when we are editing
+
+export type Tstatus =
+  | "pending"
+  | "processing"
+  | "out-for-delivery"
+  | "delivered"
+  | "completed";
+export const statusColor: Record<Tstatus, string> = {
+  pending: "bg-red-500",
+  processing: "bg-blue-700",
+  "out-for-delivery": "bg-green-500",
+  delivered: "bg-purple-500",
+  completed: "bg-green-800",
+};
+
+export type Tableprops = {
+  data: ICategory[] | IProduct[] | IPayment[] | IOrder[];
+  type: Key;
+};
+export type columnDef =
+  | ColumnDef<ICategory>[]
+  | ColumnDef<IProduct>[]
+  | ColumnDef<IOrder>[]
+  | ColumnDef<IPayment>[];

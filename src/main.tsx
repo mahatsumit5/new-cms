@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           disableTransitionOnChange
         >
           <App />
-          <Toaster />
+          <Toaster position="bottom-left" />
         </ThemeProvider>
       </Provider>
     </BrowserRouter>

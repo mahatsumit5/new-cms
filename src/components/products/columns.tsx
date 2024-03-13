@@ -176,7 +176,6 @@ export const getProductColumn = (dispatch: AppDispatch) => {
       header: () => <div>Color</div>,
       cell: ({ row }) => {
         const color: string[] = row.getValue("color");
-        console.log(color);
         return (
           <div className="flex gap-3 flex-wrap">
             {color.map((color) => (
@@ -288,5 +287,5 @@ export const getProductColumn = (dispatch: AppDispatch) => {
       },
     },
   ];
-  return columns;
+  return columns as ColumnDef<IProduct>[];
 };

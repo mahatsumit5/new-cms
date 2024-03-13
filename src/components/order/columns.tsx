@@ -1,6 +1,13 @@
 import { Checkbox } from "@/components/ui/checkbox";
 
-import { Address, Buyer, IOrder, TotalDetails } from "@/types";
+import {
+  Address,
+  Buyer,
+  IOrder,
+  TotalDetails,
+  Tstatus,
+  statusColor,
+} from "@/types";
 import { ColumnDef, Row } from "@tanstack/react-table";
 import { Button } from "../ui/button";
 import { CaretSortIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
@@ -16,26 +23,14 @@ import { AppDispatch } from "@/store";
 import { openDialog } from "@/redux/dialog.slice";
 import { EditOrder } from "./EditOrder";
 import DeleteOrder from "./DeleteOrder";
+import ViewDetails from "./ViewDetails";
 
-type Tstatus =
-  | "pending"
-  | "processing"
-  | "out-for-delivery"
-  | "delivered"
-  | "completed";
-const statusColor: Record<Tstatus, string> = {
-  pending: "bg-red-500",
-  processing: "bg-blue-700",
-  "out-for-delivery": "bg-green-500",
-  delivered: "bg-purple-500",
-  completed: "bg-green-800",
-};
-
-export const getColumns = (dispatch: AppDispatch) => {
+export const getOrderColumns = (dispatch: AppDispatch) => {
   function handleOnActionItems(
     _id: string,
-    actionType: "edit" | "delete",
-    status: string
+    actionType: "edit" | "delete" | "view",
+    status: string,
+    order?: IOrder
   ) {
     switch (actionType) {
       case "edit":
@@ -55,6 +50,15 @@ export const getColumns = (dispatch: AppDispatch) => {
             isOpen: true,
             title: "Delete",
             children: <DeleteOrder _id={_id} />,
+          })
+        );
+      case "view":
+        return dispatch(
+          openDialog({
+            buttonName: "View",
+            isOpen: true,
+            title: "Order Details",
+            children: <ViewDetails order={order as IOrder} />,
           })
         );
     }
@@ -204,9 +208,7 @@ export const getColumns = (dispatch: AppDispatch) => {
       header: () => <span>Action</span>,
 
       cell: ({ row }) => {
-        const _id: string = row.getValue("_id");
-        const status: string = row.getValue("status");
-
+        const order: IOrder = row.original;
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -220,14 +222,21 @@ export const getColumns = (dispatch: AppDispatch) => {
 
               <DropdownMenuItem
                 onClick={() => {
-                  handleOnActionItems(_id, "edit", status);
+                  handleOnActionItems(order._id, "view", order.status, order);
+                }}
+              >
+                View details
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => {
+                  handleOnActionItems(order._id, "edit", order.status);
                 }}
               >
                 Edit
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() => {
-                  handleOnActionItems(_id, "delete", status);
+                  handleOnActionItems(order._id, "delete", order.status);
                 }}
               >
                 Delete

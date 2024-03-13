@@ -32,6 +32,7 @@ import { useAppDispatch } from "@/hooks";
 import { postProductAction, updateProductAction } from "@/Action/productAction";
 import SelectColorComponenet from "./FormComponents/SelectColorComponent";
 import { IProduct } from "@/types";
+import { toast } from "sonner";
 
 interface Props {
   product?: IProduct; // Making product prop optional
@@ -96,7 +97,10 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
   const product = props?.product;
   const dispatch = useAppDispatch();
   const [img, setImg] = useState<FileList>();
-
+  const [images, setImages] = useState({
+    thumbnail: product?.thumbnail || "",
+    images: product?.images || [],
+  });
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -140,16 +144,35 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
     values.color.forEach((color) => {
       formDt.append("color", color);
     });
+
+    // update productclg
     if (product?._id) {
       formDt.append("_id", product._id);
       formDt.delete("sku");
-      // update productclg
+      formDt.append("thumbnail", images.thumbnail);
+      // formDt.append("thumbnail", images.thumbnail);
+      images.images.forEach((img) => {
+        formDt.append("images", img);
+      });
       dispatch(updateProductAction(formDt));
       return;
     } else {
+      // post
       const isPosted = await dispatch(postProductAction(formDt));
       isPosted && form.reset();
     }
+  }
+
+  // 3. handle Image Delete on client side
+
+  function handleDelete(img: string) {
+    if (img === images.thumbnail) {
+      toast.warning("Cannot delete thumbnail image", { duration: 2500 });
+      return;
+      // to do use modal to alert
+    }
+    const filteredImages = images?.images.filter((i) => i !== img);
+    setImages({ images: filteredImages, thumbnail: images.thumbnail });
   }
   return (
     <Form {...form}>
@@ -348,16 +371,57 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
           </FormControl>
           <FormDescription>
             {product?.thumbnail ? (
-              <div className="flex gap-5 my-8 overflow-x-auto">
-                {product.images.map((img) => (
+              <div className="flex flex-col gap-3">
+                <FormLabel>Thumbnail Preview</FormLabel>
+                <div>
                   <img
-                    key={img}
-                    src={img}
-                    alt="Product Image"
-                    height={250}
-                    width={250}
+                    src={images.thumbnail}
+                    width={400}
+                    className="rounded-lg shadow-lg"
                   />
-                ))}
+                </div>
+
+                <FormLabel>Images</FormLabel>
+
+                <div className="flex gap-5 my-8 overflow-x-auto">
+                  {images.images.map((img) => (
+                    <div>
+                      <div className="relative">
+                        <img
+                          key={img}
+                          src={img}
+                          alt="Product Image"
+                          height={250}
+                          width={250}
+                          className={`rounded-lg shadow-sm  hover:cursor-pointer `}
+                        />
+                        <div className="absolute h-full top-0 bg-white/5 hover:backdrop-blur-sm w-full transition-all grid items-center justify-center opacity-0 hover:opacity-100">
+                          <span
+                            className="bg-white p-5 rounded-full hover:cursor-pointer"
+                            onClick={() => {
+                              setImages({
+                                images: images.images,
+                                thumbnail: img,
+                              });
+                            }}
+                          >
+                            Set as Thumbnail
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col mt-4 gap-2">
+                        <span
+                          className="bg-red-800 p-2 text-white rounded-lg flex justify-center"
+                          onClick={() => {
+                            handleDelete(img);
+                          }}
+                        >
+                          Delete
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             ) : (
               "Select images for your product"
@@ -365,7 +429,7 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
           </FormDescription>
         </FormItem>
         <Button type="submit" className="w-40 bg-green-400" variant={"default"}>
-          {product?._id ? "Update Product" : "Create "}
+          {product?._id ? "Save Changes" : "Create "}
         </Button>
       </form>
     </Form>

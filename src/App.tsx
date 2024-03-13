@@ -17,6 +17,7 @@ import { getPaymentsAction } from "./Action/paymentAction";
 import { getOrderAction } from "./Action/orderAction";
 import Orders from "./pages/orders/Orders";
 import { CustomDialog } from "./components/dialog/CustomDialog";
+import Profile from "./pages/profile/page";
 function App() {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((store) => store.userInfo);
@@ -71,6 +72,22 @@ function App() {
           element={
             <PrivateRoute>
               <Orders />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/orders/test"
+          element={
+            <PrivateRoute>
+              <Orders />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <Profile />
             </PrivateRoute>
           }
         />

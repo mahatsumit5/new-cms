@@ -12,7 +12,6 @@ import { DialogClose } from "@radix-ui/react-dialog";
 export function CustomDialog() {
   const { children, isOpen, title } = useAppSelector((store) => store.dialog);
   const dispatch = useAppDispatch();
-  console.log(title);
   return (
     <Dialog open={isOpen}>
       <DialogContent
