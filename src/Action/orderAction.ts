@@ -4,6 +4,7 @@ import { setOrders } from "@/redux/order.slice";
 import { AppDispatch } from "@/store";
 import { IOrder } from "@/types";
 import { toast } from "sonner";
+import { getChartDataAction } from "./chart.action";
 
 export const getOrderAction = () => async (dispatch: AppDispatch) => {
   const { status, result } = await getOrders();
@@ -19,6 +20,7 @@ export const updateOrderAction =
     if (status === "success") {
       dispatch(getOrderAction());
       dispatch(closeDialog());
+      dispatch(getChartDataAction());
     }
   };
 export const deleteorderAction =
@@ -27,6 +29,7 @@ export const deleteorderAction =
     toast(message);
     if (status === "success") {
       dispatch(getOrderAction());
+      dispatch(getChartDataAction());
       dispatch(closeDialog());
     }
   };

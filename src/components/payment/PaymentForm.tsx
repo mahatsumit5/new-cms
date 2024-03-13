@@ -108,13 +108,14 @@ export function PaymentForm({
           control={form.control}
           name="title"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="">
               <FormLabel>Title</FormLabel>
               <FormControl>
                 <Input
                   placeholder="Enter payment method title"
                   {...field}
                   maxLength={41}
+                  className="dark:bg-slate-600/45"
                 />
               </FormControl>
               <FormDescription>
@@ -136,6 +137,7 @@ export function PaymentForm({
                   placeholder="Enter payment method title"
                   {...field}
                   rows={8}
+                  className="dark:bg-slate-600/45"
                 />
               </FormControl>
               <FormDescription>

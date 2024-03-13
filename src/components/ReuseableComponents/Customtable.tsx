@@ -34,15 +34,16 @@ import { getCategoryColumns } from "../category/columns";
 import { getProductColumn } from "../products/columns";
 import { getOrderColumns } from "../order/columns";
 import { getpaymentColumns } from "../payment/columns";
+import { getFrequentlyBoughtColumns } from "@/pages/dashboard/frequenltyBought.column";
 
 export function CustomTable({ data, type }: Tableprops) {
-  console.log(type);
   const dispatch = useAppDispatch();
   const columns: Record<Key, columnDef> = {
     catagory: getCategoryColumns(dispatch),
     product: getProductColumn(dispatch),
     order: getOrderColumns(dispatch),
     payment: getpaymentColumns(dispatch),
+    frequenltyBought: getFrequentlyBoughtColumns(),
   };
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -71,23 +72,28 @@ export function CustomTable({ data, type }: Tableprops) {
     },
   });
   const dataForFilter = {
-    order: table.getColumn("buyer"),
-    catagory: table.getColumn("title"),
-    product: table.getColumn("slug"),
-    payment: table.getColumn("title"),
+    order: type === "order" ? table.getColumn("email") : null,
+    catagory: type === "catagory" ? table.getColumn("title") : null,
+    product: type === "product" ? table.getColumn("slug") : null,
+    payment: type === "payment" ? table.getColumn("title") : null,
   };
-
   return (
-    <div className="w-full">
-      <div className="flex items-center py-4">
-        <Input
-          placeholder={`Search ${type}`}
-          value={(dataForFilter[type]?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            dataForFilter[type]?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
+    <div className="w-full ">
+      <div className="flex my-4">
+        {type !== "frequenltyBought" ? (
+          <Input
+            placeholder={`Search ${type}`}
+            value={(dataForFilter[type]?.getFilterValue() as string) ?? ""}
+            onChange={(event) =>
+              dataForFilter[type]?.setFilterValue(event.target.value)
+            }
+            className="max-w-sm dark:bg-slate-500 bg-slate-200"
+          />
+        ) : (
+          <p className="text-md bg-purple-500 dark:bg-purple-900 p-2 px-6 text-white rounded-lg">
+            Frequently Bought Items
+          </p>
+        )}
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

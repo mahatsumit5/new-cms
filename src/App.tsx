@@ -18,6 +18,8 @@ import { getOrderAction } from "./Action/orderAction";
 import Orders from "./pages/orders/Orders";
 import { CustomDialog } from "./components/dialog/CustomDialog";
 import Profile from "./pages/profile/page";
+import { getChartDataAction } from "./Action/chart.action";
+import Sales from "./pages/sales/Sales";
 function App() {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((store) => store.userInfo);
@@ -28,6 +30,7 @@ function App() {
     dispatch(getproductAction());
     dispatch(getPaymentsAction());
     dispatch(getOrderAction());
+    dispatch(getChartDataAction());
   }, [dispatch, user]);
   return (
     <div className="  mx-auto  ">
@@ -88,6 +91,14 @@ function App() {
           element={
             <PrivateRoute>
               <Profile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/sales"
+          element={
+            <PrivateRoute>
+              <Sales />
             </PrivateRoute>
           }
         />

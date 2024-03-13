@@ -11,6 +11,7 @@ import { AppDispatch } from "@/store";
 import { IProduct } from "@/types";
 
 import { toast } from "sonner";
+import { getChartDataAction } from "./chart.action";
 
 export const postProductAction =
   (obj: FormData) => async (dispatch: AppDispatch) => {
@@ -20,6 +21,8 @@ export const postProductAction =
     status === "success" && dispatch(getproductAction());
 
     if (status === "success" && imagesToDelete?.length) {
+      dispatch(getChartDataAction());
+
       if (imagesToDelete?.length && typeof imagesToDelete !== "string") {
         imagesToDelete.forEach((element: string) => {
           deleteImageFromServer({ fileName: element });
@@ -43,6 +46,8 @@ export const deleteProductAction =
 
     toast(message);
     if (status === "success") {
+      dispatch(getChartDataAction());
+
       dispatch(getproductAction());
       dispatch(closeDialog());
     }
@@ -54,6 +59,8 @@ export const updateProductAction =
     const { status, message, imagesToDelete } = await pendingResp;
     toast(message);
     if (status === "success") {
+      dispatch(getChartDataAction());
+
       dispatch(getproductAction());
       dispatch(closeDialog());
     }

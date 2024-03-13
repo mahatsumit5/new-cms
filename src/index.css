@@ -74,3 +74,11 @@
     @apply bg-gradient-to-tr from-slate-400  via-gray-500/30 to-white dark:bg-gradient-to-br dark:from-black dark:via-purple-950 dark:to-blue-950 bg-fixed;
   }
 }
+@layer utilities {
+  .dashboard-card {
+    @apply bg-slate-100  backdrop-blur-lg rounded-lg h-80 flex justify-center p-4 dark:bg-slate-200/10;
+  }
+  .dashboard-card-top {
+    @apply h-52  rounded-lg   text-white flex flex-col gap-4 items-center justify-center font-bold shadow-xl p-4 sm:w-60 w-full;
+  }
+}

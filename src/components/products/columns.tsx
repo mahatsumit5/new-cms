@@ -227,7 +227,7 @@ export const getProductColumn = (dispatch: AppDispatch) => {
         return (
           <div className="grid grid-cols-2">
             {images.map((image) => (
-              <img src={image} height={50} width={50} />
+              <img src={image} height={50} width={50} key={image} />
             ))}
           </div>
         );

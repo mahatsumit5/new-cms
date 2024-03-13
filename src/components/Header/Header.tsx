@@ -1,29 +1,62 @@
+import { useAppSelector } from "@/hooks";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import MobileSideBar from "../sideBar/MobileSideBar";
+import { ProfileDropDown } from "./ProfileDropDown";
 import hamburger from "/Hamburger.svg";
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 const Header = () => {
+  const { user } = useAppSelector((store) => store.userInfo);
   return (
-    <div className="sticky top-0 w-full h-[25vh] p-4 shadow-lg dark:shadow-black z-10 bg-white/0 backdrop-blur-xl">
-      <div className="flex justify-between">
-        <div className="flex gap-2">
-          <div className="block md:hidden">
+    <motion.div
+      className="sticky top-0   p-4 md:shadow-md md:shadow-purple-200  z-10 bg-white/0 backdrop-blur-xl  "
+      initial={{ y: "-30vh" }}
+      animate={{ y: 0 }}
+      transition={{ ease: "easeOut", duration: 0.4 }}
+    >
+      <div className="flex justify-between ">
+        <div className="flex gap-5 justify-start  w-full">
+          <div className="block md:hidden ">
             <MobileSideBar>
-              <img alt="burger menu" src={hamburger} className="mt-1" />
+              <div className="bg-white p-3 rounded-full h-10 w-10">
+                <img alt="burger menu" src={hamburger} className=" h-4 w-4 " />
+              </div>
             </MobileSideBar>
           </div>
-          <div>Logo</div>
+          <div className="">
+            <Link to={"/dashboard"}>
+              <img
+                src="/logo-light.png"
+                className="rounded-full h-10 dark:hidden w-10"
+              />
+              <img
+                src="/logo-dark.png"
+                className="rounded-full h-10 hidden dark:block"
+              />
+            </Link>
+          </div>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex gap-5 w-full  justify-end  ">
           <input
             type="text"
-            className="bg-slate-300 p- w-60 px-2 placeholder:text-gray-600 rounded-sm dark:bg-slate-600 dark:text-white dark:placeholder:text-white"
+            className="bg-purple-400 w-28 md:w-64 px-2 placeholder:text-white rounded-sm dark:bg-white/10 text-white dark:text-white dark:placeholder:text-white h-10 hidden md:block focus:outline-purple-800"
             placeholder="Search..."
           />
-          <ThemeToggle />
+          <ThemeToggle />{" "}
+          <ProfileDropDown
+            children={
+              <Avatar>
+                <AvatarImage src={"https://github.com/shadcn.png"} />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            }
+          />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

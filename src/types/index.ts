@@ -1,7 +1,12 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Dispatch, SetStateAction } from "react";
 import { UseFormReturn } from "react-hook-form";
-export type Key = "catagory" | "product" | "order" | "payment";
+export type Key =
+  | "catagory"
+  | "product"
+  | "order"
+  | "payment"
+  | "frequenltyBought";
 
 export interface IUser {
   _id: string;
@@ -84,6 +89,14 @@ export type TypeForm = UseFormReturn<
   },
   undefined
 >;
+type ChartData = {
+  itemsByCategory: IitemsByCat[];
+  orderSalesByDate: IOrdersalesByDate[];
+  activeAndInactiveProducts: IStatusCount[];
+  orderStatusCount: IOrderStatusCount[];
+  frequentyBought: IFrequentlyBoughtItem[];
+  totalSalesByDate: ITotalSalesByDate[];
+};
 export type TAxiosProcessor = Promise<{
   status: "success" | "error";
   message: string;
@@ -92,6 +105,7 @@ export type TAxiosProcessor = Promise<{
   token?: { accessJWT: string; refreshJWT: string };
   accessJWT?: string;
   imagesToDelete?: string | string[];
+  chartData?: ChartData;
 }>;
 export type TAxiosProcessorError = {
   code: string;
@@ -253,11 +267,47 @@ export const statusColor: Record<Tstatus, string> = {
 };
 
 export type Tableprops = {
-  data: ICategory[] | IProduct[] | IPayment[] | IOrder[];
+  data:
+    | ICategory[]
+    | IProduct[]
+    | IPayment[]
+    | IOrder[]
+    | IFrequentlyBoughtItem[];
   type: Key;
 };
 export type columnDef =
   | ColumnDef<ICategory>[]
   | ColumnDef<IProduct>[]
   | ColumnDef<IOrder>[]
-  | ColumnDef<IPayment>[];
+  | ColumnDef<IPayment>[]
+  | ColumnDef<IFrequentlyBoughtItem>[];
+
+export interface IitemsByCat {
+  _id: string;
+  count: number;
+}
+export interface IOrdersalesByDate {
+  _id: string;
+  count: number;
+}
+export interface IStatusCount {
+  _id: "active" | "inactive";
+  count: number;
+}
+export interface IOrderStatusCount {
+  _id: Tstatus;
+  count: number;
+}
+export interface IFrequentlyBoughtItem {
+  _id: string;
+  price: number;
+  title: string;
+  thumbnail: string;
+  count: number;
+}
+export interface ITotalSalesByDate {
+  _id: string;
+  title: string[];
+  thumbnail: string[];
+  totalSales: number;
+}

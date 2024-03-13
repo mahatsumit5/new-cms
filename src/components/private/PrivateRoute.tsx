@@ -10,7 +10,7 @@ export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   return user?._id ? (
     <div className="h-screen flex xl:w-7xl overflow-x-hidden">
       <SideBar />
-      <main className="flex flex-col w-full md:ml-[68px]  gap-5">
+      <main className="flex flex-col w-full md:ml-[80px]  gap-5">
         <Header />
         <CustomBreadCrumb />
         <div className="  h-auto  p-5 ">{children}</div>

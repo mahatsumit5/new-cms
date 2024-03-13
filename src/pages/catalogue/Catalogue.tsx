@@ -7,10 +7,14 @@ const CataloguePage = () => {
   const { catalogue } = useAppSelector((store) => store.catagoryInfo);
 
   return (
-    <div className="md:min-h-screen">
+    <div className="">
       <CustomTabs
         type="catagory"
-        children={<AddCategoryForm />}
+        children={
+          <div className="w-full md:w-1/3 mx-auto  bg-white/70 rounded-lg p-3 dark:bg-black/35 my-16">
+            <AddCategoryForm />
+          </div>
+        }
         tab1="Catagory details"
         data={catalogue as ICategory[]}
         tab2="Add new Catagory"

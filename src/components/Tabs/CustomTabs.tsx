@@ -24,9 +24,7 @@ export function CustomTabs({ type, tab1, children, tab2, data }: ITabsProps) {
       </TabsContent>
       <TabsContent value={tab2}>
         {" "}
-        <div className=" w-full  mx-auto p-5 bg-white/50 dark:bg-slate-950/25 rounded-lg">
-          {children}
-        </div>
+        <div className="">{children}</div>
       </TabsContent>
     </Tabs>
   );

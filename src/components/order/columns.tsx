@@ -105,17 +105,32 @@ export const getOrderColumns = (dispatch: AppDispatch) => {
     },
     {
       accessorKey: "buyer",
+      id: "name",
       header: () => {
-        return <div>Customer</div>;
+        return <div>Name</div>;
       },
       cell: ({ row }: { row: Row<IOrder> }) => {
-        const buyer = row.getValue("buyer") as Buyer;
+        const buyer = row.getValue("email") as Buyer;
         return (
           <div className="flex flex-col">
-            <span className="uppercase font-bold">
-              {buyer?.firstName}
+            <span className="uppercase ">
+              {buyer?.firstName}&nbsp;
               {buyer?.lastName}
             </span>
+          </div>
+        );
+      },
+    },
+    {
+      accessorKey: "buyer",
+      id: "email",
+      header: () => {
+        return <div>Email</div>;
+      },
+      cell: ({ row }: { row: Row<IOrder> }) => {
+        const buyer = row.getValue("email") as Buyer;
+        return (
+          <div className="flex flex-col">
             <span className="lowercase text-sm">{buyer?.email}</span>
           </div>
         );

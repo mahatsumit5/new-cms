@@ -1,14 +1,17 @@
 import { deleteImageFromServer } from "@/axios/axiosProcessor";
 import {
+  deleteCatagory,
   getCategories,
   postCategory,
   updateCatagory,
 } from "@/axios/categoryAxios";
 import { getParentCategory } from "@/axios/parentCat.axios";
 import { setCatagory, setParentCategory } from "@/redux/catagory.slice";
+import { closeDialog } from "@/redux/dialog.slice";
 import { AppDispatch } from "@/store";
 import { ICategory, IParentCategory } from "@/types";
 import { toast } from "sonner";
+import { getChartDataAction } from "./chart.action";
 
 export const postCatalogueAction =
   (obj: FormData) => async (dispatch: AppDispatch) => {
@@ -18,6 +21,8 @@ export const postCatalogueAction =
     toast(message);
 
     if (status === "success" && imagesToDelete) {
+      dispatch(getChartDataAction());
+
       dispatch(getCataloguesAction());
       deleteImageFromServer({ fileName: imagesToDelete as string });
     }
@@ -36,15 +41,24 @@ export const getParentCategoryAction = () => async (dispatch: AppDispatch) => {
     dispatch(setParentCategory(result as IParentCategory[]));
   }
 };
-// export const deleteCatagoryAction = (_id) => async (dispatch) => {
-//   const { status, message } = await deleteCatagory(_id);
-//   dispatch(getCataloguesAction());
-// };
+export const deleteCatagoryAction =
+  (_id: string) => async (dispatch: AppDispatch) => {
+    const { status, message } = await deleteCatagory({ _id });
+    toast(message);
+    dispatch(getChartDataAction());
+    if (status === "success") {
+      dispatch(getCataloguesAction());
+    }
+  };
 export const updateCatagoryAction =
   (stat: FormData) => async (dispatch: AppDispatch) => {
     const { status, imagesToDelete, message } = await updateCatagory(stat);
     toast(message);
-    status === "success" && dispatch(getCataloguesAction());
+    if (status === "success") {
+      dispatch(getCataloguesAction());
+      dispatch(getChartDataAction());
+      dispatch(closeDialog());
+    }
     if (status === "success" && imagesToDelete) {
       deleteImageFromServer({ fileName: imagesToDelete as string });
     }
