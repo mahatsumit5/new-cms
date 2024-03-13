@@ -58,6 +58,8 @@ const SignInForm = () => {
   }, [user, dispatch, navigate, pathTo]);
   return (
     <div className=" p-5 md:p-11    rounded-lg  flex flex-col gap-4 w-full min-h-screen justify-center   text-gray-400 md:text-gray-700 md:bg-white">
+      <p>email:test@gmail.com</p>
+      <p>password:test@12345</p>
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
         logo
       </h1>
