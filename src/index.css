@@ -72,12 +72,12 @@
     @apply border-border;
   }
   body {
-    @apply overflow-x-hidden bg-gradient-to-tr from-[#b5e2fa] via-[#a9d6e5] to-[#014f86] dark:bg-gradient-to-tr dark:from-[#012a4a] dark:via-[#013a63] dark:to-[#10002b] bg-fixed;
+    @apply overflow-x-hidden bg-gradient-to-tr from-[#b5e2fa] via-[#a9d6e5] to-[#93bcda] dark:bg-gradient-to-tr dark:from-[#012a4a] dark:via-[#013a63] dark:to-[#10002b] bg-fixed;
   }
 }
 @layer utilities {
   .dashboard-card {
-    @apply bg-slate-100  backdrop-blur-lg rounded-lg h-80 flex justify-center p-4 dark:bg-slate-200/75 dark:text-white;
+    @apply bg-slate-100  backdrop-blur-lg rounded-lg h-80 flex justify-center p-4 dark:bg-[#012a4a] dark:text-white;
   }
   .dashboard-card-top {
     @apply h-52  rounded-lg   text-white flex flex-col gap-4 items-center justify-center font-bold shadow-xl p-4 sm:w-60 w-full;
@@ -86,6 +86,9 @@
     @apply md:max-w-[680px]  lg:max-w-[800px] xl:max-w-[1150px] mx-auto;
   }
   .side-bar {
-    @apply bg-gradient-to-b from-[#b5e2fa] via-[#a9d6e5] to-[#014f86] dark:bg-gradient-to-tr dark:from-[#012a4a] dark:via-[#013a63] dark:to-[#10002b];
+    @apply bg-gradient-to-b from-[#cedae0] via-[#d1e0e6] to-[#3762817a] dark:bg-gradient-to-br dark:from-[#012a4a] dark:via-[#013a63] dark:to-[#10002b];
+  }
+  .component-background {
+    @apply dark:bg-[#5d9eb4] dark:text-white;
   }
 }

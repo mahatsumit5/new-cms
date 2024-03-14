@@ -50,13 +50,13 @@ const Header = () => {
         <div className="flex gap-5 w-full  justify-end  ">
           <input
             type="text"
-            className="bg-purple-400 w-28 md:w-64 px-2 placeholder:text-white rounded-sm dark:bg-white/10 text-white dark:text-white dark:placeholder:text-white h-10 hidden md:block focus:outline-purple-800"
+            className="bg-[#e2ebf0] w-28 md:w-64 px-2 placeholder:text-[#0c2735fb] rounded-sm dark:bg-[#447c9e] text-[#263d49] dark:text-white dark:placeholder:text-white h-10 hidden md:block focus:outline-purple-800"
             placeholder="Search..."
           />
           <Button size={"icon"} variant={"link"} className="relative">
             <MdCircleNotifications
               size={29}
-              className="text-purple-800 dark:text-white "
+              className="text-[#b5e2fa] dark:text-white "
             />
             <Badge
               variant={"destructive"}

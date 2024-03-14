@@ -19,8 +19,10 @@ export function CustomTabs({ type, tab1, children, tab2, data }: ITabsProps) {
 
   return (
     <Tabs defaultValue={tab1} className="">
-      <TabsList className="grid   grid-cols-2 mx-auto">
-        <TabsTrigger value={tab1}>{tab1}</TabsTrigger>
+      <TabsList className="grid   grid-cols-2 mx-auto bg-[#3762817a] data-[state=active]:text-black text-white component-background">
+        <TabsTrigger value={tab1} className="">
+          {tab1}
+        </TabsTrigger>
         <TabsTrigger value={tab2}>{tab2}</TabsTrigger>
       </TabsList>
       <TabsContent value={tab1} className=" ">

@@ -47,13 +47,13 @@ const Dashboard = () => {
         <div className=" dashboard-card">
           <DonoughtChart />
         </div>
-        <div className="col-span-1  overflow-y-auto bg-slate-100 rounded-lg p-4 dark:bg-slate-200/10">
+        <div className="col-span-1  overflow-y-auto bg-slate-100 rounded-lg p-4 dark:bg-[#014f86]">
           <CustomTable data={payment as IPayment[]} type="payment" />
         </div>
-        <div className="bg-slate-100 rounded-lg p-4 dark:bg-slate-200/10">
+        <div className="bg-slate-100 rounded-lg p-4 dark:bg-[#014f86]">
           <AddCategoryForm />{" "}
         </div>
-        <div className=" overflow-y-auto bg-slate-100 rounded-lg p-4 dark:bg-slate-200/10 col-span-1">
+        <div className=" overflow-y-auto bg-slate-100 rounded-lg p-4 dark:bg-[#014f86] col-span-1">
           <CustomTable
             data={frequentlybought as IFrequentlyBoughtItem[]}
             type="frequenltyBought"

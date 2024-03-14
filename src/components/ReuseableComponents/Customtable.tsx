@@ -90,7 +90,7 @@ export function CustomTable({ data, type }: Tableprops) {
             ? "md:max-w-[480px]  um:max-w-[550px] lg:max-w-3xl xl:max-w-[1000px]  2xl:max-w-full"
             : "md:max-w-[640px] um:max-w-[700px] lg:max-w-[900px] xl:max-w-[1150px] 2xl:max-w-full"
         }    mx-auto`
-      : "w-full w-fit"
+      : "w-full w-fit "
   }`;
 
   async function handleDelete() {
@@ -123,7 +123,7 @@ export function CustomTable({ data, type }: Tableprops) {
             onChange={(event) =>
               dataForFilter[type]?.setFilterValue(event.target.value)
             }
-            className="max-w-sm dark:bg-slate-500 bg-slate-200"
+            className="max-w-sm component-background"
           />
         ) : (
           <p className="text-md bg-purple-500 dark:bg-purple-900 p-2 px-6 text-white rounded-lg">
@@ -133,11 +133,11 @@ export function CustomTable({ data, type }: Tableprops) {
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button variant="outline" className="ml-auto component-background">
               Columns <ChevronDownIcon className="ml-2 h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="end" className="component-background">
             {table
               .getAllColumns()
               .filter((column) => column.getCanHide())
@@ -214,6 +214,7 @@ export function CustomTable({ data, type }: Tableprops) {
             size="sm"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
+            className="component-background"
           >
             Previous
           </Button>
@@ -222,12 +223,17 @@ export function CustomTable({ data, type }: Tableprops) {
             size="sm"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
+            className="component-background"
           >
             Next
           </Button>
         </div>
       </div>
-      <Button variant={"destructive"} onClick={handleDelete}>
+      <Button
+        variant={"destructive"}
+        onClick={handleDelete}
+        className="component-background"
+      >
         Delete selected {type}
       </Button>
     </div>
