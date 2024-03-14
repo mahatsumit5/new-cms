@@ -12,19 +12,6 @@ module.exports = {
     container: {
       center: true,
       padding: "2rem",
-      screens: {
-        sm: "640px",
-        // => @media (min-width: 640px) { ... }
-
-        md: "768px",
-        // => @media (min-width: 768px) { ... }
-
-        lg: "1024px",
-        // => @media (min-width: 1024px) { ... }
-
-        xl: "1280px",
-        // => @media (min-width: 1280px) { ... }
-      },
     },
     extend: {
       colors: {
@@ -80,6 +67,10 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      screens: {
+        um: "840px",
+        // => @media (min-width: 992px) { ... }
       },
     },
   },

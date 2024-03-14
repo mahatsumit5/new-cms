@@ -29,7 +29,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Key, Tableprops, columnDef } from "@/types";
-import { useAppDispatch } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import { getCategoryColumns } from "../category/columns";
 import { getProductColumn } from "../products/columns";
 import { getOrderColumns } from "../order/columns";
@@ -37,6 +37,7 @@ import { getpaymentColumns } from "../payment/columns";
 import { getFrequentlyBoughtColumns } from "@/pages/dashboard/frequenltyBought.column";
 
 export function CustomTable({ data, type }: Tableprops) {
+  const { isOpen } = useAppSelector((store) => store.sideBar);
   const dispatch = useAppDispatch();
   const columns: Record<Key, columnDef> = {
     catagory: getCategoryColumns(dispatch),
@@ -77,15 +78,18 @@ export function CustomTable({ data, type }: Tableprops) {
     product: type === "product" ? table.getColumn("slug") : null,
     payment: type === "payment" ? table.getColumn("title") : null,
   };
+  const tableDesign = `  ${
+    type === "product"
+      ? ` ${
+          isOpen
+            ? "md:max-w-[480px]  um:max-w-[550px] lg:max-w-3xl xl:max-w-[1000px]  2xl:max-w-full"
+            : "md:max-w-[640px] um:max-w-[700px] lg:max-w-[900px] xl:max-w-[1150px] 2xl:max-w-full"
+        }    mx-auto`
+      : "w-full"
+  }`;
   return (
-    <div
-      className={` p-2 ${
-        type === "product"
-          ? "w-full md:max-w-[710px]  lg:max-w-[900px] xl:max-w-full"
-          : "w-full"
-      }`}
-    >
-      <div className="flex my-4">
+    <div className={tableDesign}>
+      <div className="flex my-4 ">
         {type !== "frequenltyBought" ? (
           <Input
             placeholder={`Search ${type}`}
@@ -128,7 +132,7 @@ export function CustomTable({ data, type }: Tableprops) {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border p-3 ">
+      <div className="rounded-md border  ">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

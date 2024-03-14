@@ -1,28 +1,25 @@
-import { Dispatch, SetStateAction } from "react";
 import NavigationMenu from "./NavigationMenu";
 import { Button } from "../ui/button";
 import { PiHamburgerBold } from "react-icons/pi";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
-const SideBar = ({
-  open,
-  toggleOpen,
-}: {
-  open: boolean;
-  toggleOpen: Dispatch<SetStateAction<boolean>>;
-}) => {
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { toogleSideBar } from "@/redux/sidebar.slice";
+const SideBar = () => {
+  const dispatch = useAppDispatch();
+  const { isOpen } = useAppSelector((store) => store.sideBar);
   return (
     <div
       className={` ${
-        open ? "w-[230px]" : "w-[80px] "
-      } px-4  min-h-screen hidden md:block   transition-all fixed left-0 z-50 backdrop-blur-lg from-purple-800 via-white to-purple-300 dark:bg-purple-900/55 overflow-y-auto border-r-2 border-r-purple-300 py-5`}
+        isOpen ? "w-[230px]" : " w-[80px] "
+      } px-4 min-h-screen  fixed left-0 hidden md:block   transition-all   backdrop-blur-lg from-purple-800 via-white to-purple-300 dark:bg-purple-900/55  border-r-2 border-r-purple-300 py-5`}
     >
-      <div className="flex flex-col  h-full  transition-all ">
+      <div className="flex flex-col  h-full  transition-all  ">
         <div className="w-full  flex justify-between ">
-          {!open ? (
+          {!isOpen ? (
             <Button
               onClick={() => {
-                toggleOpen(!open);
+                dispatch(toogleSideBar(true));
               }}
               className=""
               variant={"link"}
@@ -36,7 +33,7 @@ const SideBar = ({
           ) : (
             <Button
               onClick={() => {
-                toggleOpen(!open);
+                dispatch(toogleSideBar(false));
               }}
               className=""
               variant={"link"}
@@ -48,7 +45,7 @@ const SideBar = ({
               />
             </Button>
           )}
-          {open && (
+          {isOpen && (
             <Link to={"/dashboard"}>
               <img
                 src="/logo-light.png"

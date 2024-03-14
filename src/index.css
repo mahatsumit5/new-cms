@@ -63,6 +63,7 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+    /* --div: 217.2 32.6% 17.5%; */
   }
 }
 
@@ -71,7 +72,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-gradient-to-b from-[#edf2fb] via-[#ccdbfd] to-[#abc4ff] dark:bg-gradient-to-tr dark:from-[#5a189a] dark:via-[#3c096c] dark:to-[#10002b] bg-fixed;
+    @apply overflow-x-hidden bg-gradient-to-tl from-[#adb5bd] via-[#ced4da] to-[#dee2e6] dark:bg-gradient-to-tr dark:from-[#000022] dark:via-[#35012c] dark:to-[#290025] bg-fixed;
   }
 }
 @layer utilities {
@@ -80,5 +81,8 @@
   }
   .dashboard-card-top {
     @apply h-52  rounded-lg   text-white flex flex-col gap-4 items-center justify-center font-bold shadow-xl p-4 sm:w-60 w-full;
+  }
+  .product-table {
+    @apply md:max-w-[680px]  lg:max-w-[800px] xl:max-w-[1150px] mx-auto;
   }
 }

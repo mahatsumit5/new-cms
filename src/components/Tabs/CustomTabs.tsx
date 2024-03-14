@@ -16,13 +16,14 @@ export function CustomTabs({ type, tab1, children, tab2, data }: ITabsProps) {
     payment: type === "payment" ? (data as IPayment[]) : [],
     product: type === "product" ? (data as IProduct[]) : [],
   };
+
   return (
     <Tabs defaultValue={tab1} className="">
-      <TabsList className="grid w-full grid-cols-2">
+      <TabsList className="grid   grid-cols-2 mx-auto">
         <TabsTrigger value={tab1}>{tab1}</TabsTrigger>
         <TabsTrigger value={tab2}>{tab2}</TabsTrigger>
       </TabsList>
-      <TabsContent value={tab1}>
+      <TabsContent value={tab1} className=" ">
         <CustomTable type={type} data={renderItems[type]} />
         {/* {type === "catagory" && (
           <CustomTable data={data as ICategory[]} type="catagory" />

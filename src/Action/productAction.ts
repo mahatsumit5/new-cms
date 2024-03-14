@@ -10,7 +10,6 @@ import { setProducts } from "@/redux/product.slice";
 import { AppDispatch } from "@/store";
 import { IProduct } from "@/types";
 
-import { toast } from "sonner";
 import { getChartDataAction } from "./chart.action";
 import { showToast } from "@/lib/utils";
 
