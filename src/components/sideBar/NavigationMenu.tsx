@@ -1,14 +1,19 @@
 // icons
 import { BiSolidCategoryAlt } from "react-icons/bi";
+
 import { BsFillBox2Fill, BsPersonFill } from "react-icons/bs";
 import { FaMoneyBillAlt, FaUserSecret } from "react-icons/fa";
 import { LiaCreditCardSolid, LiaTruckSolid } from "react-icons/lia";
 import { Link, useLocation } from "react-router-dom";
 
 import { motion } from "framer-motion";
-const NavigationMenu = () => {
+import { Dispatch, SetStateAction } from "react";
+const NavigationMenu = ({
+  toggleOpen,
+}: {
+  toggleOpen?: Dispatch<SetStateAction<boolean>>;
+}) => {
   const { pathname } = useLocation();
-  console.log(pathname);
   const buttons = [
     {
       name: "Dashboard",
@@ -66,9 +71,13 @@ const NavigationMenu = () => {
     },
   ];
   return (
-    <ul className="flex flex-col  flex-1 gap-4 h-full justify-between  overflow-hidden w-full p-3 md:p-0 ">
+    <ul className="flex flex-col  flex-1 gap-4 h-full justify-start  overflow-hidden w-full  mt-6 ">
       {buttons.map((item) => (
-        <Link to={`${item.link}`} key={item.link}>
+        <Link
+          to={`${item.link}`}
+          key={item.link}
+          onClick={() => toggleOpen && toggleOpen(false)}
+        >
           <motion.li
             initial={{ x: -200 }}
             animate={{ x: 0, transition: { duration: item.duration } }}
@@ -76,14 +85,22 @@ const NavigationMenu = () => {
             whileHover={{
               scale: 1.05,
             }}
-            className={`flex gap-5   overflow-hidden  transition-all   p-1 ${
-              pathname === item.link ? "border-b border-b-blue-800 " : ""
-            }`}
+            className={`flex gap-5   overflow-hidden  transition-all   p-1 `}
           >
-            <span className="mt-1 bg-purple-600 p-3 text-white rounded-full">
+            <span
+              className={`mt-1  p-3 text-white rounded-full ${
+                pathname === item.link ? "bg-purple-800  " : "bg-purple-600"
+              }`}
+            >
               {item.icon}
             </span>
-            <span className="font-bold text-black p-2  px-4 text-pretty text-md bg- w-full  rounded-lg border border-purple-600 dark:text-white">
+            <span
+              className={`font-bold text-black p-2  px-4 text-pretty text-md bg- w-full  rounded-lg border  dark:text-white ${
+                pathname === item.link
+                  ? "bg-purple-800 text-white "
+                  : "border-purple-600 dark:border-white"
+              }`}
+            >
               {item.name}
             </span>
           </motion.li>

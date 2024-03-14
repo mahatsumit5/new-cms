@@ -13,7 +13,7 @@ const Dashboard = () => {
   const { frequentlybought } = useAppSelector((store) => store.chartData);
   return (
     <div className="">
-      <div className=" flex flex-wrap overflow-hidden justify-between sm:grid-cols-5 gap-5  p-3 ">
+      <div className=" flex flex-wrap overflow-hidden justify-between sm:grid-cols-5 gap-5  ">
         {orderStatuscount.map((item) => (
           <div
             className="dashboard-card-top dark:bg-green-800 "
@@ -33,7 +33,7 @@ const Dashboard = () => {
           </div>
         ))}
       </div>
-      <div className="grid sm:grid-cols-2 gap-10 grid-cols-1  p-2 mt-7">
+      <div className="grid sm:grid-cols-2 gap-10 grid-cols-1   mt-7">
         <div className=" dashboard-card col-span-1">
           <LineChart />
         </div>

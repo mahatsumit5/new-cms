@@ -71,7 +71,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-gradient-to-tr from-slate-400  via-gray-500/30 to-white dark:bg-gradient-to-br dark:from-black dark:via-purple-950 dark:to-blue-950 bg-fixed;
+    @apply bg-gradient-to-tr from-purple-800 via-white to-purple-300 dark:bg-gradient-to-tr dark:from-black dark:via-purple-950 dark:to-blue-950 bg-fixed;
   }
 }
 @layer utilities {

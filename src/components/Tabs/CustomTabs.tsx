@@ -1,17 +1,30 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import { ICategory, IPayment, IProduct, ITabsProps } from "@/types";
+import {
+  ICategory,
+  IPayment,
+  IProduct,
+  ITabsProps,
+  TDataForTabs,
+  TabsKey,
+} from "@/types";
 import { CustomTable } from "../ReuseableComponents/Customtable";
 
 export function CustomTabs({ type, tab1, children, tab2, data }: ITabsProps) {
+  const renderItems: Record<TabsKey, TDataForTabs> = {
+    catagory: type === "catagory" ? (data as ICategory[]) : [],
+    payment: type === "payment" ? (data as IPayment[]) : [],
+    product: type === "product" ? (data as IProduct[]) : [],
+  };
   return (
-    <Tabs defaultValue={tab1} className="w-full">
+    <Tabs defaultValue={tab1} className="">
       <TabsList className="grid w-full grid-cols-2">
         <TabsTrigger value={tab1}>{tab1}</TabsTrigger>
         <TabsTrigger value={tab2}>{tab2}</TabsTrigger>
       </TabsList>
       <TabsContent value={tab1}>
-        {type === "catagory" && (
+        <CustomTable type={type} data={renderItems[type]} />
+        {/* {type === "catagory" && (
           <CustomTable data={data as ICategory[]} type="catagory" />
         )}
 
@@ -20,10 +33,9 @@ export function CustomTabs({ type, tab1, children, tab2, data }: ITabsProps) {
         )}
         {type === "payment" && (
           <CustomTable data={data as IPayment[]} type="payment" />
-        )}
+        )} */}
       </TabsContent>
       <TabsContent value={tab2}>
-        {" "}
         <div className="">{children}</div>
       </TabsContent>
     </Tabs>

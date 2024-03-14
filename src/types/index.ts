@@ -7,6 +7,7 @@ export type Key =
   | "order"
   | "payment"
   | "frequenltyBought";
+export type TabsKey = "catagory" | "product" | "payment";
 
 export interface IUser {
   _id: string;
@@ -167,11 +168,13 @@ export interface IPayment {
   createdAt: Date;
   updatedAt: Date;
 }
+export type TDataForTabs = ICategory[] | IProduct[] | IPayment[] | [];
+
 export interface ITabsProps {
-  type: Key;
+  type: TabsKey;
   tab1: string;
   tab2: string;
-  data: ICategory[] | IProduct[] | IPayment[]; // TODO: Define the type of data in this array.
+  data: TDataForTabs; // TODO: Define the type of data in this array.
   // form: ReactElement<null, string>;
   children: React.ReactNode;
 }
