@@ -29,7 +29,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { IPayment, IProduct, Key, Tableprops, columnDef } from "@/types";
-import { useAppDispatch, useAppSelector } from "@/hooks";
+import { useAppDispatch } from "@/hooks";
 import { getCategoryColumns } from "../category/columns";
 import { getProductColumn } from "../products/columns";
 import { getOrderColumns } from "../order/columns";
@@ -42,7 +42,6 @@ import { deleteProductAction } from "@/Action/productAction";
 import { deleteorderAction } from "@/Action/orderAction";
 
 export function CustomTable({ data, type }: Tableprops) {
-  const { isOpen } = useAppSelector((store) => store.sideBar);
   const dispatch = useAppDispatch();
   const columns: Record<Key, columnDef> = {
     catagory: getCategoryColumns(dispatch),
@@ -83,15 +82,6 @@ export function CustomTable({ data, type }: Tableprops) {
     product: type === "product" ? table.getColumn("slug") : null,
     payment: type === "payment" ? table.getColumn("title") : null,
   };
-  const tableDesign = `  ${
-    type === "product"
-      ? ` ${
-          isOpen
-            ? "md:max-w-[480px]  um:max-w-[550px] lg:max-w-3xl xl:max-w-[1000px]  2xl:max-w-full"
-            : "md:max-w-[640px] um:max-w-[700px] lg:max-w-[900px] xl:max-w-[1150px] 2xl:max-w-full"
-        }    mx-auto`
-      : "w-full w-fit "
-  }`;
 
   async function handleDelete() {
     const datatoDelete = table.getFilteredSelectedRowModel().rows;
@@ -114,7 +104,7 @@ export function CustomTable({ data, type }: Tableprops) {
     }
   }
   return (
-    <div className={tableDesign}>
+    <div className={"w-full"}>
       <div className="flex my-4 ">
         {type !== "frequenltyBought" ? (
           <Input
@@ -126,7 +116,7 @@ export function CustomTable({ data, type }: Tableprops) {
             className="max-w-sm component-background"
           />
         ) : (
-          <p className="text-md bg-purple-500 dark:bg-purple-900 p-2 px-6 text-white rounded-lg">
+          <p className="text-md bg-[#61a5c2] dark:bg-purple-900 p-2 px-6 text-white rounded-lg">
             Frequently Bought Items
           </p>
         )}

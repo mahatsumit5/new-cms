@@ -185,7 +185,7 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
           control={form.control}
           name="status"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm  md:col-span-3 dark:bg-slate-950/45">
+            <FormItem className="bg-white/70 flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm  md:col-span-3 dark:bg-slate-950/45">
               <div className="space-y-0.5">
                 <FormLabel>Status</FormLabel>
               </div>
@@ -428,7 +428,11 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
             )}
           </FormDescription>
         </FormItem>
-        <Button type="submit" className="w-40 bg-green-400" variant={"default"}>
+        <Button
+          type="submit"
+          className="w-40 bg-[#61a5c2] text-white"
+          variant={"default"}
+        >
           {product?._id ? "Save Changes" : "Create "}
         </Button>
       </form>

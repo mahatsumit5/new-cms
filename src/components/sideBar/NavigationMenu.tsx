@@ -71,7 +71,7 @@ const NavigationMenu = ({
     },
   ];
   return (
-    <ul className="flex flex-col  flex-1 gap-4 h-full justify-start  overflow-hidden w-full  mt-6   ">
+    <ul className="flex flex-col  flex-1 gap-8 h-full justify-start  overflow-hidden w-full  mt-10   ">
       {buttons.map((item) => (
         <Link
           to={`${item.link}`}

@@ -13,6 +13,7 @@ import { getproductAction } from "@/Action/productAction";
 import { getPaymentsAction } from "@/Action/paymentAction";
 import { getOrderAction } from "@/Action/orderAction";
 import { getChartDataAction } from "@/Action/chart.action";
+import { toogleSideBar } from "@/redux/sidebar.slice";
 export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const { user } = useAppSelector((store) => store.userInfo);
   const { isOpen } = useAppSelector((store) => store.sideBar);
@@ -31,18 +32,20 @@ export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
     dispatch(getOrderAction());
     dispatch(getChartDataAction());
   }, [dispatch, user]);
+  const responsive = isOpen ? "md:pl-[235px]" : "md:pl-[82px]";
 
   return user?._id ? (
     <div className=" flex flex-row w-full  ">
       <SideBar />
       <main
-        className={`flex flex-col   gap-5  transition-all w-screen ${
-          isOpen ? "md:ml-[235px]" : "md:ml-[82px]"
-        }`}
+        className={`flex flex-col   gap-5  transition-all w-screen  ${responsive}`}
+        onClick={() => {
+          dispatch(toogleSideBar(false));
+        }}
       >
         <Header />
         <CustomBreadCrumb />
-        <div className="  h-auto  p-5 ">{children}</div>
+        <div className="  h-auto p-4 max-w-7xl">{children}</div>
         <Footer />
       </main>
     </div>

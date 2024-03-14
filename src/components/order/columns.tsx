@@ -92,9 +92,9 @@ export const getOrderColumns = (dispatch: AppDispatch) => {
       cell: ({ row }) => {
         const status: Tstatus = row.getValue("status") as Tstatus;
         return (
-          <div className="capitalize w-full">
+          <div className="capitalize w-40">
             <span
-              className={`p-3 text-sm  rounded-full text-white shadow-xl  min-w-fit ${statusColor[status]}
+              className={`p-3 text-sm  rounded-full text-white shadow-xl  w-48 ${statusColor[status]}
                 `}
             >
               {status}

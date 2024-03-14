@@ -13,7 +13,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 191.429, 33.3%, 57.05%
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -72,7 +72,7 @@
     @apply border-border;
   }
   body {
-    @apply overflow-x-hidden bg-gradient-to-tr from-[#b5e2fa] via-[#a9d6e5] to-[#93bcda] dark:bg-gradient-to-tr dark:from-[#012a4a] dark:via-[#013a63] dark:to-[#10002b] bg-fixed;
+    @apply overflow-x-hidden bg-gradient-to-b from-[#f0f1f3] via-[#c6d8dd] to-[#82d7f330] dark:bg-gradient-to-tr dark:from-[#012a4a] dark:via-[#013a63] dark:to-[#10002b] bg-fixed;
   }
 }
 @layer utilities {
@@ -86,7 +86,7 @@
     @apply md:max-w-[680px]  lg:max-w-[800px] xl:max-w-[1150px] mx-auto;
   }
   .side-bar {
-    @apply bg-gradient-to-b from-[#cedae0] via-[#d1e0e6] to-[#3762817a] dark:bg-gradient-to-br dark:from-[#012a4a] dark:via-[#013a63] dark:to-[#10002b];
+    @apply bg-slate-400/15 backdrop-blur-sm dark:bg-gradient-to-br dark:from-[#012a4a] dark:via-[#013a63] dark:to-[#10002b] z-50;
   }
   .component-background {
     @apply dark:bg-[#5d9eb4] dark:text-white;

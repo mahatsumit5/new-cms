@@ -8,7 +8,7 @@ import {
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { closeDialog } from "@/redux/dialog.slice";
 import { DialogClose } from "@radix-ui/react-dialog";
-
+import { IoMdClose } from "react-icons/io";
 export function CustomDialog() {
   const { children, isOpen, title } = useAppSelector((store) => store.dialog);
   const dispatch = useAppDispatch();
@@ -17,16 +17,18 @@ export function CustomDialog() {
       <DialogContent
         className={`max-h-[80vh] ${
           title === "Edit Product" ? "max-w-6xl" : "max-w-lg"
-        } bg-slate-200 dark:bg-slate-600 overflow-y-auto`}
+        } bg-slate-200 dark:bg-[#19414b73] overflow-y-auto backdrop-blur-md`}
       >
         <DialogClose>
           <Button
-            className="rounded-full absolute top-2 right-2 z-10 p-4"
+            className="absolute top-2 right-2 z-10 rounded-full"
             onClick={() => {
               dispatch(closeDialog());
             }}
+            variant={"link"}
+            size={"icon"}
           >
-            x
+            <IoMdClose size={20} />
           </Button>
         </DialogClose>
         <DialogHeader>
