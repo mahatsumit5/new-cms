@@ -28,9 +28,7 @@ export function showToast(promise: Promise<serverReturnDataType>) {
   toast.promise(promise, {
     loading: "Loading...",
     success: ({ message }) => {
-      console.log(message);
-
-      return "Success!";
+      return message;
     },
     duration: 1500,
     error: (data) => {
