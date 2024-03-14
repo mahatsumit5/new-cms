@@ -3,18 +3,20 @@ import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import MobileSideBar from "../sideBar/MobileSideBar";
 import { ProfileDropDown } from "./ProfileDropDown";
 import hamburger from "/Hamburger.svg";
-
+import { MdCircleNotifications } from "react-icons/md";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Button } from "../ui/button";
+import { Badge } from "../ui/badge";
 const Header = () => {
   const { user } = useAppSelector((store) => store.userInfo);
   const [open, toggleOpen] = useState(false);
 
   return (
     <motion.div
-      className="sticky top-0  p-5 z-10  backdrop-blur-xl  w-full"
+      className="sticky top-0  p-5 z-10  backdrop-blur-xl  w-full border-b-2"
       initial={{ y: "-30vh" }}
       animate={{ y: 0 }}
       transition={{ ease: "easeOut", duration: 0.4 }}
@@ -51,6 +53,18 @@ const Header = () => {
             className="bg-purple-400 w-28 md:w-64 px-2 placeholder:text-white rounded-sm dark:bg-white/10 text-white dark:text-white dark:placeholder:text-white h-10 hidden md:block focus:outline-purple-800"
             placeholder="Search..."
           />
+          <Button size={"icon"} variant={"link"} className="relative">
+            <MdCircleNotifications
+              size={29}
+              className="text-purple-800 dark:text-white "
+            />
+            <Badge
+              variant={"destructive"}
+              className="absolute -top-2  -right-2 rounded-full animate-pulse "
+            >
+              2
+            </Badge>
+          </Button>
           <ThemeToggle />{" "}
           <ProfileDropDown
             _id={user._id}

@@ -28,13 +28,18 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Key, Tableprops, columnDef } from "@/types";
+import { IPayment, IProduct, Key, Tableprops, columnDef } from "@/types";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { getCategoryColumns } from "../category/columns";
 import { getProductColumn } from "../products/columns";
 import { getOrderColumns } from "../order/columns";
 import { getpaymentColumns } from "../payment/columns";
 import { getFrequentlyBoughtColumns } from "@/pages/dashboard/frequenltyBought.column";
+import { toast } from "sonner";
+import { deletePaymentAction } from "@/Action/paymentAction";
+import { deleteCatagoryAction } from "@/Action/catelogueAction";
+import { deleteProductAction } from "@/Action/productAction";
+import { deleteorderAction } from "@/Action/orderAction";
 
 export function CustomTable({ data, type }: Tableprops) {
   const { isOpen } = useAppSelector((store) => store.sideBar);
@@ -85,8 +90,29 @@ export function CustomTable({ data, type }: Tableprops) {
             ? "md:max-w-[480px]  um:max-w-[550px] lg:max-w-3xl xl:max-w-[1000px]  2xl:max-w-full"
             : "md:max-w-[640px] um:max-w-[700px] lg:max-w-[900px] xl:max-w-[1150px] 2xl:max-w-full"
         }    mx-auto`
-      : "w-full"
+      : "w-full w-fit"
   }`;
+
+  async function handleDelete() {
+    const datatoDelete = table.getFilteredSelectedRowModel().rows;
+    if (datatoDelete.length) {
+      datatoDelete.map(async (data) => {
+        const { _id }: IPayment | IProduct = data.original;
+        switch (type) {
+          case "payment":
+            return dispatch(deletePaymentAction({ _id: _id }));
+          case "catagory":
+            return dispatch(deleteCatagoryAction(_id));
+          case "product":
+            return dispatch(deleteProductAction(_id));
+          case "order":
+            return dispatch(deleteorderAction(_id));
+        }
+      });
+    } else {
+      toast.info("Please select items to delete.");
+    }
+  }
   return (
     <div className={tableDesign}>
       <div className="flex my-4 ">
@@ -201,6 +227,9 @@ export function CustomTable({ data, type }: Tableprops) {
           </Button>
         </div>
       </div>
+      <Button variant={"destructive"} onClick={handleDelete}>
+        Delete selected {type}
+      </Button>
     </div>
   );
 }

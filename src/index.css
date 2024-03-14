@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 0% 100% 100%;
+    --background: 0 100% 100%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -72,7 +72,7 @@
     @apply border-border;
   }
   body {
-    @apply overflow-x-hidden bg-gradient-to-tl from-[#adb5bd] via-[#ced4da] to-[#dee2e6] dark:bg-gradient-to-tr dark:from-[#000022] dark:via-[#35012c] dark:to-[#290025] bg-fixed;
+    @apply overflow-x-hidden bg-gradient-to-tr from-[#b5e2fa] via-[#a9d6e5] to-[#014f86] dark:bg-gradient-to-tr dark:from-[#012a4a] dark:via-[#013a63] dark:to-[#10002b] bg-fixed;
   }
 }
 @layer utilities {
@@ -84,5 +84,8 @@
   }
   .product-table {
     @apply md:max-w-[680px]  lg:max-w-[800px] xl:max-w-[1150px] mx-auto;
+  }
+  .side-bar {
+    @apply bg-gradient-to-b from-[#b5e2fa] via-[#a9d6e5] to-[#014f86] dark:bg-gradient-to-tr dark:from-[#012a4a] dark:via-[#013a63] dark:to-[#10002b];
   }
 }

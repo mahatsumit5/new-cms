@@ -12,7 +12,7 @@ const SideBar = () => {
     <div
       className={` ${
         isOpen ? "w-[230px]" : " w-[80px] "
-      } px-4 min-h-screen  fixed left-0 hidden md:block   transition-all   backdrop-blur-lg from-purple-800 via-white to-purple-300 dark:bg-purple-900/55  border-r-2 border-r-purple-300 py-5`}
+      } px-4 min-h-screen  fixed left-0 hidden md:block   transition-all  side-bar  border-r-2 border-r-purple-300 py-5`}
     >
       <div className="flex flex-col  h-full  transition-all  ">
         <div className="w-full  flex justify-between ">

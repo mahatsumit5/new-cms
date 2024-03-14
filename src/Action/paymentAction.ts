@@ -39,6 +39,7 @@ export const deletePaymentAction =
       dispatch(closeDialog());
     }
   };
+
 export const updatePaymentAction =
   (obj: ICreateUpdatePaymentParams) => async (dispatch: AppDispatch) => {
     const pendingResp = updatePayment(obj);

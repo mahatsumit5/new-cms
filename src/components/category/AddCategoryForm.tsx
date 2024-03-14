@@ -82,6 +82,7 @@ const AddCategoryForm = () => {
                 <Switch
                   checked={field.value}
                   onCheckedChange={field.onChange}
+                  className=""
                 />
               </FormControl>
             </FormItem>

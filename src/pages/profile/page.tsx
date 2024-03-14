@@ -1,3 +1,9 @@
+import { ProfileTabs } from "@/components/Tabs/ProfileTabs";
+
 export default function Profile() {
-  return <div>profilepage</div>;
+  return (
+    <div>
+      <ProfileTabs />
+    </div>
+  );
 }

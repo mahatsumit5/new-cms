@@ -89,7 +89,7 @@ const NavigationMenu = ({
           >
             <span
               className={`mt-1  p-3 text-white rounded-full ${
-                pathname === item.link ? "bg-purple-800  " : "bg-purple-600"
+                pathname === item.link ? "bg-[#01497c]  " : "bg-[#61a5c2]"
               }`}
             >
               {item.icon}
@@ -97,8 +97,8 @@ const NavigationMenu = ({
             <span
               className={`font-bold text-black p-2  px-4 text-pretty text-md bg- w-full  rounded-lg border  dark:text-white ${
                 pathname === item.link
-                  ? "bg-purple-800 text-white "
-                  : "border-purple-600 dark:border-white"
+                  ? "bg-[#01497c] text-white "
+                  : "bg-[#61a5c2] dark:border-white text-white"
               }`}
             >
               {item.name}

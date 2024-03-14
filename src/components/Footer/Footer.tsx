@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="  dark:bg-black/20 backdrop-blur-sm">
+    <footer className="  dark:bg-black/20 backdrop-blur-sm border-t-2">
       <div className="p-3  grid w-full justify-center items-center place-items-center gap-10">
         <div className="flex justify-between  gap-5 flex-col w-full">
           {/* <img src="/logo-light.png" className="h-52 md:h-28 rounded-full" /> */}

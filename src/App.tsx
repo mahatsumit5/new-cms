@@ -4,34 +4,14 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Page from "./pages/reset-password/ResetPassword";
 import { PrivateRoute } from "./components/private/PrivateRoute";
 import ProductPage from "./pages/products/ProductPage";
-import { useAppDispatch, useAppSelector } from "./hooks";
-import { useEffect } from "react";
-import {
-  getCataloguesAction,
-  getParentCategoryAction,
-} from "./Action/catelogueAction";
+
 import CataloguePage from "./pages/catalogue/Catalogue";
-import { getproductAction } from "./Action/productAction";
 import Payment from "./pages/payment/Payment";
-import { getPaymentsAction } from "./Action/paymentAction";
-import { getOrderAction } from "./Action/orderAction";
 import Orders from "./pages/orders/Orders";
 import { CustomDialog } from "./components/dialog/CustomDialog";
 import Profile from "./pages/profile/page";
-import { getChartDataAction } from "./Action/chart.action";
 import Sales from "./pages/sales/Sales";
 function App() {
-  const dispatch = useAppDispatch();
-  const { user } = useAppSelector((store) => store.userInfo);
-
-  useEffect(() => {
-    dispatch(getCataloguesAction());
-    dispatch(getParentCategoryAction());
-    dispatch(getproductAction());
-    dispatch(getPaymentsAction());
-    dispatch(getOrderAction());
-    dispatch(getChartDataAction());
-  }, [dispatch, user]);
   return (
     <div className="  mx-auto  ">
       <Routes>

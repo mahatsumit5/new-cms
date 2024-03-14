@@ -27,7 +27,15 @@ export function changeCategoryIdToName(
 export function showToast(promise: Promise<serverReturnDataType>) {
   toast.promise(promise, {
     loading: "Loading...",
-    success: ({ message }) => message,
-    error: "UnExpected error occured",
+    success: ({ message }) => {
+      console.log(message);
+
+      return "Success!";
+    },
+    duration: 1500,
+    error: (data) => {
+      console.log(data);
+      return "Error occured";
+    },
   });
 }
