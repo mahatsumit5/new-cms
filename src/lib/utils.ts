@@ -1,5 +1,6 @@
-import { ICategory, IitemsByCat } from "@/types";
+import { ICategory, IitemsByCat, serverReturnDataType } from "@/types";
 import { type ClassValue, clsx } from "clsx";
+import { toast } from "sonner";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -21,4 +22,12 @@ export function changeCategoryIdToName(
     return data?.title;
   });
   return result as [];
+}
+
+export function showToast(promise: Promise<serverReturnDataType>) {
+  toast.promise(promise, {
+    loading: "Loading...",
+    success: ({ message }) => message,
+    error: "UnExpected error occured",
+  });
 }

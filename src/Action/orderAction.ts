@@ -3,8 +3,8 @@ import { closeDialog } from "@/redux/dialog.slice";
 import { setOrders } from "@/redux/order.slice";
 import { AppDispatch } from "@/store";
 import { IOrder } from "@/types";
-import { toast } from "sonner";
 import { getChartDataAction } from "./chart.action";
+import { showToast } from "@/lib/utils";
 
 export const getOrderAction = () => async (dispatch: AppDispatch) => {
   const { status, result } = await getOrders();
@@ -15,8 +15,10 @@ export const getOrderAction = () => async (dispatch: AppDispatch) => {
 
 export const updateOrderAction =
   (obj: object) => async (dispatch: AppDispatch) => {
-    const { status, message } = await updateOrder(obj);
-    toast(message);
+    const pendingResp = updateOrder(obj);
+    showToast(pendingResp);
+    const { status } = await pendingResp;
+
     if (status === "success") {
       dispatch(getOrderAction());
       dispatch(closeDialog());
@@ -25,8 +27,11 @@ export const updateOrderAction =
   };
 export const deleteorderAction =
   (_id: string) => async (dispatch: AppDispatch) => {
-    const { status, message } = await deleteOrder(_id);
-    toast(message);
+    const pendingResp = deleteOrder(_id);
+    showToast(pendingResp);
+
+    const { status } = await pendingResp;
+
     if (status === "success") {
       dispatch(getOrderAction());
       dispatch(getChartDataAction());

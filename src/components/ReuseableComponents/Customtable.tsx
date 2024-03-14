@@ -78,7 +78,13 @@ export function CustomTable({ data, type }: Tableprops) {
     payment: type === "payment" ? table.getColumn("title") : null,
   };
   return (
-    <div className="w-full ">
+    <div
+      className={` p-2 ${
+        type === "product"
+          ? "w-full md:max-w-[710px]  lg:max-w-[900px] xl:max-w-full"
+          : "w-full"
+      }`}
+    >
       <div className="flex my-4">
         {type !== "frequenltyBought" ? (
           <Input
@@ -122,7 +128,7 @@ export function CustomTable({ data, type }: Tableprops) {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border">
+      <div className="rounded-md border p-3 ">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

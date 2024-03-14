@@ -138,7 +138,7 @@ export const getProductColumn = (dispatch: AppDispatch) => {
     },
     {
       accessorKey: "category",
-      header: () => "Header",
+      header: () => "Category",
       cell: ({ row }) => {
         const category: ICategory = row.getValue("category");
         return (
@@ -238,7 +238,7 @@ export const getProductColumn = (dispatch: AppDispatch) => {
       header: () => <div className="text-left">Description</div>,
       cell: ({ row }) => {
         return (
-          <div className="text-left line-clamp-4 h-20 overflow-hidden text-sm text-muted-foreground w-[200px]">
+          <div className="text-left line-clamp-4 h-20 overflow-hidden text-sm text-muted-foreground ">
             {row.getValue("description")}
           </div>
         );

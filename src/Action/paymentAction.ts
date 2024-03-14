@@ -7,15 +7,17 @@ import {
   postPayment,
   updatePayment,
 } from "@/axios/paymentAxios";
-import { toast } from "sonner";
 import { setPayments } from "@/redux/payment.slice";
 import { closeDialog } from "@/redux/dialog.slice";
+import { showToast } from "@/lib/utils";
 
 export const postPaymentOptions =
   (obj: ICreateUpdatePaymentParams) => async (dispatch: AppDispatch) => {
     const pendingResp = postPayment(obj);
-    const { status, message } = await pendingResp;
-    toast(message);
+    showToast(pendingResp);
+
+    const { status } = await pendingResp;
+
     if (status === "success") {
       dispatch(getPaymentsAction());
     }
@@ -28,8 +30,10 @@ export const getPaymentsAction = () => async (dispatch: AppDispatch) => {
 };
 export const deletePaymentAction =
   (_id: IDeletePaymentParams) => async (dispatch: AppDispatch) => {
-    const { status, message } = await deletePayment(_id);
-    toast(message);
+    const pendingResp = deletePayment(_id);
+    showToast(pendingResp);
+
+    const { status } = await pendingResp;
     if (status === "success") {
       dispatch(getPaymentsAction());
       dispatch(closeDialog());
@@ -37,9 +41,10 @@ export const deletePaymentAction =
   };
 export const updatePaymentAction =
   (obj: ICreateUpdatePaymentParams) => async (dispatch: AppDispatch) => {
-    console.log(obj);
-    const { status, message } = await updatePayment(obj);
-    toast(message);
+    const pendingResp = updatePayment(obj);
+    showToast(pendingResp);
+
+    const { status } = await pendingResp;
     if (status === "success") {
       dispatch(closeDialog());
       dispatch(getPaymentsAction());

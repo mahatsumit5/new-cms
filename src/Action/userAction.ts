@@ -1,4 +1,5 @@
 import { getAdmin, getNewAccessJWT, loginUser } from "@/axios/userAxios";
+import { showToast } from "@/lib/utils";
 import { setUser } from "@/redux/user.slice";
 import { AppDispatch } from "@/store";
 import { ILoginform } from "@/types";
@@ -6,6 +7,7 @@ import { ILoginform } from "@/types";
 export const loginUserAction =
   (userData: ILoginform) => async (dispatch: AppDispatch) => {
     const pendingResp = loginUser(userData);
+    showToast(pendingResp);
 
     const { status, token } = await pendingResp;
 

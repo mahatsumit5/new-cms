@@ -12,12 +12,14 @@ import { IProduct } from "@/types";
 
 import { toast } from "sonner";
 import { getChartDataAction } from "./chart.action";
+import { showToast } from "@/lib/utils";
 
 export const postProductAction =
   (obj: FormData) => async (dispatch: AppDispatch) => {
     const pendingResp = postProduct(obj);
-    const { status, message, imagesToDelete } = await pendingResp;
-    toast(message);
+    showToast(pendingResp);
+
+    const { status, imagesToDelete } = await pendingResp;
     status === "success" && dispatch(getproductAction());
 
     if (status === "success" && imagesToDelete?.length) {
@@ -42,9 +44,10 @@ export const getproductAction = () => async (dispatch: AppDispatch) => {
 export const deleteProductAction =
   (_id: string) => async (dispatch: AppDispatch) => {
     const pendingResp = deleteProduct(_id);
-    const { status, message } = await pendingResp;
+    showToast(pendingResp);
 
-    toast(message);
+    const { status } = await pendingResp;
+
     if (status === "success") {
       dispatch(getChartDataAction());
 
@@ -55,9 +58,10 @@ export const deleteProductAction =
 export const updateProductAction =
   (obj: FormData) => async (dispatch: AppDispatch) => {
     const pendingResp = updateProduct(obj);
+    showToast(pendingResp);
 
-    const { status, message, imagesToDelete } = await pendingResp;
-    toast(message);
+    const { status, imagesToDelete } = await pendingResp;
+
     if (status === "success") {
       dispatch(getChartDataAction());
 

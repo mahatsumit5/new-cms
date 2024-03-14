@@ -98,7 +98,7 @@ type ChartData = {
   frequentyBought: IFrequentlyBoughtItem[];
   totalSalesByDate: ITotalSalesByDate[];
 };
-export type TAxiosProcessor = Promise<{
+export type serverReturnDataType = {
   status: "success" | "error";
   message: string;
   result?: [];
@@ -107,7 +107,8 @@ export type TAxiosProcessor = Promise<{
   accessJWT?: string;
   imagesToDelete?: string | string[];
   chartData?: ChartData;
-}>;
+};
+export type TAxiosProcessor = Promise<serverReturnDataType>;
 export type TAxiosProcessorError = {
   code: string;
   response: {

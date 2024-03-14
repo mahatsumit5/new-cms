@@ -14,7 +14,7 @@ const Header = () => {
 
   return (
     <motion.div
-      className="sticky top-0   p-4 md:shadow-md md:shadow-purple-200  z-10 bg-white/0 backdrop-blur-xl  "
+      className="sticky top-0  p-5 z-10  backdrop-blur-xl  w-full"
       initial={{ y: "-30vh" }}
       animate={{ y: 0 }}
       transition={{ ease: "easeOut", duration: 0.4 }}

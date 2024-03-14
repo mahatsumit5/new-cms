@@ -10,15 +10,15 @@ import { setCatagory, setParentCategory } from "@/redux/catagory.slice";
 import { closeDialog } from "@/redux/dialog.slice";
 import { AppDispatch } from "@/store";
 import { ICategory, IParentCategory } from "@/types";
-import { toast } from "sonner";
 import { getChartDataAction } from "./chart.action";
+import { showToast } from "@/lib/utils";
 
 export const postCatalogueAction =
   (obj: FormData) => async (dispatch: AppDispatch) => {
     const pendingResp = postCategory(obj);
+    showToast(pendingResp);
 
-    const { status, message, imagesToDelete } = await pendingResp;
-    toast(message);
+    const { status, imagesToDelete } = await pendingResp;
 
     if (status === "success" && imagesToDelete) {
       dispatch(getChartDataAction());
@@ -43,8 +43,11 @@ export const getParentCategoryAction = () => async (dispatch: AppDispatch) => {
 };
 export const deleteCatagoryAction =
   (_id: string) => async (dispatch: AppDispatch) => {
-    const { status, message } = await deleteCatagory({ _id });
-    toast(message);
+    const pendingResp = deleteCatagory({ _id });
+    showToast(pendingResp);
+
+    const { status } = await pendingResp;
+    dispatch(closeDialog());
     dispatch(getChartDataAction());
     if (status === "success") {
       dispatch(getCataloguesAction());
@@ -52,8 +55,11 @@ export const deleteCatagoryAction =
   };
 export const updateCatagoryAction =
   (stat: FormData) => async (dispatch: AppDispatch) => {
-    const { status, imagesToDelete, message } = await updateCatagory(stat);
-    toast(message);
+    const pendingResp = updateCatagory(stat);
+
+    showToast(pendingResp);
+
+    const { status, imagesToDelete } = await pendingResp;
     if (status === "success") {
       dispatch(getCataloguesAction());
       dispatch(getChartDataAction());

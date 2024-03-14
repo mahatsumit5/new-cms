@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 0 100% 100%;
+    --background: 0% 100% 100%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -71,7 +71,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-gradient-to-tr from-purple-800 via-white to-purple-300 dark:bg-gradient-to-tr dark:from-black dark:via-purple-950 dark:to-blue-950 bg-fixed;
+    @apply bg-gradient-to-b from-[#edf2fb] via-[#ccdbfd] to-[#abc4ff] dark:bg-gradient-to-tr dark:from-[#5a189a] dark:via-[#3c096c] dark:to-[#10002b] bg-fixed;
   }
 }
 @layer utilities {
