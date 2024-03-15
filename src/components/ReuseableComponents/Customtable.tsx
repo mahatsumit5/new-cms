@@ -113,7 +113,7 @@ export function CustomTable({ data, type }: Tableprops) {
             onChange={(event) =>
               dataForFilter[type]?.setFilterValue(event.target.value)
             }
-            className="max-w-sm component-background"
+            className="max-w-sm component-background dark:text-white"
           />
         ) : (
           <p className="text-md bg-[#61a5c2] dark:bg-purple-900 p-2 px-6 text-white rounded-lg">

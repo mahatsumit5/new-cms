@@ -12,8 +12,8 @@ const Dashboard = () => {
   const { orderStatuscount } = useAppSelector((store) => store.chartData);
   const { frequentlybought } = useAppSelector((store) => store.chartData);
   return (
-    <div className="">
-      <div className=" flex flex-wrap overflow-hidden justify-between sm:grid-cols-5 gap-5  ">
+    <div className="w-full ">
+      <div className=" flex gap-4 flex-wrap overflow-hidden justify-between ">
         {orderStatuscount.map((item) => (
           <div
             className="dashboard-card-top dark:bg-green-800 "
@@ -37,7 +37,7 @@ const Dashboard = () => {
         <div className=" dashboard-card col-span-1">
           <LineChart />
         </div>
-        <div className=" dashboard-card col-span-1">
+        <div className=" dashboard-card ">
           <BarGraph />
         </div>
 
@@ -47,13 +47,13 @@ const Dashboard = () => {
         <div className=" dashboard-card">
           <DonoughtChart />
         </div>
-        <div className="col-span-1  overflow-y-auto bg-slate-100 rounded-lg p-4 dark:bg-[#014f86]">
+        <div className="  overflow-y-auto bg-slate-100 rounded-lg p-4 dark:bg-[#014f86]">
           <CustomTable data={payment as IPayment[]} type="payment" />
         </div>
         <div className="bg-slate-100 rounded-lg p-4 dark:bg-[#014f86]">
           <AddCategoryForm />{" "}
         </div>
-        <div className=" overflow-y-auto bg-slate-100 rounded-lg p-4 dark:bg-[#014f86] col-span-2 lg:col-span-1">
+        <div className=" overflow-y-auto bg-slate-100 rounded-lg p-4 dark:bg-[#014f86]  md:col-span-2">
           <CustomTable
             data={frequentlybought as IFrequentlyBoughtItem[]}
             type="frequenltyBought"

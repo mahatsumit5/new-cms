@@ -89,6 +89,6 @@
     @apply bg-slate-400/15 backdrop-blur-sm dark:bg-gradient-to-br dark:from-[#012a4a] dark:via-[#013a63] dark:to-[#10002b] z-50;
   }
   .component-background {
-    @apply dark:bg-[#5d9eb4] dark:text-white;
+    @apply dark:bg-[#5d9eb4] dark:text-white dark:placeholder:text-white;
   }
 }
