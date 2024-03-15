@@ -7,13 +7,19 @@ import { MdCircleNotifications } from "react-icons/md";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
+import { toast } from "sonner";
 const Header = () => {
   const { user } = useAppSelector((store) => store.userInfo);
+  const { orderStatuscount } = useAppSelector((store) => store.chartData);
   const [open, toggleOpen] = useState(false);
-
+  const pendingOrder =
+    orderStatuscount.filter((item) => item._id === "pending")[0]?.count || 0;
+  useEffect(() => {
+    pendingOrder && toast.info(`You have ${pendingOrder} orders pending.`, {});
+  }, [pendingOrder]);
   return (
     <motion.div
       className="sticky top-0  p-9 z-10  backdrop-blur-xl  w-full border-b-2"
@@ -53,18 +59,20 @@ const Header = () => {
             className="bg-[#91c7de] w-28 md:w-64 px-2 placeholder:text-[#0c2735fb] rounded-sm dark:bg-[#447c9e] text-[#263d49] dark:text-white dark:placeholder:text-white h-10 hidden md:block focus:outline-purple-800"
             placeholder="Search..."
           />
-          <Button size={"icon"} variant={"link"} className="relative">
-            <MdCircleNotifications
-              size={29}
-              className="text-[#61a5c2] dark:text-white "
-            />
-            <Badge
-              variant={"destructive"}
-              className="absolute -top-2  -right-2 rounded-full animate-accordion-up "
-            >
-              2
-            </Badge>
-          </Button>
+          <Link to={"/orders"}>
+            <Button size={"icon"} variant={"link"} className="relative">
+              <MdCircleNotifications
+                size={29}
+                className="text-[#61a5c2] dark:text-white "
+              />
+              <Badge
+                variant={"destructive"}
+                className="absolute -top-2  -right-2 rounded-full animate-accordion-up "
+              >
+                {pendingOrder}
+              </Badge>
+            </Button>
+          </Link>
           <ThemeToggle />{" "}
           <ProfileDropDown
             _id={user._id}

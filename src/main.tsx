@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           disableTransitionOnChange
         >
           <App />
-          <Toaster position="top-center" richColors />
+          <Toaster position="top-center" richColors={true} />
         </ThemeProvider>
       </Provider>
     </BrowserRouter>
