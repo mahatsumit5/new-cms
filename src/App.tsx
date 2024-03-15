@@ -11,6 +11,7 @@ import Orders from "./pages/orders/Orders";
 import { CustomDialog } from "./components/dialog/CustomDialog";
 import Profile from "./pages/profile/page";
 import Sales from "./pages/sales/Sales";
+import Admin from "./pages/admin/Admin";
 function App() {
   return (
     <div className="  mx-auto  ">
@@ -79,6 +80,14 @@ function App() {
           element={
             <PrivateRoute>
               <Sales />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute>
+              <Admin />
             </PrivateRoute>
           }
         />

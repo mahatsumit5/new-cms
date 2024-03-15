@@ -29,6 +29,8 @@ function BarGraph() {
           title: {
             display: true,
             text: "Number of order based on their status",
+            fullSize: true,
+            color: "white",
           },
         },
       }}

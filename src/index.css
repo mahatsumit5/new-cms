@@ -77,7 +77,7 @@
 }
 @layer utilities {
   .dashboard-card {
-    @apply bg-slate-100  backdrop-blur-lg rounded-lg h-80 flex justify-center p-4 dark:bg-[#012a4a] dark:text-white;
+    @apply bg-slate-100  backdrop-blur-lg rounded-lg h-80 flex justify-center p-4  dark:bg-[#014e8660] dark:text-white;
   }
   .dashboard-card-top {
     @apply h-52  rounded-lg   text-white flex flex-col gap-4 items-center justify-center font-bold shadow-xl p-4 sm:w-60 w-full;

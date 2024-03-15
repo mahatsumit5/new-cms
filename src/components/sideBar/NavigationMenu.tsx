@@ -7,13 +7,18 @@ import { LiaCreditCardSolid, LiaTruckSolid } from "react-icons/lia";
 import { Link, useLocation } from "react-router-dom";
 
 import { motion } from "framer-motion";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { toogleSideBar } from "@/redux/sidebar.slice";
 const NavigationMenu = ({
   toggleOpen,
 }: {
   toggleOpen?: Dispatch<SetStateAction<boolean>>;
 }) => {
+  const dispatch = useAppDispatch();
   const { pathname } = useLocation();
+  const { isOpen } = useAppSelector((store) => store.sideBar);
+  const [screenSize, setScreenSize] = useState<number>(window.innerWidth);
   const buttons = [
     {
       name: "Dashboard",
@@ -70,6 +75,21 @@ const NavigationMenu = ({
       link: "/profile",
     },
   ];
+  const detectSize = () => {
+    setScreenSize(window.innerWidth);
+  };
+  useEffect(() => {
+    if (screenSize < 766) {
+      console.log("open now");
+      dispatch(toogleSideBar(true));
+    }
+
+    window.addEventListener("resize", detectSize);
+    return () => {
+      window.removeEventListener("resize", detectSize);
+    };
+  }, [screenSize, dispatch]);
+
   return (
     <ul className="flex flex-col  flex-1 gap-8 h-full justify-start  overflow-hidden w-full  mt-10   ">
       {buttons.map((item) => (
@@ -94,7 +114,10 @@ const NavigationMenu = ({
             >
               {item.icon}
             </span>
-            <span
+            <motion.span
+              initial={{ x: isOpen ? 0 : 100 }}
+              animate={{ x: isOpen ? 0 : 100 }}
+              transition={{ duration: item.duration, ease: "easeInOut" }}
               className={`font-bold text-black p-2  px-4 text-pretty text-md bg- w-full  rounded-lg border  dark:text-white ${
                 pathname === item.link
                   ? "bg-[#01497c] text-white "
@@ -102,7 +125,7 @@ const NavigationMenu = ({
               }`}
             >
               {item.name}
-            </span>
+            </motion.span>
           </motion.li>
         </Link>
       ))}

@@ -12,7 +12,13 @@ const SideBar = () => {
     <div
       className={` ${
         isOpen ? "w-[230px]" : " w-[80px] "
-      } hover:w-[230px] px-4 min-h-screen  fixed left-0 hidden md:block   transition-all  side-bar  border-r-2 border-r-green-900 py-5`}
+      } px-4 min-h-screen  fixed left-0 hidden md:block   transition-all  side-bar  border-r-2 border-r-green-900 py-5`}
+      // onMouseEnter={() => {
+      //   dispatch(toogleSideBar(true));
+      // }}
+      // onMouseLeave={() => {
+      //   dispatch(toogleSideBar(false));
+      // }}
     >
       <div className="flex flex-col  h-full  transition-all  ">
         <div className="w-full  flex justify-between ">
@@ -27,7 +33,7 @@ const SideBar = () => {
             >
               <PiHamburgerBold
                 size={35}
-                className="text-emerald-700 dark:text-white hover:scale-125 transition-allurple"
+                className="text-[#61a5c2] dark:text-white hover:scale-125 transition-allurple roun"
               />
             </Button>
           ) : (

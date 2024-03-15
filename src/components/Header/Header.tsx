@@ -16,7 +16,7 @@ const Header = () => {
 
   return (
     <motion.div
-      className="sticky top-0  p-5 z-10  backdrop-blur-xl  w-full border-b-2"
+      className="sticky top-0  p-9 z-10  backdrop-blur-xl  w-full border-b-2"
       initial={{ y: "-30vh" }}
       animate={{ y: 0 }}
       transition={{ ease: "easeOut", duration: 0.4 }}
@@ -50,17 +50,17 @@ const Header = () => {
         <div className="flex gap-5 w-full  justify-end  ">
           <input
             type="text"
-            className="bg-[#e2ebf0] w-28 md:w-64 px-2 placeholder:text-[#0c2735fb] rounded-sm dark:bg-[#447c9e] text-[#263d49] dark:text-white dark:placeholder:text-white h-10 hidden md:block focus:outline-purple-800"
+            className="bg-[#91c7de] w-28 md:w-64 px-2 placeholder:text-[#0c2735fb] rounded-sm dark:bg-[#447c9e] text-[#263d49] dark:text-white dark:placeholder:text-white h-10 hidden md:block focus:outline-purple-800"
             placeholder="Search..."
           />
           <Button size={"icon"} variant={"link"} className="relative">
             <MdCircleNotifications
               size={29}
-              className="text-[#b5e2fa] dark:text-white "
+              className="text-[#61a5c2] dark:text-white "
             />
             <Badge
               variant={"destructive"}
-              className="absolute -top-2  -right-2 rounded-full animate-pulse "
+              className="absolute -top-2  -right-2 rounded-full animate-accordion-up "
             >
               2
             </Badge>

@@ -12,7 +12,7 @@ const Payment = () => {
         tab2="Add new payment method"
         data={payment}
         children={
-          <div className="mx-auto md:w-1/3 my-16 p-3 bg-white/70 rounded-lg shadow-2xl dark:bg-black/35">
+          <div className="mx-auto md:w-[400px] my-16 p-3 bg-white/70 rounded-lg shadow-2xl dark:bg-black/35">
             <PaymentForm />
           </div>
         }

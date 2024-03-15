@@ -11,7 +11,7 @@ const CataloguePage = () => {
       <CustomTabs
         type="catagory"
         children={
-          <div className="w-full md:w-1/3 mx-auto  bg-white/70 rounded-lg p-3 dark:bg-black/35 my-16">
+          <div className="w-full md:w-[400px] mx-auto  bg-white/70 rounded-lg p-3 dark:bg-black/35 my-16">
             <AddCategoryForm />
           </div>
         }

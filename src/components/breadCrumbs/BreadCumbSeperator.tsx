@@ -3,11 +3,10 @@ import { ChevronRightIcon } from "@radix-ui/react-icons";
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Fragment } from "react/jsx-runtime";
 
 export function CustomBreadCrumb() {
@@ -15,17 +14,17 @@ export function CustomBreadCrumb() {
   const path = location.pathname;
   const pathnameArray = path.split("/");
   return (
-    <Breadcrumb className="px-5">
+    <Breadcrumb className="px-9 py-2">
       <BreadcrumbList>
         {pathnameArray.map((item, index) => (
           <Fragment key={index}>
             <BreadcrumbItem>
-              <BreadcrumbLink
-                href={item === "" ? "/" : `/${item}`}
+              <Link
+                to={item === "" ? "/dashboard" : `/${item}`}
                 className="uppercase"
               >
                 {item === "" ? "Home" : item}
-              </BreadcrumbLink>
+              </Link>
             </BreadcrumbItem>
             {pathnameArray.length - index !== 1 && (
               <BreadcrumbSeparator>
