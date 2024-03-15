@@ -44,7 +44,7 @@ export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
       >
         <Header />
         <CustomBreadCrumb />
-        <div className="  h-auto p-9 ">{children}</div>
+        <div className="  h-auto p-5 md:p-9 ">{children}</div>
         <Footer />
       </main>
     </div>
