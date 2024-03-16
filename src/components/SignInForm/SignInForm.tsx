@@ -61,7 +61,7 @@ const SignInForm = () => {
       <p>email:test@gmail.com</p>
       <p>password:test@12345</p>
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-        logo
+        Classic Fashion Wears{" "}
       </h1>
       <h2 className="scroll-m-20  pb-2 text-xl font-semibold tracking-tight first:mt-0">
         Welcome back! Please sign in to your account.{" "}

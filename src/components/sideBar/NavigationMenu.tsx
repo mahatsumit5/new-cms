@@ -2,7 +2,7 @@
 import { BiSolidCategoryAlt } from "react-icons/bi";
 
 import { BsFillBox2Fill, BsPersonFill } from "react-icons/bs";
-import { FaMoneyBillAlt, FaUserSecret } from "react-icons/fa";
+import { FaMoneyBillAlt, FaUserSecret, FaUsers } from "react-icons/fa";
 import { LiaCreditCardSolid, LiaTruckSolid } from "react-icons/lia";
 import { Link, useLocation } from "react-router-dom";
 
@@ -32,11 +32,11 @@ const NavigationMenu = ({
       link: "/products",
       duration: 0.2,
     },
-    // {
-    //   name: "Customers",
-    //   icon: <FaUsers size={15} />,
-    //   link: "/customers",
-    // },
+    {
+      name: "Customers",
+      icon: <FaUsers size={15} />,
+      link: "/customers",
+    },
     {
       name: "Sales",
       icon: <FaMoneyBillAlt size={15} />,
@@ -80,7 +80,6 @@ const NavigationMenu = ({
   };
   useEffect(() => {
     if (screenSize < 766) {
-      console.log("open now");
       dispatch(toogleSideBar(true));
     }
 
@@ -91,7 +90,7 @@ const NavigationMenu = ({
   }, [screenSize, dispatch]);
 
   return (
-    <ul className="flex flex-col  flex-1 gap-8 h-full justify-start  overflow-hidden w-full  mt-10   ">
+    <ul className="flex flex-col  flex-1 gap-4 h-full justify-start  overflow-hidden w-full  mt-10   ">
       {buttons.map((item) => (
         <Link
           to={`${item.link}`}
@@ -105,11 +104,11 @@ const NavigationMenu = ({
             whileHover={{
               scale: 1.05,
             }}
-            className={`flex gap-5   overflow-hidden  transition-all   p-1 `}
+            className={`flex gap-2   overflow-hidden  transition-all   p-1 `}
           >
             <span
               className={`mt-1  p-3 text-white rounded-full ${
-                pathname === item.link ? "bg-[#01497c]  " : "bg-[#61a5c2]"
+                pathname === item.link ? "bg-[#01497c97]  " : "bg-[#61a5c24d]"
               }`}
             >
               {item.icon}
@@ -118,10 +117,10 @@ const NavigationMenu = ({
               initial={{ x: isOpen ? 0 : 100 }}
               animate={{ x: isOpen ? 0 : 100 }}
               transition={{ duration: item.duration, ease: "easeInOut" }}
-              className={`font-bold text-black p-2  px-4 text-pretty text-md bg- w-full  rounded-lg border  dark:text-white ${
+              className={` text-black p-2  px-4 text-pretty text-md w-full  rounded-lg shadow-md  dark:text-white ${
                 pathname === item.link
-                  ? "bg-[#01497c] text-white "
-                  : "bg-[#61a5c2] dark:border-white text-white"
+                  ? "bg-[#01497c97] text-white "
+                  : "bg-[#61a5c24d] dark:border-white text-white"
               }`}
             >
               {item.name}

@@ -5,7 +5,7 @@ const Footer = () => {
         <div className="flex justify-between  gap-5 flex-col w-full">
           {/* <img src="/logo-light.png" className="h-52 md:h-28 rounded-full" /> */}
           <div className="mt-4 w-full">
-            <span className="text-4xl font-bold text-center  w-full">
+            <span className="text-2xl md:text-4xl font-bold text-center  w-full">
               CLASSIC FASHION WEARS
             </span>
           </div>
