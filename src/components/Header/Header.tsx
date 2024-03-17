@@ -22,7 +22,7 @@ const Header = () => {
   }, [pendingOrder]);
   return (
     <motion.div
-      className="sticky top-0  py-3 px-4 z-10  backdrop-blur-xl  w-full border-b-2 "
+      className="sticky top-0  py-3 px-4 z-10  backdrop-blur-lg  w-full border-b-2 shadow-lg "
       initial={{ y: "-30vh" }}
       animate={{ y: 0 }}
       transition={{ ease: "easeOut", duration: 0.4 }}

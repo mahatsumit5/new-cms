@@ -120,7 +120,7 @@ export function CustomTable({ data, type }: Tableprops) {
             Frequently Bought Items
           </p>
         )}
-
+        {/* <Calendar /> */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto component-background">
