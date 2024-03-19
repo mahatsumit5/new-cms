@@ -1,6 +1,22 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
+
 const VerifyOTP = ({ email }: { email: string }) => {
+  const [otp, setOtp] = useState<string>("");
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setOtp(otp + e.target.value);
+  }
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    console.log(otp);
+  }
   return (
-    <div className="min-h-[90vh]  flex justify-start items-center flex-col gap-6  bg-gradient-to-br from-black  to-purple-950">
+    <motion.div
+      className="min-h-[90vh]  flex justify-start items-center flex-col gap-6  bg-gradient-to-br from-black  to-purple-950"
+      initial={{ x: "-200vw" }}
+      animate={{ x: 0 }}
+      transition={{ ease: "easeOut" }}
+    >
       <h3 className=" text-white scroll-m-20 text-5xl font-semibold tracking-tight mt-40">
         OTP verification
       </h3>
@@ -20,6 +36,7 @@ const VerifyOTP = ({ email }: { email: string }) => {
               required
               maxLength={1}
               placeholder={item}
+              onChange={handleChange}
             />
           ))}
       </div>
@@ -29,11 +46,11 @@ const VerifyOTP = ({ email }: { email: string }) => {
       <button className="text-blue-300 underline">Try again</button>
       <button
         className="bg-blue-600 p-3 rounded-full text-white w-full sm:w-[400px]"
-        //   onClick={handleOnClick}
+        onClick={handleSubmit}
       >
         Verify Code
       </button>
-    </div>
+    </motion.div>
   );
 };
 

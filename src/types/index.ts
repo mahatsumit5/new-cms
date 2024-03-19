@@ -67,10 +67,12 @@ export type HandleResetPasswordProps = {
 export type RequestOtpProps = {
   handleOnOTPRequest: (email: string) => Promise<void>;
 };
+export type FormKeys = "reset" | "otp" | "verify";
+
 export type ResetPasswordProps = {
   handleOnResetPassword: (obj: HandleResetPasswordProps) => Promise<void>;
   email: string;
-  setFormToShow: Dispatch<SetStateAction<"reset" | "otp" | "verify">>;
+  setFormToShow: Dispatch<SetStateAction<FormKeys>>;
 };
 
 export type TypeForm = UseFormReturn<

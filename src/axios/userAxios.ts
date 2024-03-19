@@ -1,3 +1,12 @@
+import { HandleResetPasswordProps, ILoginform } from "@/types";
+import {
+  adminApi,
+  axiosProcessor,
+  getAccessJWt,
+  getRefreshJWT,
+} from "./axiosProcessor";
+const clientApi = import.meta.env.CLIENT_API;
+
 // create user
 // export const postNewAdmin = (data) => {
 //   const obj = {
@@ -17,7 +26,6 @@ export const getAllAdmins = () => {
   return axiosProcessor(obj);
 };
 
-const clientApi = import.meta.env.CLIENT_API;
 export const getAllUsers = () => {
   const obj = {
     method: "get",
@@ -26,16 +34,18 @@ export const getAllUsers = () => {
   };
   return axiosProcessor(obj);
 };
-// export const updateUser = (data) => {
-//   const { oldPassword, newPassword } = data;
-//   const obj = {
-//     method: "put",
-//     url: oldPassword && newPassword ? adminApi + "/change-password" : adminApi,
-//     obj: data,
-//     isPrivate: true,
-//   };
-//   return axiosProcessor(obj);
-// };
+export const updatePassword = (data: {
+  oldPassword: string;
+  newPassword: string;
+}) => {
+  const obj = {
+    method: "put",
+    url: adminApi + "/change-password",
+    obj: data,
+    isPrivate: true,
+  };
+  return axiosProcessor(obj);
+};
 export const getAdmin = () => {
   const obj = {
     method: "get",
@@ -44,14 +54,6 @@ export const getAdmin = () => {
   };
   return axiosProcessor(obj);
 };
-
-import { HandleResetPasswordProps, ILoginform } from "@/types";
-import {
-  adminApi,
-  axiosProcessor,
-  getAccessJWt,
-  getRefreshJWT,
-} from "./axiosProcessor";
 
 export const loginUser = (logInData: ILoginform) => {
   const obj = {

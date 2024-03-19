@@ -18,6 +18,7 @@ export const loginUserAction =
       return true;
     }
   };
+
 export const getAdminProfileAction = () => async (dispatch: AppDispatch) => {
   //call the api to get user info
   const { status, user } = await getAdmin();

@@ -38,6 +38,7 @@ const SignInForm = () => {
       minLength: 8,
       value: form.password,
       id: "password",
+      className: "relative",
     },
   ];
 

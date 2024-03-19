@@ -11,6 +11,7 @@ import {
 import { CustomTable } from "../ReuseableComponents/Customtable";
 
 export function CustomTabs({ type, tab1, children, tab2, data }: ITabsProps) {
+  console.log(tab1);
   const renderItems: Record<TabsKey, TDataForTabs> = {
     catagory: type === "catagory" ? (data as ICategory[]) : [],
     payment: type === "payment" ? (data as IPayment[]) : [],
@@ -27,16 +28,6 @@ export function CustomTabs({ type, tab1, children, tab2, data }: ITabsProps) {
       </TabsList>
       <TabsContent value={tab1} className=" ">
         <CustomTable type={type} data={renderItems[type]} />
-        {/* {type === "catagory" && (
-          <CustomTable data={data as ICategory[]} type="catagory" />
-        )}
-
-        {type === "product" && (
-          <CustomTable data={data as IProduct[]} type="product" />
-        )}
-        {type === "payment" && (
-          <CustomTable data={data as IPayment[]} type="payment" />
-        )} */}
       </TabsContent>
       <TabsContent value={tab2}>
         <div className="">{children}</div>

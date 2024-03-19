@@ -58,6 +58,7 @@ const AddCategoryForm = () => {
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     const formDt = new FormData();
+    formDt.append("status", values.status ? "active" : "inactive");
     formDt.append("image", img as Blob);
     formDt.append("title", values.title);
     formDt.append("parentCategory", values.parentCategory);
