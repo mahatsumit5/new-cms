@@ -105,11 +105,26 @@ export const reqOTP = (email: string) => {
   };
   return axiosProcessor(obj);
 };
-export const changePassword = (formObj: HandleResetPasswordProps) => {
+export const verifyOTP = ({ otp, email }: { otp: string; email: string }) => {
+  const obj = {
+    method: "post",
+    url: adminApi + "/verify-otp",
+    obj: { email, otp },
+  };
+  return axiosProcessor(obj);
+};
+export const changePassword = ({
+  email,
+  password,
+}: {
+  password: string;
+  email: string;
+}) => {
   const obj = {
     method: "post",
     url: adminApi + "/change-password",
-    obj: formObj,
+    obj: { password, email },
+    isPrivate: true,
   };
   return axiosProcessor(obj);
 };

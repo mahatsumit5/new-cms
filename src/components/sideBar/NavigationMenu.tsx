@@ -108,7 +108,7 @@ const NavigationMenu = ({
           >
             <span
               className={`mt-1  p-3 text-white rounded-full ${
-                pathname === item.link ? "bg-[#01497c97]  " : "bg-[#61a5c24d]"
+                pathname === item.link ? "bg-[#01497c97]  " : "bg-[#61a5c2bd]"
               }`}
             >
               {item.icon}

@@ -1,15 +1,36 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { motion } from "framer-motion";
+import { verifyOTP } from "@/axios/userAxios";
+import { showToast } from "@/lib/utils";
+import { FormKeys } from "@/types";
 
-const VerifyOTP = ({ email }: { email: string }) => {
+const VerifyOTP = ({
+  email,
+  setFormToShow,
+  handleOnOTPRequest,
+}: {
+  email: string;
+  setFormToShow: Dispatch<SetStateAction<FormKeys>>;
+  handleOnOTPRequest: (email: string) => Promise<void>;
+}) => {
   const [otp, setOtp] = useState<string>("");
+
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setOtp(otp + e.target.value);
   }
-  function handleSubmit(e: React.FormEvent) {
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    console.log(otp);
+    const pending = verifyOTP({ email, otp });
+    showToast(pending);
+    const { status, token } = await pending;
+
+    if (status === "success") {
+      sessionStorage.setItem("accessJWT", token?.accessJWT || ("" as string));
+      setFormToShow("reset");
+    }
   }
+
   return (
     <motion.div
       className="min-h-[90vh]  flex justify-start items-center flex-col gap-6  bg-gradient-to-br from-black  to-purple-950"
@@ -43,7 +64,14 @@ const VerifyOTP = ({ email }: { email: string }) => {
       <p className="text-sm text-muted-foreground text-gray-200">
         Did not receive code yet?
       </p>
-      <button className="text-blue-300 underline">Try again</button>
+      <button
+        className="text-blue-300 underline"
+        onClick={() => {
+          handleOnOTPRequest(email);
+        }}
+      >
+        Try again
+      </button>
       <button
         className="bg-blue-600 p-3 rounded-full text-white w-full sm:w-[400px]"
         onClick={handleSubmit}

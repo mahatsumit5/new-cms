@@ -24,7 +24,7 @@ const SignInForm = () => {
       label: "Email",
       name: "email",
       required: true,
-      placeholder: "smith_john@yahoo.com",
+      placeholder: "smith_john@xyz.com",
       type: "email",
       value: form.email,
       id: "name",

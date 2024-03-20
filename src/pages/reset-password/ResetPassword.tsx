@@ -1,39 +1,39 @@
-import { changePassword, reqOTP } from "@/axios/userAxios";
+import { reqOTP } from "@/axios/userAxios";
 import RequestOtp from "@/components/reset-password-components/RequestOtp";
 import ResetPassword from "@/components/reset-password-components/ResetPassword";
 import VerifyOTP from "@/components/reset-password-components/VerifyOTP";
-import { FormKeys, HandleResetPasswordProps } from "@/types";
+import { showToast } from "@/lib/utils";
+import { FormKeys } from "@/types";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 const Page = () => {
-  const [formToShow, setFormToShow] = useState<FormKeys>("otp");
-  const navigate = useNavigate();
+  const [formToShow, setFormToShow] = useState<FormKeys>("reset");
   const [email, setEmail] = useState<string>("");
+
   const handleOnOTPRequest = async (email: string) => {
     setEmail(email);
-    setFormToShow("verify");
-    await reqOTP(email);
+    const loading = reqOTP(email);
+    showToast(loading);
+    const { status } = await loading;
+    if (status === "success") {
+      setFormToShow("verify");
+    }
   };
-  const handleOnResetPassword = async (obj: HandleResetPasswordProps) => {
-    const pending = changePassword(obj);
-    const { status } = await pending;
-    if (status === "success") navigate("/");
-  };
+
   const forms: Record<FormKeys, JSX.Element> = {
     otp: <RequestOtp handleOnOTPRequest={handleOnOTPRequest} />,
-    reset: (
-      <ResetPassword
+    reset: <ResetPassword email={email} setFormToShow={setFormToShow} />,
+    verify: (
+      <VerifyOTP
         email={email}
-        handleOnResetPassword={handleOnResetPassword}
         setFormToShow={setFormToShow}
+        handleOnOTPRequest={handleOnOTPRequest}
       />
     ),
-    verify: <VerifyOTP email={email} />,
   };
   return (
     <div>
-      {" "}
-      <main className="main p-5">{forms[formToShow]}</main>
+      <main className="main ">{forms[formToShow]}</main>
     </div>
   );
 };
