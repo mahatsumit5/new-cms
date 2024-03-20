@@ -113,7 +113,7 @@ export function CustomTable({ data, type }: Tableprops) {
             onChange={(event) =>
               dataForFilter[type]?.setFilterValue(event.target.value)
             }
-            className="max-w-sm component-background dark:text-white"
+            className="max-w-sm component-background text-white placeholder:text-white focus:outline-none"
           />
         ) : (
           <p className="text-md bg-[#61a5c2] dark:bg-[#014e86d3] p-2 px-6 text-white rounded-lg">
@@ -148,7 +148,7 @@ export function CustomTable({ data, type }: Tableprops) {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border  ">
+      <div className="rounded-md border ">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

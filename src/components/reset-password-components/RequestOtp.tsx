@@ -1,7 +1,9 @@
 import { RequestOtpProps } from "@/types";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const RequestOtp = ({ handleOnOTPRequest }: RequestOtpProps) => {
+  const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   const handleOnClick = () => {
     if (inputRef.current?.value) {
@@ -25,13 +27,19 @@ const RequestOtp = ({ handleOnOTPRequest }: RequestOtpProps) => {
           ref={inputRef}
         />
         <button
-          className="bg-blue-600 p-3 rounded-full text-white"
+          className="bg-blue-600 p-3 rounded-full text-white hover:bg-white hover:text-black hover:border-2 hover:border-blue-600 transition-all"
           onClick={handleOnClick}
         >
           Request
         </button>
-        <button className="border-2 border-blue-600 p-3 rounded-full text-black">
-          Canel
+        <button
+          className="border-2 border-blue-600 p-3 rounded-full text-black hover:bg-blue-600 transition-colors hover:text-white hover:shadow-lg"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          {" "}
+          Cancel{" "}
         </button>
       </div>
     </div>

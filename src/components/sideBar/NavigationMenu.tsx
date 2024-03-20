@@ -2,7 +2,7 @@
 import { BiSolidCategoryAlt } from "react-icons/bi";
 
 import { BsFillBox2Fill, BsPersonFill } from "react-icons/bs";
-import { FaMoneyBillAlt, FaUserSecret, FaUsers } from "react-icons/fa";
+import { FaMoneyBillAlt, FaUserSecret } from "react-icons/fa";
 import { LiaCreditCardSolid, LiaTruckSolid } from "react-icons/lia";
 import { Link, useLocation } from "react-router-dom";
 
@@ -32,11 +32,7 @@ const NavigationMenu = ({
       link: "/products",
       duration: 0.2,
     },
-    {
-      name: "Customers",
-      icon: <FaUsers size={15} />,
-      link: "/customers",
-    },
+
     {
       name: "Sales",
       icon: <FaMoneyBillAlt size={15} />,
@@ -120,7 +116,7 @@ const NavigationMenu = ({
               className={` text-black p-2  px-4 text-pretty text-md w-full  rounded-lg shadow-md  dark:text-white ${
                 pathname === item.link
                   ? "bg-[#01497c97] text-white "
-                  : "bg-[#61a5c24d] dark:border-white text-white"
+                  : "bg-[#61a5c2bd] dark:border-white text-white"
               }`}
             >
               {item.name}

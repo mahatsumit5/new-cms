@@ -1,10 +1,10 @@
 import { IAxiosProcessParams, TAxiosProcessor } from "@/types";
 import axios from "axios";
 import { getNewAccessJWT, logoutUser } from "./userAxios";
-
+console.log(import.meta.env.VITE_ROOTSERVER);
 export const rootApi = !import.meta.env.PROD
   ? "http://localhost:8000"
-  : "http://cms-server-env.eba-chhpa4gj.us-east-1.elasticbeanstalk.com";
+  : import.meta.env.VITE_ROOTSERVER;
 
 export const adminApi = rootApi + "/api/v1/admin";
 
