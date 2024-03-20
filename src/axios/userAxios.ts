@@ -1,4 +1,4 @@
-import { HandleResetPasswordProps, ILoginform } from "@/types";
+import { ILoginform } from "@/types";
 import {
   adminApi,
   axiosProcessor,
