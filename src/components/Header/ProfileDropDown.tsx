@@ -17,17 +17,11 @@ import { useAppDispatch } from "@/hooks";
 import { logOut } from "@/redux/user.slice";
 import { Link, useNavigate } from "react-router-dom";
 
-export function ProfileDropDown({
-  children,
-  _id,
-}: {
-  children: React.ReactNode;
-  _id: string;
-}) {
+export function ProfileDropDown({ children }: { children: React.ReactNode }) {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   function handleLogOut() {
-    logoutUser(_id);
+    logoutUser();
     localStorage.removeItem("refreshJWT");
     sessionStorage.removeItem("accessJWT");
     dispatch(logOut());

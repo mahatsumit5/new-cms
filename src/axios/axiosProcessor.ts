@@ -1,7 +1,6 @@
 import { IAxiosProcessParams, TAxiosProcessor } from "@/types";
 import axios from "axios";
 import { getNewAccessJWT, logoutUser } from "./userAxios";
-console.log(import.meta.env.VITE_ROOTSERVER);
 export const rootApi = !import.meta.env.PROD
   ? "http://localhost:8000"
   : import.meta.env.VITE_ROOTSERVER;
@@ -32,6 +31,7 @@ export const axiosProcessor = async ({
       data: obj,
       headers,
     });
+
     return data;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
@@ -48,9 +48,9 @@ export const axiosProcessor = async ({
       }
     }
     if (error?.response?.data?.message === "jwt expired") {
-      console.log(error);
-      logoutUser("");
+      await logoutUser();
     }
+
     return {
       status: "error",
       message: error.response ? error?.response?.data?.message : error.message,

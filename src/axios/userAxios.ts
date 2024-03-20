@@ -84,12 +84,11 @@ export const getNewAccessJWT = () => {
   return axiosProcessor(obj);
 };
 
-export const logoutUser = (_id: string) => {
+export const logoutUser = () => {
   const obj = {
     method: "post",
     url: adminApi + "/logout",
     obj: {
-      _id,
       accessJWT: getAccessJWt(),
       refreshJWT: getRefreshJWT(),
     },

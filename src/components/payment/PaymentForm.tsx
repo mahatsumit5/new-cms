@@ -115,7 +115,7 @@ export function PaymentForm({
                   placeholder="Enter payment method title"
                   {...field}
                   maxLength={41}
-                  className="dark:bg-slate-600/45"
+                  className="dark:bg-slate-600/45 bg-slate-50"
                 />
               </FormControl>
               <FormDescription>
@@ -137,7 +137,7 @@ export function PaymentForm({
                   placeholder="Enter payment method title"
                   {...field}
                   rows={8}
-                  className="dark:bg-slate-600/45"
+                  className="dark:bg-slate-600/45 bg-slate-50"
                 />
               </FormControl>
               <FormDescription>

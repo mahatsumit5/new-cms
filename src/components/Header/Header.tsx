@@ -12,7 +12,6 @@ import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { toast } from "sonner";
 const Header = () => {
-  const { user } = useAppSelector((store) => store.userInfo);
   const { orderStatuscount } = useAppSelector((store) => store.chartData);
   const [open, toggleOpen] = useState(false);
   const pendingOrder =
@@ -75,7 +74,6 @@ const Header = () => {
           </Link>
           <ThemeToggle />{" "}
           <ProfileDropDown
-            _id={user._id}
             children={
               <Avatar>
                 <AvatarImage src={"https://github.com/shadcn.png"} />

@@ -13,7 +13,7 @@ import {
 import { Button } from "../ui/button";
 import { logoutUser, updatePassword } from "@/axios/userAxios";
 import { showToast } from "@/lib/utils";
-import { useAppDispatch, useAppSelector } from "@/hooks";
+import { useAppDispatch } from "@/hooks";
 import { logOut } from "@/redux/user.slice";
 import { useNavigate } from "react-router-dom";
 import { ViewPassword } from "../passwordVisibility/PasswordVisibility";
@@ -32,7 +32,6 @@ function ChangePassword() {
   const type = showPassword ? "text" : "password";
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { user } = useAppSelector((store) => store.userInfo);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
@@ -43,7 +42,7 @@ function ChangePassword() {
 
     const { status } = await pending;
     if (status === "success") {
-      logoutUser(user._id);
+      logoutUser();
       dispatch(logOut());
       localStorage.removeItem("refreshJWT");
       sessionStorage.removeItem("accessJWT");
