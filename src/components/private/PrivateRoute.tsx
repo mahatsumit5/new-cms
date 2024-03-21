@@ -38,13 +38,10 @@ export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
       <SideBar />
       <main
         className={`flex flex-col   gap-5  transition-all w-screen mx-auto ${responsive}`}
-        // onClick={() => {
-        //   dispatch(toogleSideBar(false));
-        // }}
       >
         <Header />
         <CustomBreadCrumb />
-        <div className="  h-auto p-5 md:p-9 ">{children}</div>
+        <div className="  h-auto p-2 md:px-4 ">{children}</div>
         <Footer />
       </main>
     </div>

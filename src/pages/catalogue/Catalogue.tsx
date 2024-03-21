@@ -10,11 +10,7 @@ const CataloguePage = () => {
     <div className="">
       <CustomTabs
         type="catagory"
-        children={
-          <div className="w-full md:w-[400px] mx-auto  bg-white/70 rounded-lg p-3 dark:bg-black/35 my-16">
-            <AddCategoryForm />
-          </div>
-        }
+        children={<AddCategoryForm />}
         tab1="Catagory details"
         data={catalogue as ICategory[]}
         tab2="Add new Catagory"

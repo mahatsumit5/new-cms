@@ -84,7 +84,10 @@ export function PaymentForm({
   }
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-4">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-8 p-4 md:w-1/2 bg-white/70 rounded-lg shadow-2xl dark:bg-black/35 mt-5"
+      >
         {/* status         */}
         <FormField
           control={form.control}

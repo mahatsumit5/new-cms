@@ -14,14 +14,14 @@ export function CustomBreadCrumb() {
   const path = location.pathname;
   const pathnameArray = path.split("/");
   return (
-    <Breadcrumb className="px-9 py-2">
+    <Breadcrumb className="p-2 py-2 ">
       <BreadcrumbList>
         {pathnameArray.map((item, index) => (
           <Fragment key={index}>
             <BreadcrumbItem>
               <Link
                 to={item === "" ? "/dashboard" : `/${item}`}
-                className="uppercase"
+                className="uppercase text-md font-embed dark:text-foreground text-primary"
               >
                 {item === "" ? "Home" : item}
               </Link>

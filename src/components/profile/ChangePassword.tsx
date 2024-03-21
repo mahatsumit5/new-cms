@@ -53,7 +53,7 @@ function ChangePassword() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="bg-primary-foreground p-5 rounded-lg flex flex-col gap-4"
+        className="bg-primary-foreground p-5 rounded-lg flex flex-col gap-4 md:w-1/2 dark:bg-white/10"
       >
         <p className="font-bold text-xl">Password</p>
         <p>Change your password here. After saving, you'll be logged out.</p>

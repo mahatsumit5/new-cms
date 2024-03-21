@@ -104,7 +104,7 @@ export function CustomTable({ data, type }: Tableprops) {
     }
   }
   return (
-    <div className={"w-full"}>
+    <div className={"w-full mt-10 md:px-2"}>
       <div className="flex my-4 ">
         {type !== "frequenltyBought" ? (
           <Input
@@ -123,7 +123,10 @@ export function CustomTable({ data, type }: Tableprops) {
         {/* <Calendar /> */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto component-background">
+            <Button
+              variant="outline"
+              className="ml-auto component-background text-white"
+            >
               Columns <ChevronDownIcon className="ml-2 h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
@@ -148,7 +151,7 @@ export function CustomTable({ data, type }: Tableprops) {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border ">
+      <div className="rounded-md  border-slate-300 border dark:border-slate-600 p-2 mt-10">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -222,7 +225,7 @@ export function CustomTable({ data, type }: Tableprops) {
       <Button
         variant={"destructive"}
         onClick={handleDelete}
-        className="component-background"
+        className="component-background mt-7"
       >
         Delete selected {type}
       </Button>

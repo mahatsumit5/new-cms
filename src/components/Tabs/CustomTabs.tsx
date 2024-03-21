@@ -11,7 +11,6 @@ import {
 import { CustomTable } from "../ReuseableComponents/Customtable";
 
 export function CustomTabs({ type, tab1, children, tab2, data }: ITabsProps) {
-  console.log(tab1);
   const renderItems: Record<TabsKey, TDataForTabs> = {
     catagory: type === "catagory" ? (data as ICategory[]) : [],
     payment: type === "payment" ? (data as IPayment[]) : [],
@@ -19,8 +18,8 @@ export function CustomTabs({ type, tab1, children, tab2, data }: ITabsProps) {
   };
 
   return (
-    <Tabs defaultValue={tab1} className="">
-      <TabsList className="grid   grid-cols-2 mx-auto bg-[#61a5c2] data-[state=active]:text-black text-white component-background">
+    <Tabs defaultValue={tab1} className="md:px-2">
+      <TabsList className="grid   grid-cols-2 mx-auto bg-[#213e4b] data-[state=active]:text-black text-white component-background">
         <TabsTrigger value={tab1} className="">
           {tab1}
         </TabsTrigger>
@@ -30,7 +29,7 @@ export function CustomTabs({ type, tab1, children, tab2, data }: ITabsProps) {
         <CustomTable type={type} data={renderItems[type]} />
       </TabsContent>
       <TabsContent value={tab2}>
-        <div className="">{children}</div>
+        <div className="flex justify-end">{children}</div>
       </TabsContent>
     </Tabs>
   );

@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Madimi+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -14,7 +16,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 191.429, 33.3%, 57.05%;
+    --primary: 261.3 85.7% 34.3%; /* #a3dbbc */
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -73,7 +75,7 @@
     @apply border-border;
   }
   body {
-    @apply overflow-x-hidden bg-gradient-to-b from-[#f0f1f3] via-[#c6d8dd] to-[#82d7f330] dark:bg-gradient-to-tr dark:from-[#012a4a] dark:via-[#013a63] dark:to-[#10002b] bg-fixed;
+    @apply font-poppins overflow-x-hidden bg-gradient-to-b from-[#f0f1f3] via-[#c6d8dd] to-[#82d7f330] dark:bg-gradient-to-tr dark:from-[#012a4a] dark:via-[#013a63] dark:to-[#10002b] bg-fixed;
   }
 }
 @layer utilities {
@@ -87,9 +89,9 @@
     @apply md:max-w-[680px]  lg:max-w-[800px] xl:max-w-[1150px] mx-auto;
   }
   .side-bar {
-    @apply bg-slate-400/15 backdrop-blur-sm dark:bg-gradient-to-br dark:from-[#012a4a] dark:via-[#013a63] dark:to-[#10002b] z-50;
+    @apply bg-[#3a0ca3] z-50 dark:bg-[#19101bdc] px-4 min-h-screen  fixed left-0 hidden md:block   transition-all    border-r-2  py-5;
   }
   .component-background {
-    @apply bg-[#5d9eb4] dark:text-white dark:placeholder:text-white;
+    @apply bg-primary dark:text-white dark:placeholder:text-white;
   }
 }

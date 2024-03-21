@@ -74,6 +74,8 @@ module.exports = {
       },
       fontFamily: {
         montserrat: ['"Montserrat"', "sans-serif"],
+        embed: ['"Madimi One"', "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
       },
     },
   },

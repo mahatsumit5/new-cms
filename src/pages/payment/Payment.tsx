@@ -9,13 +9,9 @@ const Payment = () => {
       <CustomTabs
         type="payment"
         tab1="Payment Options "
-        tab2="Add new payment method"
+        tab2="Add  payment "
         data={payment}
-        children={
-          <div className="mx-auto md:w-[400px] my-16 p-3 bg-white/70 rounded-lg shadow-2xl dark:bg-black/35">
-            <PaymentForm />
-          </div>
-        }
+        children={<PaymentForm />}
       />
     </div>
   );

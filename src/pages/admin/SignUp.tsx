@@ -72,7 +72,7 @@ export default function SignUpForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className=" bg-white/50 p-4 rounded-lg grid md:grid-cols-2 md:w-[800px] gap-5"
+        className=" bg-white/50 p-4 rounded-lg grid md:grid-cols-2 md:w-[800px] gap-5 dark:bg-white/10"
       >
         <FormField
           control={form.control}

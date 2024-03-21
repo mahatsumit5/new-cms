@@ -90,7 +90,7 @@ export default function EditAccount({ File }: { File?: File }) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className=" bg-white/50 p-4 rounded-lg grid  md:w-[800px] gap-5"
+        className=" bg-white/50 p-4 rounded-lg grid   gap-5 dark:bg-white/10"
       >
         <div className="flex justify-between">
           <span className="text-md font-semibold">Status</span>
@@ -106,9 +106,9 @@ export default function EditAccount({ File }: { File?: File }) {
           control={form.control}
           name="fName"
           render={({ field }) => (
-            <FormItem className="flex justify-between">
+            <FormItem className="flex justify-between items-center">
               <div className="space-y-0.5 w-full">
-                <FormLabel>First Name</FormLabel>
+                <FormLabel className="">First Name</FormLabel>
                 <FormMessage className="dark:text-red-600" />
               </div>
               <FormControl>
@@ -127,7 +127,7 @@ export default function EditAccount({ File }: { File?: File }) {
           control={form.control}
           name="lName"
           render={({ field }) => (
-            <FormItem className="flex justify-between">
+            <FormItem className="flex justify-between items-center">
               <div className="space-y-0.5 w-full">
                 <FormLabel>Last Name</FormLabel>
                 <FormMessage className="dark:text-red-600" />
@@ -147,7 +147,7 @@ export default function EditAccount({ File }: { File?: File }) {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className="flex justify-between">
+            <FormItem className="flex justify-between items-center">
               <div className="space-y-0.5 w-full">
                 <FormLabel>Email</FormLabel>
               </div>
@@ -167,7 +167,7 @@ export default function EditAccount({ File }: { File?: File }) {
           control={form.control}
           name="phone"
           render={({ field }) => (
-            <FormItem className="flex justify-between">
+            <FormItem className="flex justify-between items-center">
               <div className="space-y-0.5 w-full">
                 <FormLabel>Phone Number</FormLabel>
                 <FormMessage className="dark:text-red-600" />
@@ -187,7 +187,7 @@ export default function EditAccount({ File }: { File?: File }) {
           control={form.control}
           name="address"
           render={({ field }) => (
-            <FormItem className="flex justify-between">
+            <FormItem className="flex justify-between items-center">
               <div className="space-y-0.5 w-full">
                 <FormLabel>Address </FormLabel>
                 <FormMessage className="dark:text-red-600" />
@@ -207,7 +207,7 @@ export default function EditAccount({ File }: { File?: File }) {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem className="flex justify-between">
+            <FormItem className="flex justify-between items-center">
               <div className="space-y-0.5 w-full">
                 <FormLabel>Password </FormLabel>
                 <FormMessage className="dark:text-red-600" />

@@ -68,7 +68,7 @@ const AddCategoryForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="  gap-5 grid grid-cols-1 w-full  "
+        className="  gap-5 grid grid-cols-1  md:w-1/2  bg-white/70 rounded-lg p-3 dark:bg-black/35 mt-5 "
       >
         {/* status         */}
         <FormField
