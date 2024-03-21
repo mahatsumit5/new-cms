@@ -72,7 +72,7 @@ export default function SignUpForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className=" bg-white/50 p-4 rounded-lg grid md:grid-cols-2 md:w-[800px] gap-5 dark:bg-white/10"
+        className=" bg-form p-4 rounded-lg grid md:grid-cols-2 md:w-[800px] gap-5 "
       >
         <FormField
           control={form.control}
@@ -86,7 +86,7 @@ export default function SignUpForm() {
                 <Input
                   {...field}
                   placeholder="Enter your firstName"
-                  className="bg-primary-foreground shadow-sm dark:bg-[#36728bbd]"
+                  className=" shadow-sm "
                   type="text"
                 />
               </FormControl>
@@ -107,7 +107,7 @@ export default function SignUpForm() {
                   {...field}
                   placeholder="Enter your last Name"
                   type="text"
-                  className="bg-primary-foreground shadow-sm dark:bg-[#36728bbd]"
+                  className=" shadow-sm "
                 />
               </FormControl>
             </FormItem>
@@ -126,7 +126,7 @@ export default function SignUpForm() {
                   {...field}
                   placeholder="johnsmith@example.com"
                   type="email"
-                  className="bg-primary-foreground shadow-sm dark:bg-[#36728bbd]"
+                  className=" shadow-sm "
                 />
               </FormControl>
             </FormItem>
@@ -145,7 +145,7 @@ export default function SignUpForm() {
                   {...field}
                   placeholder="0454123456"
                   type="text"
-                  className="bg-primary-foreground shadow-sm dark:bg-[#36728bbd]"
+                  className=" shadow-sm "
                 />
               </FormControl>
             </FormItem>
@@ -164,7 +164,7 @@ export default function SignUpForm() {
                   {...field}
                   placeholder="Sydney, NSW, 2000"
                   type="text"
-                  className="bg-primary-foreground shadow-sm dark:bg-[#36728bbd]"
+                  className=" shadow-sm "
                 />
               </FormControl>
             </FormItem>
@@ -183,7 +183,7 @@ export default function SignUpForm() {
                   {...field}
                   placeholder="Sydney, NSW, 2000"
                   type="text"
-                  className="bg-primary-foreground shadow-sm dark:bg-[#36728bbd]"
+                  className=" shadow-sm "
                 />
               </FormControl>
             </FormItem>

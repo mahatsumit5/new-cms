@@ -18,13 +18,13 @@ export function ProfileTabs() {
   }, [file]);
   return (
     <Tabs defaultValue="account" className="">
-      <TabsList className="grid w-full grid-cols-2">
+      <TabsList className="grid w-full grid-cols-2 bg-primary dark:text-white">
         <TabsTrigger value="account">Account</TabsTrigger>
         <TabsTrigger value="password">Password</TabsTrigger>
       </TabsList>
       <TabsContent value="account">
         <div className="flex flex-col gap-5 mt-8 md:w-1/2 ">
-          <div className="bg-white/50 py-5  flex flex-col-reverse md:flex-row justify-start gap-5 md:gap-10 items-center rounded-md shadow-lg  px-4 dark:bg-white/10  ">
+          <div className="bg-form py-5  flex flex-col-reverse md:flex-row justify-start gap-5 md:gap-10 items-center rounded-md shadow-lg  px-4   ">
             <div className="flex  items-end">
               <span className=" relative bg-white rounded-full h-40 w-40">
                 <img

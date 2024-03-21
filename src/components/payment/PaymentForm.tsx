@@ -86,14 +86,14 @@ export function PaymentForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 p-4 md:w-1/2 bg-white/70 rounded-lg shadow-2xl dark:bg-black/35 mt-5"
+        className="space-y-8 p-4 md:w-1/2  rounded-lg shadow-2xl bg-form mt-5"
       >
         {/* status         */}
         <FormField
           control={form.control}
           name="status"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm bg-white/50 md:col-span-3 dark:bg-slate-600/45">
+            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm bg-secondary md:col-span-3 ">
               <div className="space-y-0.5">
                 <FormLabel>Status</FormLabel>
               </div>
@@ -102,6 +102,7 @@ export function PaymentForm({
                   checked={field.value}
                   onCheckedChange={field.onChange}
                   defaultChecked={false}
+                  className=""
                 />
               </FormControl>
             </FormItem>
@@ -118,7 +119,7 @@ export function PaymentForm({
                   placeholder="Enter payment method title"
                   {...field}
                   maxLength={41}
-                  className="dark:bg-slate-600/45 bg-slate-50"
+                  className="bg-secondary"
                 />
               </FormControl>
               <FormDescription>
@@ -140,7 +141,7 @@ export function PaymentForm({
                   placeholder="Enter payment method title"
                   {...field}
                   rows={8}
-                  className="dark:bg-slate-600/45 bg-slate-50"
+                  className="bg-secondary"
                 />
               </FormControl>
               <FormDescription>

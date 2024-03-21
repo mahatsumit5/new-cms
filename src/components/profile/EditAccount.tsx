@@ -90,9 +90,9 @@ export default function EditAccount({ File }: { File?: File }) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className=" bg-white/50 p-4 rounded-lg grid   gap-5 dark:bg-white/10"
+        className="  p-4 rounded-lg grid   gap-5 bg-form"
       >
-        <div className="flex justify-between">
+        <div className="flex  justify-between">
           <span className="text-md font-semibold">Status</span>
           <span
             className={`${
@@ -106,7 +106,7 @@ export default function EditAccount({ File }: { File?: File }) {
           control={form.control}
           name="fName"
           render={({ field }) => (
-            <FormItem className="flex justify-between items-center">
+            <FormItem className="flex flex-col md:flex-row justify-between  items-center">
               <div className="space-y-0.5 w-full">
                 <FormLabel className="">First Name</FormLabel>
                 <FormMessage className="dark:text-red-600" />
@@ -115,7 +115,7 @@ export default function EditAccount({ File }: { File?: File }) {
                 <Input
                   {...field}
                   placeholder="Enter your firstName"
-                  className="bg-primary-foreground shadow-sm dark:bg-[#36728bbd]"
+                  className="bg-secondary shadow-sm "
                   type="text"
                 />
               </FormControl>
@@ -127,7 +127,7 @@ export default function EditAccount({ File }: { File?: File }) {
           control={form.control}
           name="lName"
           render={({ field }) => (
-            <FormItem className="flex justify-between items-center">
+            <FormItem className="flex flex-col md:flex-row justify-between items-center">
               <div className="space-y-0.5 w-full">
                 <FormLabel>Last Name</FormLabel>
                 <FormMessage className="dark:text-red-600" />
@@ -137,7 +137,7 @@ export default function EditAccount({ File }: { File?: File }) {
                   {...field}
                   placeholder="Enter your last Name"
                   type="text"
-                  className="bg-primary-foreground shadow-sm dark:bg-[#36728bbd]"
+                  className="bg-secondary shadow-sm "
                 />
               </FormControl>
             </FormItem>
@@ -147,7 +147,7 @@ export default function EditAccount({ File }: { File?: File }) {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className="flex justify-between items-center">
+            <FormItem className="flex flex-col md:flex-row justify-between items-center">
               <div className="space-y-0.5 w-full">
                 <FormLabel>Email</FormLabel>
               </div>
@@ -156,7 +156,7 @@ export default function EditAccount({ File }: { File?: File }) {
                   {...field}
                   placeholder="johnsmith@example.com"
                   type="email"
-                  className="bg-primary-foreground shadow-sm dark:bg-[#36728bbd]"
+                  className="bg-secondary shadow-sm "
                   disabled
                 />
               </FormControl>
@@ -167,7 +167,7 @@ export default function EditAccount({ File }: { File?: File }) {
           control={form.control}
           name="phone"
           render={({ field }) => (
-            <FormItem className="flex justify-between items-center">
+            <FormItem className="flex flex-col md:flex-row justify-between items-center">
               <div className="space-y-0.5 w-full">
                 <FormLabel>Phone Number</FormLabel>
                 <FormMessage className="dark:text-red-600" />
@@ -177,7 +177,7 @@ export default function EditAccount({ File }: { File?: File }) {
                   {...field}
                   placeholder="0454123456"
                   type="text"
-                  className="bg-primary-foreground shadow-sm dark:bg-[#36728bbd]"
+                  className="bg-secondary shadow-sm "
                 />
               </FormControl>
             </FormItem>
@@ -187,7 +187,7 @@ export default function EditAccount({ File }: { File?: File }) {
           control={form.control}
           name="address"
           render={({ field }) => (
-            <FormItem className="flex justify-between items-center">
+            <FormItem className="flex flex-col md:flex-row justify-between items-center">
               <div className="space-y-0.5 w-full">
                 <FormLabel>Address </FormLabel>
                 <FormMessage className="dark:text-red-600" />
@@ -197,7 +197,7 @@ export default function EditAccount({ File }: { File?: File }) {
                   {...field}
                   placeholder="Sydney, NSW, 2000"
                   type="text"
-                  className="bg-primary-foreground shadow-sm dark:bg-[#36728bbd]"
+                  className="bg-secondary shadow-sm "
                 />
               </FormControl>
             </FormItem>
@@ -207,7 +207,7 @@ export default function EditAccount({ File }: { File?: File }) {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem className="flex justify-between items-center">
+            <FormItem className="flex flex-col md:flex-row justify-between items-center">
               <div className="space-y-0.5 w-full">
                 <FormLabel>Password </FormLabel>
                 <FormMessage className="dark:text-red-600" />
@@ -217,7 +217,7 @@ export default function EditAccount({ File }: { File?: File }) {
                   {...field}
                   placeholder="****************"
                   type="password"
-                  className="bg-primary-foreground shadow-sm dark:bg-[#36728bbd]"
+                  className="bg-secondary shadow-sm "
                 />
               </FormControl>
             </FormItem>

@@ -68,7 +68,7 @@ const AddCategoryForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="  gap-5 grid grid-cols-1  md:w-1/2  bg-white/70 rounded-lg p-3 dark:bg-black/35 mt-5 "
+        className="  gap-5 grid grid-cols-1  md:w-1/2   rounded-lg p-3  mt-5 bg-form"
       >
         {/* status         */}
         <FormField
@@ -83,7 +83,7 @@ const AddCategoryForm = () => {
                 <Switch
                   checked={field.value}
                   onCheckedChange={field.onChange}
-                  className=""
+                  className="bg-secondary"
                 />
               </FormControl>
             </FormItem>
@@ -99,7 +99,7 @@ const AddCategoryForm = () => {
               <FormControl>
                 <Input
                   placeholder="Name of your  catalogue"
-                  className=" bg-white/75 dark:bg-slate-600/45"
+                  className=""
                   {...field}
                 />
               </FormControl>
@@ -126,8 +126,8 @@ const AddCategoryForm = () => {
                       variant="outline"
                       role="combobox"
                       className={cn(
-                        "w-full justify-between dark:bg-slate-600/45",
-                        !field.value && "text-muted-foreground"
+                        "w-full justify-between bg-secondary",
+                        !field.value && "text-muted-foreground "
                       )}
                     >
                       {field.value

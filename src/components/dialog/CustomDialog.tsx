@@ -16,16 +16,15 @@ export function CustomDialog() {
     <Dialog open={isOpen}>
       <DialogContent
         className={`max-h-[80vh] ${
-          title === "Edit Product" ? "max-w-6xl" : "max-w-lg"
-        } bg-slate-200 dark:bg-[#19414b73] overflow-y-auto backdrop-blur-md`}
+          title === "Edit Product" ? "max-w-7xl" : "max-w-lg"
+        } bg-form overflow-y-auto backdrop-blur-md`}
       >
         <DialogClose>
           <Button
-            className="absolute top-2 right-2 z-10 rounded-full"
+            className="absolute top-2 right-2 z-10 rounded-full bg-primary"
             onClick={() => {
               dispatch(closeDialog());
             }}
-            variant={"link"}
             size={"icon"}
           >
             <IoMdClose size={20} />
@@ -34,7 +33,7 @@ export function CustomDialog() {
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
         </DialogHeader>
-        <div className="grid ">{children}</div>
+        <div className=" ">{children}</div>
       </DialogContent>
     </Dialog>
   );

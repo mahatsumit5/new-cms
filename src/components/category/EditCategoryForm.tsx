@@ -77,14 +77,14 @@ const EditCatagoryForm = ({ category }: { category: ICategory }) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="  gap-5 grid grid-cols-1   "
+        className="  gap-5 grid grid-cols-1   bg-form p-2 py-4"
       >
         {/* status         */}
         <FormField
           control={form.control}
           name="status"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm bg-white">
+            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm bg-secondary">
               <div className="space-y-0.5">
                 <FormLabel>Status</FormLabel>
               </div>
@@ -107,7 +107,7 @@ const EditCatagoryForm = ({ category }: { category: ICategory }) => {
               <FormControl>
                 <Input
                   placeholder="Name of your  catalogue"
-                  className=" bg-white/75 dark:bg-black"
+                  className=" bg-secondary"
                   {...field}
                 />
               </FormControl>
@@ -128,13 +128,13 @@ const EditCatagoryForm = ({ category }: { category: ICategory }) => {
             <FormItem className="flex flex-col">
               <FormLabel>Category</FormLabel>
               <Popover>
-                <PopoverTrigger asChild>
+                <PopoverTrigger asChild className="">
                   <FormControl>
                     <Button
                       variant="outline"
                       role="combobox"
                       className={cn(
-                        "w-full justify-between",
+                        "w-full justify-between bg-secondary",
                         !field.value && "text-muted-foreground"
                       )}
                     >
@@ -147,11 +147,11 @@ const EditCatagoryForm = ({ category }: { category: ICategory }) => {
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
-                <PopoverContent className="w-[300px] p-2">
-                  <Command>
+                <PopoverContent className="w-[320px] p-0">
+                  <Command className="bg-secondary">
                     <CommandInput
                       placeholder="Search category..."
-                      className="h-9"
+                      className="h-12 text-[16px] bg-primary"
                     />
                     <CommandEmpty>No category found.</CommandEmpty>
                     <CommandGroup>
@@ -199,7 +199,7 @@ const EditCatagoryForm = ({ category }: { category: ICategory }) => {
             }}
           />
         </div>
-        <Button type="submit" className="" variant={"outline"}>
+        <Button type="submit" className="" variant={"default"}>
           Update
         </Button>
       </form>

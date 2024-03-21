@@ -185,7 +185,7 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
           control={form.control}
           name="status"
           render={({ field }) => (
-            <FormItem className="bg-white/70 flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm  md:col-span-3 dark:bg-slate-950/45">
+            <FormItem className=" flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm  md:col-span-3 bg-secondary">
               <div className="space-y-0.5">
                 <FormLabel>Status</FormLabel>
               </div>
@@ -208,11 +208,7 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
               <FormItem>
                 <FormLabel>{item.label}</FormLabel>
                 <FormControl>
-                  <Input
-                    {...item}
-                    {...field}
-                    className="bg-white/50 placeholder:text-gray-500 dark:bg-slate-950/50 dark:placeholder:text-slate-600 dar"
-                  />
+                  <Input {...item} {...field} className="" />
                   {/* <Textarea placeholder="Type your message here." /> */}
                 </FormControl>
                 <FormMessage />
@@ -234,7 +230,7 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
                   <Input
                     type="number"
                     {...field}
-                    className="bg-white/65 placeholder:text-grey dark:bg-slate-950/50"
+                    className=""
                     min={1}
                     max={999}
                     placeholder={item.placeholder}
@@ -264,7 +260,7 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
                     <Button
                       variant={"outline"}
                       className={cn(
-                        "w-full pl-3 text-left font-normal dark:bg-slate-950/50",
+                        "w-full pl-3 text-left font-normal bg-secondary",
                         !field.value && "text-muted-foreground"
                       )}
                     >
@@ -304,7 +300,7 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
                     <Button
                       variant={"outline"}
                       className={cn(
-                        "w-full pl-3 text-left font-normal dark:bg-slate-950/50",
+                        "w-full pl-3 text-left font-normal bg-secondary",
                         !field.value && "text-muted-foreground"
                       )}
                     >
@@ -343,7 +339,7 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
               <FormControl>
                 <Textarea
                   placeholder="Give a breif description about your product"
-                  className="resize-none bg-white/75 dark:bg-slate-950/50"
+                  className="resize-none  bg-secondary text-[16px]"
                   {...field}
                   rows={8}
                 />
@@ -366,7 +362,7 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
                   setImg(e.target.files);
                 }
               }}
-              className="bg-slate-100 dark:bg-slate-950/50"
+              className="bg-slate-100 bg-secondary"
             />
           </FormControl>
           <div>
@@ -428,11 +424,7 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
             )}
           </div>
         </FormItem>
-        <Button
-          type="submit"
-          className="w-40 bg-[#61a5c2] text-white"
-          variant={"default"}
-        >
+        <Button type="submit" className="bg-primary " variant={"default"}>
           {product?._id ? "Save Changes" : "Create "}
         </Button>
       </form>

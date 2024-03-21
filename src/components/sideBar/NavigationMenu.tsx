@@ -104,9 +104,7 @@ const NavigationMenu = ({
           >
             <span
               className={`mt-1  p-3 text-white rounded-full ${
-                pathname === item.link
-                  ? "bg-[#6376e2]  "
-                  : "bg-[#61a5c2bd] dark:bg-[#3a0ca3]"
+                pathname === item.link ? "bg-[#6376e2]  " : "bg-[#3a0ca3]"
               }`}
             >
               {item.icon}
@@ -115,10 +113,10 @@ const NavigationMenu = ({
               initial={{ x: isOpen ? 0 : 100 }}
               animate={{ x: isOpen ? 0 : 100 }}
               transition={{ duration: item.duration, ease: "easeInOut" }}
-              className={` text-black p-2  px-4 text-pretty text-md w-full  rounded-lg shadow-md  dark:text-white ${
+              className={` text-black p-2  px-4 text-pretty text-md w-full  rounded-lg shadow-md  font-embed dark:text-white ${
                 pathname === item.link
-                  ? "bg-[#01497c97] text-white "
-                  : "bg-[#61a5c2bd] dark:border-white text-white"
+                  ? "bg-[#6376e2] text-white "
+                  : "bg-[#3a0ca3] text-primary-foreground "
               }`}
             >
               {item.name}

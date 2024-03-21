@@ -100,7 +100,7 @@ export const getProductColumn = (dispatch: AppDispatch) => {
           <div className="capitalize">
             <span
               className={`p-2 text-sm  rounded-full text-white shadow-xl ${
-                status === "active" ? " bg-[#61a5c2] " : "bg-red-700"
+                status === "active" ? " bg-active " : "bg-inactive"
               }`}
             >
               {status}

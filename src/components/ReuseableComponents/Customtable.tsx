@@ -105,7 +105,7 @@ export function CustomTable({ data, type }: Tableprops) {
   }
   return (
     <div className={"w-full mt-10 md:px-2"}>
-      <div className="flex my-4 ">
+      <div className="flex  flex-col md:flex-row justify-between gap-5">
         {type !== "frequenltyBought" ? (
           <Input
             placeholder={`Search ${type}`}
@@ -113,20 +113,17 @@ export function CustomTable({ data, type }: Tableprops) {
             onChange={(event) =>
               dataForFilter[type]?.setFilterValue(event.target.value)
             }
-            className="max-w-sm component-background text-white placeholder:text-white focus:outline-none"
+            className="max-w-sm component-background  focus:outline-none"
           />
         ) : (
-          <p className="text-md bg-[#61a5c2] dark:bg-[#014e86d3] p-2 px-6 text-white rounded-lg">
+          <p className="text-md font-embed text-xl text-center bg-primary/50 p-2 px-6 text-primary-foreground rounded-lg">
             Frequently Bought Items
           </p>
         )}
         {/* <Calendar /> */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button
-              variant="outline"
-              className="ml-auto component-background text-white"
-            >
+            <Button variant="outline" className=" bg-primary/70 text-white">
               Columns <ChevronDownIcon className="ml-2 h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
@@ -222,11 +219,7 @@ export function CustomTable({ data, type }: Tableprops) {
           </Button>
         </div>
       </div>
-      <Button
-        variant={"destructive"}
-        onClick={handleDelete}
-        className="component-background mt-7"
-      >
+      <Button variant={"destructive"} onClick={handleDelete} className=" mt-7">
         Delete selected {type}
       </Button>
     </div>
