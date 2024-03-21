@@ -13,6 +13,7 @@ import { Badge } from "../ui/badge";
 import { toast } from "sonner";
 const Header = () => {
   const { orderStatuscount } = useAppSelector((store) => store.chartData);
+  const { user } = useAppSelector((store) => store.userInfo);
   const [open, toggleOpen] = useState(false);
   const pendingOrder =
     orderStatuscount.filter((item) => item._id === "pending")[0]?.count || 0;
@@ -76,7 +77,16 @@ const Header = () => {
           <ProfileDropDown
             children={
               <Avatar>
-                <AvatarImage src={"https://github.com/shadcn.png"} />
+                {user?.profile ? (
+                  <AvatarImage src={user.profile} alt="profile" />
+                ) : (
+                  <AvatarImage
+                    src={
+                      "https://cfw-image-bucket.s3.ap-southeast-2.amazonaws.com/default.jpg"
+                    }
+                    alt="profile"
+                  />
+                )}
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
             }

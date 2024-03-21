@@ -1,7 +1,7 @@
 export const ProductFormInputFields = [
   {
     name: "title",
-    label: "Name ",
+    label: "Title ",
     type: "text",
     description: "Write a name for your prouduct",
     placeholder: "Denim Pants",

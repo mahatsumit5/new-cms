@@ -1,4 +1,9 @@
-import { getAdmin, getNewAccessJWT, loginUser } from "@/axios/userAxios";
+import {
+  getAdmin,
+  getNewAccessJWT,
+  loginUser,
+  updateAdmin,
+} from "@/axios/userAxios";
 import { showToast } from "@/lib/utils";
 import { setUser } from "@/redux/user.slice";
 import { AppDispatch } from "@/store";
@@ -43,3 +48,13 @@ export const autoLogin = () => async (dispatch: AppDispatch) => {
     dispatch(getAdminProfileAction());
   }
 };
+
+export const updateUserAction =
+  (obj: FormData) => async (dispatch: AppDispatch) => {
+    const pending = updateAdmin(obj);
+    showToast(pending);
+    const { status } = await pending;
+    if (status === "success") {
+      dispatch(getAdminProfileAction());
+    }
+  };

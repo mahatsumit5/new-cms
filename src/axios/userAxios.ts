@@ -1,4 +1,4 @@
-import { ILoginform } from "@/types";
+import { ILoginform, createUser } from "@/types";
 import {
   adminApi,
   axiosProcessor,
@@ -8,15 +8,24 @@ import {
 const clientApi = import.meta.env.CLIENT_API;
 
 // create user
-// export const postNewAdmin = (data) => {
-//   const obj = {
-//     method: "post",
-//     url: adminApi,
-//     obj: data,
-//     isPrivate: true,
-//   };
-//   return axiosProcessor(obj);
-// };
+export const postNewAdmin = (data: createUser) => {
+  const obj = {
+    method: "post",
+    url: adminApi,
+    obj: data,
+    isPrivate: true,
+  };
+  return axiosProcessor(obj);
+};
+// update user
+export const updateAdmin = (data: FormData) => {
+  return axiosProcessor({
+    method: "put",
+    url: `${adminApi}/update-profile`,
+    obj: data,
+    isPrivate: true,
+  });
+};
 export const getAllAdmins = () => {
   const obj = {
     method: "get",

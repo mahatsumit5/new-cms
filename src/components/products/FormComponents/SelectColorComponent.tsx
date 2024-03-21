@@ -1,6 +1,5 @@
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -61,7 +60,7 @@ export default function SelectColorComponenet({ form }: { form: TypeForm }) {
             Add
           </span>
 
-          <FormDescription className="flex gap-3 flex-wrap">
+          <div className="flex gap-3 flex-wrap">
             {form.getValues("color")?.map((item, index) => (
               <div
                 key={index}
@@ -72,7 +71,7 @@ export default function SelectColorComponenet({ form }: { form: TypeForm }) {
                 }}
               />
             ))}{" "}
-          </FormDescription>
+          </div>
           <FormMessage />
         </FormItem>
       )}

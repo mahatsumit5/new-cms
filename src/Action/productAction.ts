@@ -31,7 +31,7 @@ export const postProductAction =
       }
       return true;
     }
-    return true;
+    return false;
   };
 export const getproductAction = () => async (dispatch: AppDispatch) => {
   const { status, result } = await getProducts();

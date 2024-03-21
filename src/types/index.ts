@@ -317,3 +317,19 @@ export interface ITotalSalesByDate {
   thumbnail: string[];
   totalSales: number;
 }
+export type createUser = {
+  address?: string;
+  email: string;
+  fName: string;
+  lName: string;
+  password: string;
+  phone: string;
+};
+export type updateUser = {
+  address?: string;
+  email: string;
+  fName: string;
+  lName: string;
+  password: string;
+  phone: string;
+};

@@ -14,7 +14,7 @@ import Sales from "./pages/sales/Sales";
 import Admin from "./pages/admin/Admin";
 function App() {
   return (
-    <div className="  mx-auto  ">
+    <div className="  mx-auto font-">
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/reset-password" element={<Page />} />

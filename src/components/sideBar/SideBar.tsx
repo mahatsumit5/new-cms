@@ -12,13 +12,7 @@ const SideBar = () => {
     <div
       className={` ${
         isOpen ? "w-[230px]" : " w-[80px] "
-      } px-4 min-h-screen  fixed left-0 hidden md:block   transition-all  side-bar  border-r-2 border-r-green-900 py-5`}
-      // onMouseEnter={() => {
-      //   dispatch(toogleSideBar(true));
-      // }}
-      // onMouseLeave={() => {
-      //   dispatch(toogleSideBar(false));
-      // }}
+      } px-4 min-h-screen  fixed left-0 hidden md:block   transition-all  side-bar  border-r-2 border-r-green-900 py-5 bg-secondary`}
     >
       <div className="flex flex-col  h-full  transition-all  ">
         <div className="w-full  flex justify-between ">

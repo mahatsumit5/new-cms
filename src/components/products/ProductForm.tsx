@@ -369,7 +369,7 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
               className="bg-slate-100 dark:bg-slate-950/50"
             />
           </FormControl>
-          <FormDescription>
+          <div>
             {product?.thumbnail ? (
               <div className="flex flex-col gap-3">
                 <FormLabel>Thumbnail Preview</FormLabel>
@@ -426,7 +426,7 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
             ) : (
               "Select images for your product"
             )}
-          </FormDescription>
+          </div>
         </FormItem>
         <Button
           type="submit"

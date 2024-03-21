@@ -10,6 +10,7 @@ import orderReducer from "./redux/order.slice";
 import dialogReducer from "./redux/dialog.slice";
 import chartDataReducer from "./redux/chart.data";
 import sideBarReducer from "./redux/sidebar.slice";
+
 export const store = configureStore({
   reducer: {
     userInfo: userReducer,
@@ -23,6 +24,10 @@ export const store = configureStore({
     chartData: chartDataReducer,
     sideBar: sideBarReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;

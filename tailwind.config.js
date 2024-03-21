@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+import animate from "tailwindcss-animate";
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -72,7 +72,10 @@ module.exports = {
         um: "840px",
         // => @media (min-width: 992px) { ... }
       },
+      fontFamily: {
+        montserrat: ['"Montserrat"', "sans-serif"],
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [animate],
 };
