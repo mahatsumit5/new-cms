@@ -1,9 +1,9 @@
 import SignInForm from "@/components/SignInForm/SignInForm";
-import img from "/signIn.jpg";
+import img from "/signIn.svg";
 const SignIn = () => {
   return (
     <div className="flex justify-between  bg-cover w-full">
-      <div className="w-full md:w-1/2  md:bg-none bg-[url('/signIn.jpg')]">
+      <div className="w-full md:w-1/2  md:bg-none bg-secondary ">
         <SignInForm />
       </div>
       <div className=" hidden md:block w-1/2">
