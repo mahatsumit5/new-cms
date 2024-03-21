@@ -69,7 +69,7 @@ function ChangePassword() {
                   placeholder="Enter old password"
                   {...field}
                   maxLength={41}
-                  className="  shadow-sm bg-primary text-white placeholder:text-white focus:ring-0 dark:text-black dark:placeholder:text-black"
+                  className="  shadow-sm  border-primary focus:ring-0 "
                 />
               </FormControl>{" "}
               <ViewPassword
@@ -92,7 +92,7 @@ function ChangePassword() {
                   placeholder="Enter new password"
                   {...field}
                   maxLength={41}
-                  className="  shadow-sm bg-primary text-white placeholder:text-white focus:ring-0 dark:text-black dark:placeholder:text-black"
+                  className="  shadow-sm  border-primary  focus:ring-0  "
                 />
               </FormControl>{" "}
               <ViewPassword

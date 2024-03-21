@@ -90,7 +90,7 @@ export default function EditAccount({ File }: { File?: File }) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="  p-4 rounded-lg grid   gap-5 bg-form"
+        className="  p-4 rounded-lg grid   gap-5 bg-secondary"
       >
         <div className="flex  justify-between">
           <span className="text-md font-semibold">Status</span>

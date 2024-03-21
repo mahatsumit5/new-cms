@@ -7,7 +7,7 @@
 
 @layer base {
   :root {
-    --background: 0 100% 100%;
+    --background: 2 20% 92%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -16,7 +16,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 261.3 85.7% 34.3%;
+    --primary: 261.3 80.7% 53.3%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 217 60% 98.1%;
@@ -37,14 +37,14 @@
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
+    --input: 214.3 90.8% 82.4%;
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 222.2 90% 7.9%;
     --foreground: 210 40% 98%;
 
     --card: 222.2 84% 4.9%;
@@ -59,7 +59,7 @@
     --secondary: 217.2 60.6% 20.5%;
     --secondary-foreground: 210 40% 98%;
 
-    --form: 250 70% 10%;
+    --form: 220 70% 15%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
@@ -71,18 +71,19 @@
     --destructive-foreground: 210 40% 98%;
 
     --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
+    --input: 217.2 3.6% 50%;
     --ring: 212.7 26.8% 83.9%;
     /* --div: 217.2 32.6% 17.5%; */
   }
 }
 
+/* bg-gradient-to-b from-[#f0f1f3] via-[#c6d8dd] to-[#82d7f330] dark:bg-gradient-to-tr dark:from-[#131318] dark:via-[#0e2536] dark:to-[#10002b] */
 @layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply font-poppins overflow-x-hidden bg-gradient-to-b from-[#f0f1f3] via-[#c6d8dd] to-[#82d7f330] dark:bg-gradient-to-tr dark:from-[#131318] dark:via-[#0e2536] dark:to-[#10002b] bg-fixed;
+    @apply font-poppins overflow-x-hidden  bg-fixed bg-background;
   }
 }
 @layer utilities {
@@ -90,15 +91,18 @@
     @apply bg-secondary backdrop-blur-lg rounded-lg sm:h-96 flex justify-center p-4  dark:bg-[#014e8660] dark:text-white;
   }
   .dashboard-card-top {
-    @apply h-52  rounded-lg   text-white flex flex-col gap-4 items-center justify-center font-bold shadow-xl p-4 sm:w-60 w-full;
+    @apply h-52  rounded-lg    flex flex-col gap-4 items-center justify-center font-bold shadow-xl p-4 text-center;
   }
   .product-table {
     @apply md:max-w-[680px]  lg:max-w-[800px] xl:max-w-[1150px] mx-auto;
   }
   .side-bar {
-    @apply bg-[#3a0ca3] z-50 dark:bg-[#19101bdc] px-4 min-h-screen  fixed left-0 hidden md:block   transition-all    border-r-2  py-5;
+    @apply bg-background  z-50  px-4 min-h-screen  fixed left-0 hidden md:block   transition-all py-5 rounded-lg shadow-lg;
   }
   .component-background {
     @apply bg-secondary text-secondary-foreground dark:text-white dark:placeholder:text-white;
+  }
+  .header {
+    @apply sticky  bg-primary   py-3 px-2  md:px-5 md:pr-7 z-10  backdrop-blur-lg  w-full border-b-2 shadow-lg;
   }
 }

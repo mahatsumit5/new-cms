@@ -13,6 +13,7 @@ import { Badge } from "../ui/badge";
 import { toast } from "sonner";
 const Header = () => {
   const { orderStatuscount } = useAppSelector((store) => store.chartData);
+  const [hidden, setHidden] = useState<boolean>(false);
   const { user } = useAppSelector((store) => store.userInfo);
   const [open, toggleOpen] = useState(false);
   const pendingOrder =
@@ -20,12 +21,34 @@ const Header = () => {
   useEffect(() => {
     pendingOrder && toast.info(`You have ${pendingOrder} orders pending.`, {});
   }, [pendingOrder]);
+
+  useEffect(() => {
+    let lastScroll: number = 0;
+    function windowScroll() {
+      // console.log(lastScroll, window.scrollY);
+      if (lastScroll < window.scrollY) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+      lastScroll = window.scrollY;
+    }
+
+    document.addEventListener("scroll", windowScroll);
+
+    return () => document.removeEventListener("scroll", windowScroll);
+  }, []);
   return (
     <motion.div
-      className="sticky top-0  py-3 px-1 md:px-4 z-10  backdrop-blur-lg  w-full border-b-2 shadow-lg "
-      initial={{ y: "-30vh" }}
-      animate={{ y: 0 }}
-      transition={{ ease: "easeOut", duration: 0.4 }}
+      className={` ${
+        hidden
+          ? "-top-30 animate-in duration-500"
+          : "  animate-in duration-300 top-0"
+      } header`}
+      initial={{ x: "-100vw" }}
+      animate={{ x: 0 }}
+      transition={{ ease: "easeOut", duration: 0.8 }}
+      whileInView={{}}
     >
       <div className="flex justify-between ">
         <div className="flex gap-5 justify-start  w-full">
@@ -56,7 +79,7 @@ const Header = () => {
         <div className="flex gap-5 w-full  justify-end  ">
           <input
             type="text"
-            className="bg-[#91c7de] w-28 md:w-64 px-2 placeholder:text-[#0c2735fb] rounded-sm dark:bg-[#447c9e] text-[#263d49] dark:text-white dark:placeholder:text-white h-10 hidden md:block focus:outline-purple-800"
+            className="bg-white w-28 md:w-64 px-2 placeholder:text-[#0c2735fb] rounded-sm  h-10 hidden md:block focus:outline-purple-800"
             placeholder="Search..."
           />
           <Link to={"/orders"}>

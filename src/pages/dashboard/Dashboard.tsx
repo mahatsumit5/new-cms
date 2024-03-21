@@ -13,10 +13,10 @@ const Dashboard = () => {
   const { frequentlybought } = useAppSelector((store) => store.chartData);
   return (
     <div className="w-full ">
-      <div className=" flex gap-4 flex-wrap overflow-hidden justify-between ">
+      <div className="  grid grid-cols-2 md:grid-cols-4 gap-3 overflow-hidden justify-between ">
         {orderStatuscount.map((item) => (
           <div
-            className="dashboard-card-top dark:bg-green-800 "
+            className="dashboard-card-top "
             key={item._id}
             style={{
               backgroundColor: `rgba(${Math.ceil(
@@ -26,10 +26,10 @@ const Dashboard = () => {
               )}, 0.8)`,
             }}
           >
-            <p className="text-6xl bg-white rounded-full p-4 text-black">
+            <p className="text-4xl bg-white rounded-full p-4 text-black">
               {item?.count}
             </p>
-            <p className="uppercase">orders {item._id} </p>
+            <p className="uppercase  font-embed text-lg">orders {item._id} </p>
           </div>
         ))}
       </div>

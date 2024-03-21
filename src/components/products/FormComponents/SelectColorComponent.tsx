@@ -54,7 +54,7 @@ export default function SelectColorComponenet({ form }: { form: TypeForm }) {
             />
           </FormControl>
           <span
-            className="px-2 border bg-white/50 shadow-2xl rounded-md w-[100px] text-center py-1 dark:bg-slate-800/70"
+            className="px-2 border bg-primary shadow-2xl rounded-md w-[100px] text-center py-1 "
             onClick={handleAdd}
           >
             Add

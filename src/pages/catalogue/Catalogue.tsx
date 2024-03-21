@@ -10,7 +10,14 @@ const CataloguePage = () => {
     <div className="">
       <CustomTabs
         type="catagory"
-        children={<AddCategoryForm />}
+        children={
+          <div className="w-full flex justify-between gap-2 mt-10">
+            <div className="hidden md:block w-1/2 mt-5 rounded-md">
+              <img src="/menu.svg" className="h-full w-full object-cover " />
+            </div>
+            <AddCategoryForm />
+          </div>
+        }
         tab1="Catagory details"
         data={catalogue as ICategory[]}
         tab2="Add new Catagory"

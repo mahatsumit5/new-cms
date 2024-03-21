@@ -260,7 +260,7 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
                     <Button
                       variant={"outline"}
                       className={cn(
-                        "w-full pl-3 text-left font-normal bg-secondary",
+                        "w-full pl-3 text-left font-normal bg-secondary h-12",
                         !field.value && "text-muted-foreground"
                       )}
                     >
@@ -300,7 +300,7 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
                     <Button
                       variant={"outline"}
                       className={cn(
-                        "w-full pl-3 text-left font-normal bg-secondary",
+                        "w-full pl-3 text-left font-normal bg-secondary h-12",
                         !field.value && "text-muted-foreground"
                       )}
                     >

@@ -45,7 +45,7 @@ const SelectCatagoryComponent = ({ form }: { form: TypeForm }) => {
                   variant="outline"
                   role="combobox"
                   className={cn(
-                    "w-full justify-between bg-secondary",
+                    "w-full justify-between bg-secondary h-12",
                     !field.value && "text-muted-foreground"
                   )}
                 >

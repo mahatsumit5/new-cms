@@ -31,20 +31,22 @@ export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
     dispatch(getOrderAction());
     dispatch(getChartDataAction());
   }, [dispatch, user]);
-  const responsive = isOpen ? "md:pl-[235px]" : "md:pl-[82px]";
+  const responsive = isOpen ? "md:pl-[230px]" : "md:pl-[80px]";
 
   return user?._id ? (
-    <div className=" flex flex-row w-full  ">
-      <SideBar />
-      <main
-        className={`flex flex-col   gap-5  transition-all w-screen mx-auto ${responsive}`}
-      >
-        <Header />
-        <CustomBreadCrumb />
-        <div className="  h-auto p-2 md:px-4 ">{children}</div>
-        <Footer />
-      </main>
-    </div>
+    <>
+      <div className=" flex flex-row w-full  ">
+        <SideBar />
+        <main
+          className={`flex flex-col   gap-5  transition-all w-screen mx-auto ${responsive}`}
+        >
+          <Header />
+          <CustomBreadCrumb />
+          <div className="  h-auto p-2 md:px-4 ">{children}</div>
+          <Footer />
+        </main>
+      </div>
+    </>
   ) : (
     <Navigate to="/" state={{ from: { location } }} />
   );

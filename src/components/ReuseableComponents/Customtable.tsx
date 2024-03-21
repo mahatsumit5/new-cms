@@ -148,7 +148,7 @@ export function CustomTable({ data, type }: Tableprops) {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md  border-slate-300 border dark:border-slate-600 p-2 mt-10">
+      <div className="rounded-md bg-secondary border-slate-300 border dark:border-slate-600 p-2 mt-10">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -200,20 +200,20 @@ export function CustomTable({ data, type }: Tableprops) {
         </div>
         <div className="space-x-2">
           <Button
-            variant="outline"
+            variant="default"
             size="sm"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
-            className="component-background"
+            className=""
           >
             Previous
           </Button>
           <Button
-            variant="outline"
+            variant="default"
             size="sm"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
-            className="component-background"
+            className=""
           >
             Next
           </Button>

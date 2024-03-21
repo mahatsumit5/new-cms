@@ -86,7 +86,7 @@ export function PaymentForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 p-4 md:w-1/2  rounded-lg shadow-2xl bg-form mt-5"
+        className="space-y-8 p-4 md:w-1/2 w-full rounded-lg shadow-2xl bg-form mt-5"
       >
         {/* status         */}
         <FormField

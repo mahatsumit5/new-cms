@@ -18,12 +18,12 @@ const SideBar = () => {
                 dispatch(toogleSideBar(true));
               }}
               className=""
-              variant={"ghost"}
+              variant={"link"}
               size={"icon"}
             >
               <PiHamburgerBold
                 size={35}
-                className="text-white dark:text-white  transition-all"
+                className="text-primary dark:text-white  transition-all"
               />
             </Button>
           ) : (
@@ -37,7 +37,7 @@ const SideBar = () => {
             >
               <MdKeyboardDoubleArrowLeft
                 size={25}
-                className="text-purple-800 dark:text-white hover:scale-125 transition-all"
+                className=" text-primary dark:text-white hover:scale-125 transition-all"
               />
             </Button>
           )}
