@@ -11,7 +11,7 @@ const CataloguePage = () => {
       <CustomTabs
         type="catagory"
         children={
-          <div className="w-full flex justify-between gap-2 mt-10">
+          <div className="w-full flex justify-between gap-2 mt-2">
             <div className="hidden md:block w-1/2 mt-5 rounded-md">
               <img src="/menu.svg" className="h-full w-full object-cover " />
             </div>

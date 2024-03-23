@@ -178,7 +178,7 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="  gap-5 grid grid-cols-1 md:grid-cols-3  w-full"
+        className="  gap-5 grid grid-cols-1 md:grid-cols-3  w-full mt-4"
       >
         {/* status         */}
         <FormField

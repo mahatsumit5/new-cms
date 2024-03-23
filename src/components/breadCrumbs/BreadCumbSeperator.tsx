@@ -14,7 +14,7 @@ export function CustomBreadCrumb() {
   const path = location.pathname;
   const pathnameArray = path.split("/");
   return (
-    <Breadcrumb className="p-2 py-2 ">
+    <Breadcrumb className="md:p-5 p-3 py-2 ">
       <BreadcrumbList>
         {pathnameArray.map((item, index) => (
           <Fragment key={index}>
