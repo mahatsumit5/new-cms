@@ -1,5 +1,5 @@
 import SignInForm from "@/components/SignInForm/SignInForm";
-import img from "/signIn.svg";
+import img from "/signin.svg";
 const SignIn = () => {
   return (
     <div className="flex justify-between  bg-cover w-full">
