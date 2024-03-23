@@ -359,10 +359,13 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
               multiple
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 if (e.target.files?.length) {
+                  console.log(e.target.files);
+
                   setImg(e.target.files);
                 }
               }}
               className="bg-slate-100 bg-secondary"
+              accept=".jpg,.avif,.png,.jpeg"
             />
           </FormControl>
           <div>
@@ -420,7 +423,13 @@ const ProductForm: React.FC<Props> = (props?: Props) => {
                 </div>
               </div>
             ) : (
-              "Select images for your product"
+              <div>
+                {" "}
+                Select images for your product <br />
+                <span className="text-muted-foreground text-sm ">
+                  Accepted file type .jpg,.png,.avif,.jpeg
+                </span>
+              </div>
             )}
           </div>
         </FormItem>

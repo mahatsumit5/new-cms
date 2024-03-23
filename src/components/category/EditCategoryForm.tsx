@@ -186,18 +186,32 @@ const EditCatagoryForm = ({ category }: { category: ICategory }) => {
           )}
         />
         {/* image */}
-        <div className="grid w-full max-w-sm items-center gap-1.5">
+        <div className="grid w-full  items-center gap-1.5">
           <Label htmlFor="picture">Picture</Label>
-          <Input
-            id="picture"
-            type="file"
-            name="profile"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              if (e.target.files?.length) {
-                setImg(e.target.files[0]);
-              }
-            }}
-          />
+          <div className="flex  w-full gap-3">
+            <Input
+              id="picture"
+              type="file"
+              name="profile"
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                if (e.target.files?.length) {
+                  setImg(e.target.files[0]);
+                }
+              }}
+              accept=".jpg,.avif,.png,.jpeg"
+              onReset={() => setImg(category.image)}
+              className=""
+            />
+            <span
+              className="bg-primary text-white rounded px-4 py-3"
+              onClick={() => setImg(category.image)}
+            >
+              Reset
+            </span>
+          </div>
+          <span className="text-muted-foreground text-sm ">
+            Accepted file type .jpg,.png,.avif,.jpeg
+          </span>
         </div>
         <Button type="submit" className="" variant={"default"}>
           Update

@@ -178,7 +178,7 @@ const AddCategoryForm = () => {
           )}
         />
         {/* title */}
-        <div className="grid w-full max-w-sm items-center gap-1.5">
+        <div className="grid w-full  items-center gap-1.5">
           <Label htmlFor="picture">Picture</Label>
           <Input
             id="picture"
@@ -189,7 +189,11 @@ const AddCategoryForm = () => {
                 setImg(e.target.files[0]);
               }
             }}
+            accept=".jpg,.avif,.png,.jpeg"
           />
+          <span className="text-muted-foreground text-sm ">
+            Accepted file type .jpg,.png,.avif,.jpeg
+          </span>{" "}
         </div>
         <Button type="submit" className="">
           Submit
