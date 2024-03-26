@@ -25,11 +25,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { Label } from "../ui/label";
-import { useState } from "react";
-import { updateCatagoryAction } from "@/Action/catelogueAction";
+import {
+  postCatalogueAction,
+  updateCatagoryAction,
+} from "@/Action/catelogueAction";
 import { Button } from "@/components/ui/button";
 import { Switch } from "../ui/switch";
+import UploadPicture from "@/hooks/UploadPicture";
 
 // form schema
 const formSchema = z.object({
@@ -45,46 +47,53 @@ const formSchema = z.object({
   parentCategory: z.string({
     required_error: "Please select a category",
   }),
-  status: z.boolean(),
+  status: z.boolean().default(false),
+  image: z.string().url(),
 });
-const EditCatagoryForm = ({ category }: { category: ICategory }) => {
+const CategoryForm = ({ category }: { category?: ICategory }) => {
   const dispatch = useAppDispatch();
-  const [img, setImg] = useState<string | Blob>(category.image);
   const { parentCategory } = useAppSelector((store) => store.catagoryInfo);
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: category.title,
-      parentCategory: category.parentCategory,
-      status: category.status === "active" ? true : false,
+      title: category?.title || "",
+      parentCategory: category?.parentCategory || "",
+      status: category?.status === "active" ? true : false,
+      image: category?.image || "",
     },
   });
+  const { image, UploadComponent } = UploadPicture(form);
+
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    const formDt = new FormData();
-    if (typeof img !== "string") {
-      formDt.append("image", img as Blob);
+    const object = {
+      image: values.image,
+      parentCategory: values.parentCategory,
+      status: values.status ? "active" : "inactive",
+      title: values.title,
+    };
+    if (category?._id) {
+      const _id = category?._id as string;
+      dispatch(updateCatagoryAction({ ...object, _id }));
+    } else {
+      dispatch(postCatalogueAction(object));
     }
-    const status = values.status ? "active" : "inactive";
-    formDt.append("status", status);
-    formDt.append("title", values.title);
-    formDt.append("_id", category._id);
-    formDt.append("parentCategory", values.parentCategory);
-    dispatch(updateCatagoryAction(formDt));
   }
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="  gap-5 grid grid-cols-1   bg-form p-2 py-4"
+        className={`gap-5 grid grid-cols-1 w-full  rounded-lg p-3  mt-5 bg-form ${
+          category?._id ? "w-full" : "md:w-1/2"
+        } `}
       >
         {/* status         */}
         <FormField
           control={form.control}
           name="status"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm bg-secondary">
+            <FormItem className="flex flex-row items-center justify-between rounded-lg  p-3 shadow-sm">
               <div className="space-y-0.5">
                 <FormLabel>Status</FormLabel>
               </div>
@@ -92,6 +101,7 @@ const EditCatagoryForm = ({ category }: { category: ICategory }) => {
                 <Switch
                   checked={field.value}
                   onCheckedChange={field.onChange}
+                  className="bg-secondary"
                 />
               </FormControl>
             </FormItem>
@@ -107,7 +117,7 @@ const EditCatagoryForm = ({ category }: { category: ICategory }) => {
               <FormControl>
                 <Input
                   placeholder="Name of your  catalogue"
-                  className=" bg-secondary"
+                  className=""
                   {...field}
                 />
               </FormControl>
@@ -128,14 +138,14 @@ const EditCatagoryForm = ({ category }: { category: ICategory }) => {
             <FormItem className="flex flex-col">
               <FormLabel>Category</FormLabel>
               <Popover>
-                <PopoverTrigger asChild className="">
+                <PopoverTrigger asChild>
                   <FormControl>
                     <Button
                       variant="outline"
                       role="combobox"
                       className={cn(
                         "w-full justify-between bg-secondary",
-                        !field.value && "text-muted-foreground"
+                        !field.value && "text-muted-foreground "
                       )}
                     >
                       {field.value
@@ -147,11 +157,11 @@ const EditCatagoryForm = ({ category }: { category: ICategory }) => {
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
-                <PopoverContent className="w-[320px] p-0">
-                  <Command className="bg-secondary">
+                <PopoverContent className="w-[300px] p-2">
+                  <Command>
                     <CommandInput
                       placeholder="Search category..."
-                      className="h-12 text-[16px] bg-primary"
+                      className="h-9"
                     />
                     <CommandEmpty>No category found.</CommandEmpty>
                     <CommandGroup>
@@ -185,40 +195,17 @@ const EditCatagoryForm = ({ category }: { category: ICategory }) => {
             </FormItem>
           )}
         />
-        {/* image */}
+        {/* Image */}
         <div className="grid w-full  items-center gap-1.5">
-          <Label htmlFor="picture">Picture</Label>
-          <div className="flex  w-full gap-3">
-            <Input
-              id="picture"
-              type="file"
-              name="profile"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                if (e.target.files?.length) {
-                  setImg(e.target.files[0]);
-                }
-              }}
-              accept=".jpg,.avif,.png,.jpeg"
-              onReset={() => setImg(category.image)}
-              className=""
-            />
-            <span
-              className="bg-primary text-white rounded px-4 py-3"
-              onClick={() => setImg(category.image)}
-            >
-              Reset
-            </span>
-          </div>
-          <span className="text-muted-foreground text-sm ">
-            Accepted file type .jpg,.png,.avif,.jpeg
-          </span>
+          <UploadComponent url={category?.image || image} />
         </div>
-        <Button type="submit" className="" variant={"default"}>
-          Update
+
+        <Button type="submit" className="">
+          Submit
         </Button>
       </form>
     </Form>
   );
 };
 
-export default EditCatagoryForm;
+export default CategoryForm;

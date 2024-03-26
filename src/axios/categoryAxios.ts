@@ -1,8 +1,9 @@
+import { updateCategoryParams, uploadCategoryParams } from "@/types";
 import { axiosProcessor, rootApi } from "./axiosProcessor";
 
 const categoryApi = rootApi + "/api/v1/category";
 
-export const postCategory = (category: FormData) => {
+export const postCategory = (category: uploadCategoryParams) => {
   const obj = {
     method: "post",
     url: categoryApi,
@@ -28,11 +29,11 @@ export const deleteCatagory = (_id: { _id: string }) => {
   };
   return axiosProcessor(obj);
 };
-export const updateCatagory = (stat: FormData) => {
+export const updateCatagory = (data: updateCategoryParams) => {
   const obj = {
     method: "put",
     url: categoryApi,
-    obj: stat,
+    obj: data,
     isPrivate: true,
   };
   return axiosProcessor(obj);

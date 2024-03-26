@@ -1,5 +1,5 @@
 import { CustomTabs } from "@/components/Tabs/CustomTabs";
-import AddCategoryForm from "@/components/category/AddCategoryForm";
+import CategoryForm from "@/components/category/CategoryForm";
 import { useAppSelector } from "@/hooks";
 import { ICategory } from "@/types";
 
@@ -15,7 +15,7 @@ const CataloguePage = () => {
             <div className="hidden md:block w-1/2 mt-5 rounded-md">
               <img src="/menu.svg" className="h-full w-full object-cover " />
             </div>
-            <AddCategoryForm />
+            <CategoryForm />
           </div>
         }
         tab1="Catagory details"

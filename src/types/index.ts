@@ -104,12 +104,23 @@ export type serverReturnDataType = {
   status: "success" | "error";
   message: string;
   result?: [];
+  Location?: string;
   user?: IUser;
   token?: { accessJWT: string; refreshJWT: string };
   accessJWT?: string;
   imagesToDelete?: string | string[];
   chartData?: ChartData;
 };
+export type uploadCategoryParams = {
+  status: string;
+  title: string;
+  parentCategory: string;
+  image?: string;
+};
+export type updateCategoryParams = {
+  _id: string;
+} & uploadCategoryParams;
+
 export type TAxiosProcessor = Promise<serverReturnDataType>;
 export type TAxiosProcessorError = {
   code: string;

@@ -1,6 +1,6 @@
 // ui
 import { CatagoryDialog } from "@/components/category/AddCategoryDialog";
-import AddCategoryForm from "@/components/category/AddCategoryForm";
+import AddCategoryForm from "@/components/category/CategoryForm";
 import { Button } from "@/components/ui/button";
 import {
   Command,

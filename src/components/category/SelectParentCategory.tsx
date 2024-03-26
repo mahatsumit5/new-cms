@@ -26,7 +26,7 @@ import { cn } from "@/lib/utils";
 import { ICategory, TypeForm } from "@/types";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import { CatagoryDialog } from "./AddCategoryDialog";
-import AddCategoryForm from "./AddCategoryForm";
+import AddCategoryForm from "./CategoryForm";
 
 const SelectCatagoryComponent = ({ form }: { form: TypeForm }) => {
   const { catalogue } = useAppSelector((store) => store.catagoryInfo);

@@ -77,6 +77,11 @@ export default function EditAccount({ File }: { File?: File }) {
     if (File) {
       formDt.append("profile", File as Blob);
     }
+    // todo Find ways to
+    // for (const key in values) {
+    //   formDt.append("_id", values[key]);
+    // }
+
     formDt.append("_id", values["_id"]);
     formDt.append("fName", values["fName"]);
     formDt.append("lName", values["lName"]);
@@ -84,6 +89,7 @@ export default function EditAccount({ File }: { File?: File }) {
     formDt.append("email", values["email"]);
     formDt.append("password", values["password"]);
     formDt.append("phone", values["phone"]);
+    return;
     dispatch(updateUserAction(formDt));
   }
   return (

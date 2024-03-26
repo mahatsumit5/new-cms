@@ -10,8 +10,8 @@ import {
 } from "@/components/ui/table";
 import { Button } from "../ui/button";
 import { CatagoryDialog } from "./AddCategoryDialog";
-import EditCatagoryForm from "./EditCategoryForm";
 import { ICategory } from "@/types";
+import CategoryForm from "./CategoryForm";
 
 export function CategoryTable({ catalogue }: { catalogue: ICategory[] }) {
   return (
@@ -48,7 +48,7 @@ export function CategoryTable({ catalogue }: { catalogue: ICategory[] }) {
             </TableCell>
             <TableCell className="flex flex-col gap-5">
               <CatagoryDialog buttonName="Edit" title="Edit catagory">
-                <EditCatagoryForm category={item} />
+                <CategoryForm category={item} />
               </CatagoryDialog>
 
               <Button className="w-full" variant={"destructive"}>

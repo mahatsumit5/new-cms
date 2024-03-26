@@ -1,5 +1,5 @@
 import { CustomTable } from "@/components/ReuseableComponents/Customtable";
-import AddCategoryForm from "@/components/category/AddCategoryForm";
+import AddCategoryForm from "@/components/category/CategoryForm";
 import BarGraph from "@/components/dashboard/Bar";
 import DonoughtChart from "@/components/dashboard/Donought";
 import LineChart from "@/components/dashboard/LineChart";

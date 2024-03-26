@@ -1,4 +1,3 @@
-import { deleteImageFromServer } from "@/axios/axiosProcessor";
 import {
   deleteCatagory,
   getCategories,
@@ -9,22 +8,26 @@ import { getParentCategory } from "@/axios/parentCat.axios";
 import { setCatagory, setParentCategory } from "@/redux/catagory.slice";
 import { closeDialog } from "@/redux/dialog.slice";
 import { AppDispatch } from "@/store";
-import { ICategory, IParentCategory } from "@/types";
+import {
+  ICategory,
+  IParentCategory,
+  updateCategoryParams,
+  uploadCategoryParams,
+} from "@/types";
 import { getChartDataAction } from "./chart.action";
 import { showToast } from "@/lib/utils";
 
 export const postCatalogueAction =
-  (obj: FormData) => async (dispatch: AppDispatch) => {
+  (obj: uploadCategoryParams) => async (dispatch: AppDispatch) => {
     const pendingResp = postCategory(obj);
     showToast(pendingResp);
 
-    const { status, imagesToDelete } = await pendingResp;
+    const { status } = await pendingResp;
 
-    if (status === "success" && imagesToDelete) {
+    if (status === "success") {
       dispatch(getChartDataAction());
 
       dispatch(getCataloguesAction());
-      deleteImageFromServer({ fileName: imagesToDelete as string });
     }
   };
 export const getCataloguesAction = () => async (dispatch: AppDispatch) => {
@@ -54,18 +57,15 @@ export const deleteCatagoryAction =
     }
   };
 export const updateCatagoryAction =
-  (stat: FormData) => async (dispatch: AppDispatch) => {
+  (stat: updateCategoryParams) => async (dispatch: AppDispatch) => {
     const pendingResp = updateCatagory(stat);
 
     showToast(pendingResp);
 
-    const { status, imagesToDelete } = await pendingResp;
+    const { status } = await pendingResp;
     if (status === "success") {
       dispatch(getCataloguesAction());
       dispatch(getChartDataAction());
       dispatch(closeDialog());
-    }
-    if (status === "success" && imagesToDelete) {
-      deleteImageFromServer({ fileName: imagesToDelete as string });
     }
   };

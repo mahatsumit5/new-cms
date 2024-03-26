@@ -69,3 +69,12 @@ export const deleteImageFromServer = (img: { fileName: string }) => {
   };
   return axiosProcessor(obj);
 };
+export const UploadImageToS3Bucket = (data: FormData) => {
+  const obj = {
+    method: "post",
+    url: rootApi + "/api/v1/image",
+    obj: data,
+    isPrivate: true,
+  };
+  return axiosProcessor(obj);
+};

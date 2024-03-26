@@ -15,8 +15,8 @@ import {
 import { Button } from "../ui/button";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { openDialog } from "@/redux/dialog.slice";
-import EditCatagoryForm from "./EditCategoryForm";
 import { deleteCatagoryAction } from "@/Action/catelogueAction";
+import CategoryForm from "./CategoryForm";
 
 export const getCategoryColumns = (dispatch: AppDispatch) => {
   //handle on delete
@@ -32,7 +32,7 @@ export const getCategoryColumns = (dispatch: AppDispatch) => {
             buttonName: "Edit",
             isOpen: true,
             title: "Edit Catagory",
-            children: <EditCatagoryForm category={category} />,
+            children: <CategoryForm category={category} />,
           })
         );
       case "delete":
