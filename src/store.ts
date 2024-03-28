@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit"; //this is for storing data in
 // these will store data in webstorage
 import userReducer from "./redux/user.slice";
 import catagoryReducer from "./redux/catagory.slice";
-// import systemReducer from "./systemSlice";
+import imagesReducer from "./redux/images.slice";
 import paymentReducer from "./redux/payment.slice";
 // import displayTableReducer from "./redux/displaySlice";
 import productReducer from "./redux/product.slice";
@@ -15,7 +15,7 @@ export const store = configureStore({
   reducer: {
     userInfo: userReducer,
     catagoryInfo: catagoryReducer,
-    // system: systemReducer,
+    awsImages: imagesReducer,
     payments: paymentReducer,
     // displayTableData: displayTableReducer,
     productsData: productReducer,

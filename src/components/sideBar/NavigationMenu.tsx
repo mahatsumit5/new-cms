@@ -70,6 +70,12 @@ const NavigationMenu = ({
       duration: 0.8,
       link: "/profile",
     },
+    {
+      name: "AWS Images",
+      icon: <BsPersonFill size={15} />,
+      duration: 1,
+      link: "/images",
+    },
   ];
   const detectSize = () => {
     setScreenSize(window.innerWidth);

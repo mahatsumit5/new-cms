@@ -1,6 +1,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Dispatch, SetStateAction } from "react";
 import { UseFormReturn } from "react-hook-form";
+
 export type Key =
   | "catagory"
   | "product"
@@ -104,12 +105,18 @@ export type serverReturnDataType = {
   status: "success" | "error";
   message: string;
   result?: [];
-  Location?: string;
   user?: IUser;
   token?: { accessJWT: string; refreshJWT: string };
   accessJWT?: string;
   imagesToDelete?: string | string[];
   chartData?: ChartData;
+  images?: {
+    Contents: AwsImageType[];
+    MaxKeys: number;
+    NextContinuationToken: string;
+    KeyCount: number;
+  };
+  location?: string;
 };
 export type uploadCategoryParams = {
   status: string;
@@ -343,4 +350,13 @@ export type updateUser = {
   lName: string;
   password: string;
   phone: string;
+};
+
+export type AwsImageType = {
+  Key: string;
+  LastModified: Date;
+  ETag: string;
+  ChecksumAlgorithm: [];
+  Size: number;
+  StorageClass: string;
 };

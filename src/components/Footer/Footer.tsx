@@ -1,6 +1,23 @@
+import { useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
 const Footer = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+  const [limit, setlimit] = useState(0);
+  useEffect(() => {
+    if (!isInView) return; // If the footer isn't in view, don't do anything
+    setlimit((prev) => prev + 10);
+  }, [isInView]);
+
+  useEffect(() => {
+    navigate(`${location.pathname}?limit=${limit + 10}`);
+  }, [limit, navigate, location.pathname]);
   return (
-    <footer className=" backdrop-blur-sm border-t-2">
+    <footer className=" backdrop-blur-sm border-t-2" ref={ref}>
       <div className="p-3  grid w-full justify-center items-center place-items-center gap-10">
         <div className="flex justify-between  gap-5 flex-col w-full">
           {/* <img src="/logo-light.png" className="h-52 md:h-28 rounded-full" /> */}

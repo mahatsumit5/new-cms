@@ -216,46 +216,46 @@ export const getProductColumn = (dispatch: AppDispatch) => {
       header: () => <div>Thumbnail</div>,
       cell: ({ row }) => {
         const thumbnail: string = row.getValue("thumbnail");
-        return <img src={thumbnail} height={150} width={150} />;
+        return <img src={thumbnail} height={250} width={250} />;
       },
     },
-    {
-      accessorKey: "images",
-      header: () => <div>Images</div>,
-      cell: ({ row }) => {
-        const images: string[] = row.getValue("images");
-        return (
-          <div className="grid grid-cols-2">
-            {images.map((image) => (
-              <img src={image} height={50} width={50} key={image} />
-            ))}
-          </div>
-        );
-      },
-    },
+    // {
+    //   accessorKey: "images",
+    //   header: () => <div>Images</div>,
+    //   cell: ({ row }) => {
+    //     const images: string[] = row.getValue("images");
+    //     return (
+    //       <div className="grid grid-cols-2">
+    //         {images.map((image) => (
+    //           <img src={image} height={50} width={50} key={image} />
+    //         ))}
+    //       </div>
+    //     );
+    //   },
+    // },
     {
       accessorKey: "description",
-      header: () => <div className="text-left">Description</div>,
+      header: () => <div className="text-left w-28">Description</div>,
       cell: ({ row }) => {
         return (
-          <div className="text-left line-clamp-4 h-20 overflow-hidden text-sm text-muted-foreground ">
+          <div className="text-justify line-clamp-4 h-40 w-28 overflow-hidden text-xs  text-muted-foreground ">
             {row.getValue("description")}
           </div>
         );
       },
     },
-    {
-      accessorKey: "createdAt",
-      header: () => <div className="text-left">Created Date</div>,
-      cell: ({ row }) => {
-        const createdDate: Date = row.getValue("createdAt");
-        return (
-          <div className="text-left line-clamp-4 h-20 overflow-hidden text-sm text-muted-foreground w-[100px]">
-            {new Date(createdDate).toDateString()}
-          </div>
-        );
-      },
-    },
+    // {
+    //   accessorKey: "createdAt",
+    //   header: () => <div className="text-left">Created Date</div>,
+    //   cell: ({ row }) => {
+    //     const createdDate: Date = row.getValue("createdAt");
+    //     return (
+    //       <div className="text-left line-clamp-4 h-20 overflow-hidden text-sm text-muted-foreground w-[100px]">
+    //         {new Date(createdDate).toDateString()}
+    //       </div>
+    //     );
+    //   },
+    // },
     {
       id: "actions",
       header: "Action",
@@ -265,9 +265,9 @@ export const getProductColumn = (dispatch: AppDispatch) => {
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
+              <Button variant="ghost" className="h-8 w-16 p-0">
                 <span className="sr-only">Open menu</span>
-                <DotsHorizontalIcon className="h-4 w-4" />
+                <DotsHorizontalIcon className="h-6 w-6" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center">

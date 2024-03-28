@@ -1,4 +1,3 @@
-import { deleteImageFromServer } from "@/axios/axiosProcessor";
 import {
   deleteProduct,
   getProducts,
@@ -18,17 +17,11 @@ export const postProductAction =
     const pendingResp = postProduct(obj);
     showToast(pendingResp);
 
-    const { status, imagesToDelete } = await pendingResp;
-    status === "success" && dispatch(getproductAction());
+    const { status } = await pendingResp;
 
-    if (status === "success" && imagesToDelete?.length) {
+    if (status === "success") {
       dispatch(getChartDataAction());
-
-      if (imagesToDelete?.length && typeof imagesToDelete !== "string") {
-        imagesToDelete.forEach((element: string) => {
-          deleteImageFromServer({ fileName: element });
-        });
-      }
+      dispatch(getproductAction());
       return true;
     }
     return false;
@@ -59,20 +52,12 @@ export const updateProductAction =
     const pendingResp = updateProduct(obj);
     showToast(pendingResp);
 
-    const { status, imagesToDelete } = await pendingResp;
+    const { status } = await pendingResp;
 
     if (status === "success") {
       dispatch(getChartDataAction());
 
       dispatch(getproductAction());
       dispatch(closeDialog());
-    }
-
-    if (status === "success" && typeof imagesToDelete !== "string") {
-      if (imagesToDelete?.length) {
-        imagesToDelete.forEach((element: string) => {
-          deleteImageFromServer({ fileName: element });
-        });
-      }
     }
   };

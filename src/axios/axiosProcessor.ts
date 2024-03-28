@@ -58,17 +58,7 @@ export const axiosProcessor = async ({
     };
   }
 };
-const productApi = rootApi + "/api/v1/product";
 
-export const deleteImageFromServer = (img: { fileName: string }) => {
-  const obj = {
-    method: "post",
-    url: productApi + "/deleteFileFromServer",
-    obj: img,
-    isPrivate: true,
-  };
-  return axiosProcessor(obj);
-};
 export const UploadImageToS3Bucket = (data: FormData) => {
   const obj = {
     method: "post",

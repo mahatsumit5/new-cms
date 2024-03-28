@@ -12,6 +12,7 @@ import { CustomDialog } from "./components/dialog/CustomDialog";
 import Profile from "./pages/profile/page";
 import Sales from "./pages/sales/Sales";
 import Admin from "./pages/admin/Admin";
+import AwsImages from "./pages/images/AwsImages";
 function App() {
   return (
     <div className="  mx-auto font-">
@@ -88,6 +89,14 @@ function App() {
           element={
             <PrivateRoute>
               <Admin />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/images"
+          element={
+            <PrivateRoute>
+              <AwsImages />
             </PrivateRoute>
           }
         />

@@ -89,7 +89,7 @@ export default function EditAccount({ File }: { File?: File }) {
     formDt.append("email", values["email"]);
     formDt.append("password", values["password"]);
     formDt.append("phone", values["phone"]);
-    return;
+
     dispatch(updateUserAction(formDt));
   }
   return (

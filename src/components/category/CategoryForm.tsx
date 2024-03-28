@@ -48,7 +48,9 @@ const formSchema = z.object({
     required_error: "Please select a category",
   }),
   status: z.boolean().default(false),
-  image: z.string().url(),
+  image: z.string().url({
+    message: "Image is required",
+  }),
 });
 const CategoryForm = ({ category }: { category?: ICategory }) => {
   const dispatch = useAppDispatch();
@@ -63,9 +65,8 @@ const CategoryForm = ({ category }: { category?: ICategory }) => {
       image: category?.image || "",
     },
   });
-  const { image, UploadComponent } = UploadPicture(form);
+  const { imageUrl, UploadComponent } = UploadPicture(form);
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     const object = {
       image: values.image,
@@ -197,7 +198,7 @@ const CategoryForm = ({ category }: { category?: ICategory }) => {
         />
         {/* Image */}
         <div className="grid w-full  items-center gap-1.5">
-          <UploadComponent url={category?.image || image} />
+          <UploadComponent url={category?.image || imageUrl} />
         </div>
 
         <Button type="submit" className="">
