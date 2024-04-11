@@ -1,4 +1,5 @@
 import { deleteImage, getAllImages } from "@/axios/aws.axios";
+import { closeDialog } from "@/redux/dialog.slice";
 import { setImages } from "@/redux/images.slice";
 import { AppDispatch } from "@/store";
 import { AwsImageType } from "@/types";
@@ -17,5 +18,6 @@ export const deleteAwsImageAction =
 
     if (status === "success") {
       dispatch(getAwsImagesAction(limit));
+      dispatch(closeDialog());
     }
   };

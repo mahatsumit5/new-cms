@@ -92,7 +92,7 @@ const NavigationMenu = ({
   }, [screenSize, dispatch]);
 
   return (
-    <ul className="flex flex-col  flex-1 gap-4 h-full justify-start  overflow-hidden w-full  mt-10   ">
+    <ul className="flex flex-col  flex-1 gap-2 h-full justify-start  overflow-hidden w-full  mt-5   ">
       {buttons.map((item) => (
         <Link
           to={`${item.link}`}
@@ -106,11 +106,13 @@ const NavigationMenu = ({
             whileHover={{
               scale: 1.05,
             }}
-            className={`flex gap-2   overflow-hidden  transition-all   p-1 `}
+            className={`flex gap-5  overflow-hidden  transition-all   p-1 `}
           >
             <span
               className={`mt-1  p-3 text-white rounded-full ${
-                pathname === item.link ? "bg-primary/50  " : "bg-primary"
+                pathname === item.link
+                  ? "bg-blue-800 dark:bg-blue-600  "
+                  : "bg-primary"
               }`}
             >
               {item.icon}
@@ -121,7 +123,7 @@ const NavigationMenu = ({
               transition={{ duration: item.duration, ease: "easeInOut" }}
               className={`  p-2  px-4 text-pretty text-md w-full  rounded-lg shadow-md  font-embed  ${
                 pathname === item.link
-                  ? "bg-primary/50 text-primary-foreground "
+                  ? "bg-blue-800 dark:bg-blue-600 text-primary-foreground "
                   : "bg-primary text-primary-foreground "
               }`}
             >

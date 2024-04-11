@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+// import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -7,6 +7,7 @@ import { RxCross2 } from "react-icons/rx";
 import { useState } from "react";
 import { deleteAwsImageAction } from "@/Action/images.action";
 import { useSearchParams } from "react-router-dom";
+import { openDialog } from "@/redux/dialog.slice";
 
 const AwsImages = () => {
   const { images } = useAppSelector((store) => store.awsImages);
@@ -22,7 +23,7 @@ const AwsImages = () => {
           );
         })}
       </div>
-      <div className="w-full flex justify-end gap-2">
+      {/* <div className="w-full flex justify-end gap-2">
         <Button variant={"outline"}>
           <IoIosArrowBack />
           Prev
@@ -30,7 +31,7 @@ const AwsImages = () => {
         <Button variant={"outline"}>
           Next <IoIosArrowForward />
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };
@@ -48,9 +49,36 @@ function ImageCard({ image }: { image: string }) {
     setSelected((prev) => prev.filter((i) => i !== key));
   }
 
-  async function handleDelete(key: string) {
+  function handleDelete(key: string) {
     const limit = Number(params.get("limit"));
-    dispatch(deleteAwsImageAction(key, limit));
+    dispatch(
+      openDialog({
+        buttonName: "Delete",
+        isOpen: true,
+        title: "Delete Image",
+        children: (
+          <div className="flex flex-col gap-2">
+            <span className="text-xl">
+              Are you sure want to delete this image?
+            </span>
+            <p className="text-sm text-gray-500">
+              This action cannot be undone.
+            </p>
+            <div className="flex w-full justify-end">
+              <Button
+                className=""
+                variant={"destructive"}
+                onClick={() => {
+                  dispatch(deleteAwsImageAction(key, limit));
+                }}
+              >
+                Delete
+              </Button>
+            </div>
+          </div>
+        ),
+      })
+    );
   }
 
   return (

@@ -24,7 +24,7 @@ const MobileSideBar = ({
     <Sheet open={open}>
       <SheetTrigger>{children}</SheetTrigger>
       <SheetContent
-        className="w-[250px]  bg-slate-100/20 dark:bg-slate-500/20 backdrop-blur-md rounded-lg"
+        className="w-[280px]  bg-slate-100/20 dark:bg-slate-500/20 backdrop-blur-md rounded-lg"
         side={"left"}
       >
         <SheetClose
