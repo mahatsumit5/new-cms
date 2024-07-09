@@ -23,7 +23,7 @@ const NavigationMenu = ({
     {
       name: "Dashboard",
       icon: <BsFillBox2Fill size={15} />,
-      link: "/dashboard",
+      link: "/",
       duration: 0.1,
     },
     {

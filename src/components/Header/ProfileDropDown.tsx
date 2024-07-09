@@ -15,17 +15,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useAppDispatch } from "@/hooks";
 import { logOut } from "@/redux/user.slice";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export function ProfileDropDown({ children }: { children: React.ReactNode }) {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   function handleLogOut() {
     logoutUser();
     localStorage.removeItem("refreshJWT");
     sessionStorage.removeItem("accessJWT");
     dispatch(logOut());
-    navigate("/");
+    window.location.replace("http://localhost:8000/logout");
   }
   return (
     <DropdownMenu>

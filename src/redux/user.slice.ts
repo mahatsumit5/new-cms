@@ -1,24 +1,10 @@
 import { IUser } from "@/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 type TinititalState = {
-  user: IUser;
+  user: IUser | null;
 };
 const initialState: TinititalState = {
-  user: {
-    _id: "",
-    email: "",
-    fName: "",
-    lName: "",
-    __v: 0,
-    address: "",
-    createdAt: "",
-    isVerified: false,
-    phone: "",
-    profile: "",
-    status: "",
-    updatedAt: "",
-    verificationCode: "",
-  },
+  user: null,
 };
 
 const userSlice = createSlice({

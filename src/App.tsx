@@ -1,7 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import SignIn from "./pages/signin-singup/SignIn";
 import Dashboard from "./pages/dashboard/Dashboard";
-import Page from "./pages/reset-password/ResetPassword";
 import { PrivateRoute } from "./components/private/PrivateRoute";
 import ProductPage from "./pages/products/ProductPage";
 
@@ -17,11 +15,9 @@ function App() {
   return (
     <div className="  mx-auto font-">
       <Routes>
-        <Route path="/" element={<SignIn />} />
-        <Route path="/reset-password" element={<Page />} />
         {/* private Pages */}
         <Route
-          path="/dashboard"
+          path="/"
           element={
             <PrivateRoute>
               <Dashboard />

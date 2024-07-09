@@ -96,7 +96,7 @@ export const getNewAccessJWT = () => {
 export const logoutUser = () => {
   const obj = {
     method: "post",
-    url: adminApi + "/logout",
+    url: "http://localhost:8000/logout",
     obj: {
       accessJWT: getAccessJWt(),
       refreshJWT: getRefreshJWT(),

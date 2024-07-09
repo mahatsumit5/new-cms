@@ -62,13 +62,13 @@ export default function EditAccount({ File }: { File?: File }) {
   const form = useForm<z.infer<typeof userFormSchema>>({
     resolver: zodResolver(userFormSchema),
     defaultValues: {
-      _id: user._id,
-      address: user.address || "",
-      email: user.email || "",
-      fName: user.fName || "",
-      lName: user.lName || "",
+      _id: user?.sid,
+      address: user?.address || "",
+      email: user?.email || "",
+      fName: user?.given_name || "",
+      lName: user?.family_name || "",
       password: "",
-      phone: user.phone || "",
+      phone: user?.sub || "",
     },
   });
 
@@ -102,10 +102,10 @@ export default function EditAccount({ File }: { File?: File }) {
           <span className="text-md font-semibold">Status</span>
           <span
             className={`${
-              user.status === "active" ? "bg-green-600" : "bg-red-500"
+              user?.status === "active" ? "bg-green-600" : "bg-red-500"
             } text-white rounded-full p-2 px-4 shadow-xl`}
           >
-            {user.status}
+            {user?.status}
           </span>
         </div>
         <FormField

@@ -1,10 +1,7 @@
 import { IAxiosProcessParams, TAxiosProcessor } from "@/types";
 import axios from "axios";
 import { getNewAccessJWT, logoutUser } from "./userAxios";
-// export const rootApi = import.meta.env.VITE_ROOTSERVER;
-export const rootApi = !import.meta.env.PROD
-  ? "http://192.168.20.13:8080"
-  : import.meta.env.VITE_ROOTSERVER;
+export const rootApi = !import.meta.env.PROD ? "http://localhost:8000" : "";
 
 export const adminApi = rootApi + "/api/v1/admin";
 

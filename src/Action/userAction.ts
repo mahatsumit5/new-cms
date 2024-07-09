@@ -28,7 +28,7 @@ export const getAdminProfileAction = () => async (dispatch: AppDispatch) => {
   //call the api to get user info
   const { status, user } = await getAdmin();
   //mount the state with the user data
-  if (status === "success" && user?._id) {
+  if (status === "success" && user?.sid) {
     dispatch(setUser(user));
   }
 };

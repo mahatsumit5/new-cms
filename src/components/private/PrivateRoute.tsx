@@ -2,7 +2,7 @@ import SideBar from "../sideBar/SideBar";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { CustomBreadCrumb } from "../breadCrumbs/BreadCumbSeperator";
-import { Navigate, useLocation, useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { useEffect } from "react";
 import {
@@ -14,24 +14,23 @@ import { getPaymentsAction } from "@/Action/paymentAction";
 import { getOrderAction } from "@/Action/orderAction";
 import { getChartDataAction } from "@/Action/chart.action";
 import { getAwsImagesAction } from "@/Action/images.action";
+import { getAdminProfileAction } from "@/Action/userAction";
 export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
-  const { user } = useAppSelector((store) => store.userInfo);
   const { isOpen } = useAppSelector((store) => store.sideBar);
   const location = useLocation();
   const [params] = useSearchParams();
   const dispatch = useAppDispatch();
-
   useEffect(() => {
-    if (!user) {
-      return;
-    }
+    dispatch(getAdminProfileAction());
+  }, [dispatch]);
+  useEffect(() => {
     dispatch(getCataloguesAction());
     dispatch(getParentCategoryAction());
     dispatch(getproductAction());
     dispatch(getPaymentsAction());
     dispatch(getOrderAction());
     dispatch(getChartDataAction());
-  }, [dispatch, user]);
+  }, [dispatch]);
 
   useEffect(() => {
     if (location.pathname !== "/images") return;
@@ -40,7 +39,7 @@ export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   }, [location, params, dispatch]);
   const responsive = isOpen ? "md:pl-[230px]" : "md:pl-[80px]";
 
-  return user?._id ? (
+  return (
     <>
       <div className=" flex flex-row w-full  ">
         <SideBar />
@@ -54,7 +53,5 @@ export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
         </main>
       </div>
     </>
-  ) : (
-    <Navigate to="/" state={{ from: { location } }} />
   );
 };

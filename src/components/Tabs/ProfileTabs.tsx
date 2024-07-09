@@ -29,7 +29,7 @@ export function ProfileTabs() {
               <div className="flex  items-end">
                 <span className=" relative bg-white rounded-full h-40 w-40">
                   <img
-                    src={preview || user.profile}
+                    src={preview || user?.picture}
                     className="overflow-hidden rounded-full shadow-lg bg-cover h-40 w-40 object-cover"
                   />
                   <Label

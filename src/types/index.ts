@@ -11,20 +11,18 @@ export type Key =
 export type TabsKey = "catagory" | "product" | "payment";
 
 export interface IUser {
-  _id: string;
-  status: string;
-  fName: string;
-  lName: string;
-  phone: string;
-
+  sid: string;
+  given_name: string;
+  family_name: string;
+  nickname: string;
+  name: string;
+  picture: string;
+  updated_at: string; // Assuming you handle this as a string or parse it into a Date object
   email: string;
-  isVerified: boolean;
-  verificationCode: string | null;
-  address: string;
-  profile: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
+  email_verified: boolean;
+  sub: string;
+  status: "active";
+  address: "";
 }
 
 export interface ICategory {

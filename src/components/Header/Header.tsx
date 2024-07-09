@@ -100,8 +100,8 @@ const Header = () => {
           <ProfileDropDown
             children={
               <Avatar>
-                {user?.profile ? (
-                  <AvatarImage src={user.profile} alt="profile" />
+                {user?.picture ? (
+                  <AvatarImage src={user.picture} alt="profile" />
                 ) : (
                   <AvatarImage
                     src={
