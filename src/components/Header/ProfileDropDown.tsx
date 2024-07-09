@@ -24,7 +24,7 @@ export function ProfileDropDown({ children }: { children: React.ReactNode }) {
     localStorage.removeItem("refreshJWT");
     sessionStorage.removeItem("accessJWT");
     dispatch(logOut());
-    window.location.replace("http://localhost:8000/logout");
+    window.location.replace(window.location.origin + "/logout");
   }
   return (
     <DropdownMenu>

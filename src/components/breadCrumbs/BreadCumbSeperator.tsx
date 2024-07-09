@@ -20,7 +20,7 @@ export function CustomBreadCrumb() {
           <Fragment key={index}>
             <BreadcrumbItem>
               <Link
-                to={item === "" ? "/dashboard" : `/${item}`}
+                to={item === "" ? "/" : `/${item}`}
                 className="uppercase text-md font-embed dark:text-foreground text-primary"
               >
                 {item === "" ? "Home" : item}

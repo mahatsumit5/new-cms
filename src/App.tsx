@@ -25,6 +25,14 @@ function App() {
           }
         />
         <Route
+          path="/*"
+          element={
+            <PrivateRoute>
+              <div className="min-h-72">Page not found</div>
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/products"
           element={
             <PrivateRoute>
